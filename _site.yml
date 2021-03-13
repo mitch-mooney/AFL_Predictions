@@ -4,6 +4,6 @@ navbar:
   title: "Cheap Stats"
   left:
     - text: "AFL ratings"
-      href: ratings.html
+      href: index.html
     - text: "Season Predictions"
       href: predictions.html
