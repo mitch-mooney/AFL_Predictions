@@ -1,0 +1,9 @@
+name: "AFL-predictions"
+output_dir: "."
+navbar:
+  title: "Cheap Stats"
+  left:
+    - text: "AFL ratings"
+      href: ratings.html
+    - text: "Season Predictions"
+      href: predictions.html
