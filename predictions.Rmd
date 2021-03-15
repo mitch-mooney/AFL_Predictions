@@ -192,6 +192,10 @@ reactable(t, columns = list(
 #rmarkdown::render("predictions.Rmd", "html_document")
 ```
 
+```{r include=FALSE}
+write.csv(t, 'csv_files/round_predictions.csv')
+```
+
 
 ```{r, echo=FALSE, out.width="10%", out.height="10%", fig.align: "right"}
 knitr::include_graphics("images/logo.png")
