@@ -83,6 +83,7 @@ reactable(t, columns = list(
   Pred_Margin = colDef(name = "Predicted Margin", align = "center", maxWidth = 120)
 ))
 
+write.csv(t, 'csv_files/round_predictions.csv')
 
 matches<-results %>% 
   filter(Season >= 2010) %>% 

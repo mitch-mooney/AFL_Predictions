@@ -10,7 +10,7 @@ model.data <- model_data(data)
 model <- model_training(inputs = model.data$training, target = model.data$trainLabels)
 
 model %>% save_model_tf("model/model")
-model <- load_model_tf("model/model")
+#model <- load_model_tf("model/model")
 #evaluate model from test dataset
 model %>% 
   evaluate(model.data$test, model.data$testLabels)
@@ -67,7 +67,7 @@ Sum_pred_cat<-score_data_lean %>%
   filter(Margin != 999) %>% 
   summarise(rating.mean=mean(Margin), rating.sd = sd(Margin))
 
-# linear formula for predicting margin from win probabolity
+# linear formula for predicting margin from win probability
 formula <- lm(Margin ~ pred_win_prob, na.action=na.exclude, data= score_data_lean)
 score_data_lean %<>% mutate(margin_est_linear = predict(formula)) # add estimate of margin
 
