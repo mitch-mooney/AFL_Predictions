@@ -1,10 +1,19 @@
-,Team,Opposition,Round,Loss_prob,Win_Prob,Pred_Margin,Pred_Winner
-1,Richmond,Carlton,Round 1,0.35,0.65,24,Richmond
-2,Collingwood,Western Bulldogs,Round 1,0.57,0.43,-1,Western Bulldogs
-3,Melbourne,Fremantle,Round 1,0.39,0.61,19,Melbourne
-4,Adelaide,Geelong,Round 1,0.74,0.26,-21,Geelong
-5,Brisbane,Sydney,Round 1,0.29,0.71,32,Brisbane
-6,Essendon,Hawthorn,Round 1,0.59,0.41,-4,Hawthorn
-7,North Melbourne,Port Adelaide,Round 1,0.77,0.23,-24,Port Adelaide
-8,West Coast,Gold Coast,Round 1,0.32,0.68,27,West Coast
-9,GWS,St Kilda,Round 1,0.41,0.59,17,GWS
+"","Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner"
+"1","Richmond","Carlton","Round 1",0.35,0.65,23.7564664282581,"Richmond"
+"2","Collingwood","Western Bulldogs","Round 1",0.57,0.43,-1.39771483500176,"Western Bulldogs"
+"3","Melbourne","Fremantle","Round 1",0.39,0.61,19.2099535465149,"Melbourne"
+"4","Adelaide","Geelong","Round 1",0.74,0.26,-20.5715387998402,"Geelong"
+"5","Brisbane","Sydney","Round 1",0.29,0.71,31.6593452755107,"Brisbane"
+"6","Essendon","Hawthorn","Round 1",0.59,0.41,-3.89597502823555,"Hawthorn"
+"7","North Melbourne","Port Adelaide","Round 1",0.77,0.23,-24.0357906261644,"Port Adelaide"
+"8","West Coast","Gold Coast","Round 1",0.32,0.68,27.3435131765395,"West Coast"
+"9","GWS","St Kilda","Round 1",0.41,0.59,17.2100481767666,"GWS"
+"10","Carlton","Collingwood","Round 2",0.46,0.54,9,"Carlton"
+"11","Geelong","Brisbane","Round 2",0.41,0.59,15,"Geelong"
+"12","Sydney","Adelaide","Round 2",0.37,0.63,20,"Sydney"
+"13","Port Adelaide","Essendon","Round 2",0.16,0.84,42,"Port Adelaide"
+"14","Gold Coast","North Melbourne","Round 2",0.31,0.69,26,"Gold Coast"
+"15","St Kilda","Melbourne","Round 2",0.39,0.61,17,"St Kilda"
+"16","Hawthorn","Richmond","Round 2",0.72,0.28,-20,"Richmond"
+"17","Fremantle","GWS","Round 2",0.43,0.57,12,"Fremantle"
+"18","Western Bulldogs","West Coast","Round 2",0.42,0.58,14,"Western Bulldogs"
