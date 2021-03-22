@@ -26,7 +26,7 @@ table %<>%
   mutate(Team_predicted = ifelse(Tips == 1, Team, Opposition))
   
 table %<>%
-  select(Date,	Match_id,	Season,	Team,	Opposition,	Status,	Venue,	Round,	results,	Odds,	line_Odds,	Opp_Odds,	Opp_lineOdds,	Tips,	pred_loss_prob,	pred_win_prob, Team_predicted,	margin_est_linear,	margin_est_rand) %>% 
+  select(Date,Match_id,	Season,	Team,	Opposition,	Status,	Venue,	Round,	results,	Odds,	line_Odds,	Opp_Odds,	Opp_lineOdds,	Tips,	pred_loss_prob,	pred_win_prob, Team_predicted,	margin_est_linear,	margin_est_rand) %>% 
   rename(
     Loss_prob = pred_loss_prob,
     Win_Prob = pred_win_prob,
@@ -36,8 +36,6 @@ table %<>%
 
 #bind new with previous predictions
 new_season_pred<-plyr::rbind.fill(season_predictions, table)
-#rewrite csv with up to date predictions to keep tally
-write.csv(new_season_pred,'csv_files/fixture_res.csv')
 
 table_final <- table %>% 
   filter(Status == "Home")
@@ -50,9 +48,28 @@ table_final %<>%
 # generate table to merge with simulation plot
 t <- table_final %>% 
   select(Team, Opposition, Round, Loss_prob, Win_Prob, margin_estimate_1, Team_predicted) %>% 
-  rename(Pred_Winner=Team_predicted,Pred_Margin = margin_estimate_1)
+  rename(Pred_Winner=Team_predicted,Pred_Margin = margin_estimate_1) %>% 
+  mutate(Pred_Margin = round(Pred_Margin,0))
+
+current_round <- unique(t$Round)
+season_pred <- read.csv('csv_files/round_predictions.csv')
+season_pred %<>% filter(!Round %in% current_round) %>% select("Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner")
+season_pred.new <- rbind(season_pred, t)
+write.csv(season_pred.new, 'csv_files/round_predictions.csv')
+
 
 # use reactable to use team logos
+options(reactable.theme = reactableTheme(
+  color = "hsl(233, 9%, 87%)",
+  backgroundColor = "hsl(233, 9%, 19%)",
+  borderColor = "hsl(233, 9%, 22%)",
+  stripedColor = "hsl(233, 12%, 22%)",
+  highlightColor = "hsl(233, 12%, 24%)",
+  inputStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
+  selectStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
+  pageButtonHoverStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
+  pageButtonActiveStyle = list(backgroundColor = "hsl(233, 9%, 28%)")
+))
 
 reactable(t, columns = list(
   Team = colDef(maxWidth = 150, align = "center", cell = function(value) {
@@ -80,10 +97,27 @@ reactable(t, columns = list(
   Round = colDef(align = "center", maxWidth = 120),
   Loss_prob = colDef(name = "Loss Probability", align = "center", maxWidth = 120),
   Win_Prob = colDef(name = "Win Probability", align = "center", maxWidth = 120),
-  Pred_Margin = colDef(name = "Predicted Margin", align = "center", maxWidth = 120)
+  Pred_Margin = colDef(name = "Predicted Margin", align = "center", maxWidth = 120, format = colFormat(digits = 0))
 ))
 
-write.csv(t, 'csv_files/round_predictions.csv')
+
+# simulation plot
+# create plot for simulation
+score_sim$score_sim %>% 
+  mutate(result = ifelse(value < 0, opp, team)) %>% 
+  filter(game < (games/2 +1)) %>% #change this to suit how many matches there are that round
+  ggplot(aes(x = value, color = result))+
+  geom_histogram(binwidth = 1,  alpha = 0.8)+
+  geom_vline(data=mean_score[1:(games/2),], aes(xintercept=rating.mean,  colour=result), #change mean_score[1:games/2]
+             linetype="dashed", size=1)+
+  scale_colour_manual(values = cols)+
+  labs(title = paste("Match simulation of AFL:", score_sim$score_sim$round,sep = " "),
+       color = "Team",
+       x = "simulated margin")+
+  scale_x_continuous(breaks = seq(-100, 100, 20))+
+  theme_AFL(base_size = 12)+
+  facet_grid(game+match~.,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
+
 
 matches<-results %>% 
   filter(Season >= 2010) %>% 

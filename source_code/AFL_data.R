@@ -8,13 +8,21 @@ library(lubridate)
 library(reshape2)
 library(ggpmisc)
 library(magrittr)
+
+file.source = list.files("functions/")
+sapply(paste0('functions/', file.source), source)
+
 # Get Football Draw
-fixture<-get_fixture(2021)
+#fixture<-get_fixture(2021)
 
 ##########----- Gather Data from fitZroy package -----########## 
 # player stats
 #dat <- update_footywire_stats(ids = 1:9999)
 dat <- read.csv('csv_files/AFLstats.csv')
+dat <- dat %>% select(!X)
+dat.new<-get_footywire_stats(ids = 10327:10335)
+dat <- plyr::rbind.fill(dat, dat.new)
+write.csv(dat, 'csv_files/AFLstats.csv')
 ## betting data
 #betting_odds<-get_footywire_betting_odds(
 #  start_season = "2010",
