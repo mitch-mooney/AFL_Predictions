@@ -27,7 +27,7 @@ reactable_function <- function(data){
     args <- list(role = "img", title = change)
     
     if (value == "Unchanged") {
-      args <- c(args, list("–", style = "color: #666; font-weight: 700"))
+      args <- c(args, list(shiny::icon("minus"), style = "color: #666; font-weight: 700"))
     } else if (value == "Up") {
       args <- c(args, list(shiny::icon("caret-up"), style = "color: #1ed760"))
     } else if (value == "Down") {
@@ -56,7 +56,7 @@ reactable_function <- function(data){
     }),
     Rating = colDef(maxWidth = 100, align = "center", format = colFormat(digits = 0)),
     
-    sparkline = colDef(name = "2020 Progress", cell = function(value, index) {
+    sparkline = colDef(name = "2021 Progress", cell = function(value, index) {
       sparkline(spark_table$sparkline[[index]], lineWidth = 3, height = "50px", width = "150px")
     })
     

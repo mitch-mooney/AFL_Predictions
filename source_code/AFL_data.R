@@ -193,10 +193,9 @@ round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 round$Date<- as.Date(round$Date,format = "%d/%m/%Y %H:%M")
 # clean up strings
-round$Team<-stringr::str_replace(round$Team, "Footscray", "Western Bulldogs")
-round$Team<-stringr::str_replace(round$Team, "Brisbane Lions", "Brisbane")
-round$Opposition<-stringr::str_replace(round$Opposition, "Footscray", "Western Bulldogs")
-round$Opposition<-stringr::str_replace(round$Opposition, "Brisbane Lions", "Brisbane")
+round <- round %>% 
+  select(Date, Match_id, Match_id, Season, Team, Opposition, Status, Venue, Round, results, Margin) %>% 
+  left_join(betting_join, by=c('Team', 'Opposition', 'Status'))
 
 match<-as.data.frame(match)
 #bind rows need to use plyr to fill blank columns
