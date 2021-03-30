@@ -38,7 +38,11 @@ reactable_function <- function(data){
     do.call(span, args)
   }
   
-  reactable(spark_table,defaultSorted = list(Rank= "asc"), pagination = FALSE, defaultPageSize = 20, columns = list(
+  reactable(spark_table,defaultSorted = list(Rank= "asc"), pagination = FALSE, defaultPageSize = 20,  rowStyle = function(index) {
+    if (spark_table[index, "Rank"] < 9) {
+      list(fontWeight = "bold")
+    }
+  }, columns = list(
     Rank = colDef(maxWidth = 75, align = "center"),
     change = colDef(
       header = span("", class = "sr-only"),

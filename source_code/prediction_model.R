@@ -7,7 +7,7 @@ data[1:col_num] <- lapply(data[1:col_num], as.numeric) #make sure all variables 
 # returns a list of matrix used for running model
 model.data <- model_data(data)
 # trains the model using the data frames you choose from the list target needs to be categorical
-model <- model_training(inputs = model.data$training, target = model.data$trainLabels)
+model <- model_training(inputs = model.data$full_data_matrix, target = model.data$full_data_target)
 
 model %>% save_model_tf("model/model")
 #model <- load_model_tf("model/model")

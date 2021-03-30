@@ -30,7 +30,7 @@ line_odds <- function(betting_json){
       
     }
     
-    line_sum <- line.df %>% summarise(median_team.a = median(team.a_line), median_team.b = median(team.b_line))
+    line_sum <- line.df %>% summarise(median_team.a = median(as.numeric(team.a_line)), median_team.b = median(as.numeric(team.b_line)))
     
     teams <- cbind(teams, line_sum)
     

@@ -13,6 +13,8 @@ future_matrix <- data[firstRow:lastRow,2:col_num] #have to adjust the row for ne
 full_future_matrix<-data[firstRow:lastRow,1:col_num]
 #remove future data from training set
 data<- data[-firstRow:-lastRow,] #have to adjust the row for new data
+full_data_matrix <- data[,2:col_num]
+full_data_target <- to_categorical(data[,1])
 # organize training set
 set.seed(321)
 ind<-sample(2, nrow(data), replace = T, prob = c(0.8, 0.2))
@@ -25,7 +27,7 @@ testLabels <- to_categorical(testtarget)
 test_var<-as.numeric(nrow(testLabels))
 test_dim<-as.numeric(ncol(testLabels))
 
-dataframe_list <- list(training = training, trainLabels = trainLabels,test = test, trainLabels = trainLabels, test_var = test_var, testtarget = testtarget, test_dim = test_dim, future_matrix = future_matrix, full_future_matrix = full_future_matrix, data = data)
+dataframe_list <- list(training = training, trainLabels = trainLabels,test = test,testLabels = testLabels, test_var = test_var, testtarget = testtarget, test_dim = test_dim, future_matrix = future_matrix, full_future_matrix = full_future_matrix,full_data_matrix = full_data_matrix,full_data_target=full_data_target, data = data)
 
 }
 

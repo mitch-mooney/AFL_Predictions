@@ -12,8 +12,6 @@ prob_pred_df <- prob_pred_df%>%
          #Draw_Prob = V3,
          Tips = V3)
 
-season_predictions <-read.csv('csv_files/fixture_res.csv')
-
 new_predictions<-score_sim$score_data_lean %>% 
   filter(Margin == 999) %>% 
   mutate(Tips = ifelse(pred_win_prob > 0.5, 1, 0)) %>% 
@@ -34,8 +32,6 @@ table %<>%
     margin_estimate_2 = margin_est_rand
   )
 
-#bind new with previous predictions
-new_season_pred<-plyr::rbind.fill(season_predictions, table)
 
 table_final <- table %>% 
   filter(Status == "Home")
