@@ -197,7 +197,6 @@ new$opposition <- as.numeric(ordered(new$Opposition, levels = c("Adelaide","Bris
                                                                 "Port Adelaide","Richmond","St Kilda","Sydney","West Coast","Western Bulldogs")))
 new$status <- as.numeric(ordered(new$Status, levels = c("Home", "Away")))
 #new$date <- as.integer(format(new$Date, "%Y%m%d"))
-
 #finalize the variable lists for modeling
 new %<>%
   group_by(Team) %>%
