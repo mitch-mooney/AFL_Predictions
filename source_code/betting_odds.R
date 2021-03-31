@@ -1,3 +1,7 @@
+library(tidyverse)
+
+file.source = list.files("functions/")
+sapply(paste0('functions/', file.source), source)
 # Get recent betting odds
 line.odds_json <- jsonlite::read_json("https://api.the-odds-api.com/v3/odds/?apiKey=6eaafecb2712c78a63600da486d7be3b&sport=aussierules_afl&region=au&mkt=spreads")
 h2h.odds_json <- jsonlite::read_json("https://api.the-odds-api.com/v3/odds/?apiKey=6eaafecb2712c78a63600da486d7be3b&sport=aussierules_afl&region=au&mkt=h2h")

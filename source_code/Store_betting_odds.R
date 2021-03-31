@@ -1,5 +1,5 @@
 newest.results <- results %>% 
-  filter(Season == 2021, Round.Number == 2) %>% 
+  filter(Season == 2021, Round.Number == 3) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 

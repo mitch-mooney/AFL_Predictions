@@ -1,25 +1,20 @@
 library(fitzRoy)
-library(dplyr)
 library(data.table)
 library(PlayerRatings)
-library(ggplot2)
 library(plotly)
 library(lubridate)
 library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-file.source = list.files("functions/")
-sapply(paste0('functions/', file.source), source)
-
 # Get Football Draw
-#fixture<-get_fixture(2021)
+fixture<-get_fixture(2021)
 
 ##########----- Gather Data from fitZroy package -----########## 
 # player stats
-#dat <- update_footywire_stats(ids = 1:9999)
+#dat <- get_footywire_stats(ids = ids)
 dat <- read.csv('csv_files/AFLstats.csv')
-dat <- dat %>% select(!X)
+dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%d/%m/%Y"))
 dat.new<-get_footywire_stats(ids = 10336:10344)
 dat <- plyr::rbind.fill(dat, dat.new)
 write.csv(dat, 'csv_files/AFLstats.csv')
@@ -87,7 +82,55 @@ match %<>%
   mutate(wins_this_season = cumsum(ifelse(results == 2, 0.5, results)))%>% 
   ungroup()
 
-glicko_clean <- glicko_ratings(match)
+##########----- Make Glicko Ratings -----########## 
+ratings <- match %>%
+  filter(Status == 'Home') %>%
+  select(Date, Team, Opposition, results)%>%
+  mutate(results = ifelse(results == 2, 0.5, results)) %>% 
+  arrange(Date)
+
+ratings$date <- as.integer(format(ratings$Date, "%Y%m%d"))
+ratings$match <- rank(ratings$date)
+
+ratings %<>%
+  select(match, Team, Opposition, results)
+
+ratings$Match_id<-NULL
+
+glicko_rate<-glicko2(ratings, history = T)
+
+#make dataframe with history ratings
+glicko <- as.data.frame(glicko_rate$history)
+setDT(glicko, keep.rownames = TRUE)[]
+glicko <- melt(glicko)
+glicko$variable <- as.character(glicko$variable)
+var <-data.frame(do.call('rbind', strsplit(as.character(glicko$variable),'.',fixed=TRUE)))
+glicko<-cbind(glicko, var)
+names(glicko)[1] <- "Team"
+names(glicko)[4] <- "match"
+names(glicko)[5] <- "var"
+glicko %<>%
+  filter(var == "Rating")
+#rate$match_num <- with(rate, match(match, unique(Date)))
+
+## See Glicko Prediction.R for ratings predictions ##
+
+#prepare data for merging with player stats
+glicko %<>% 
+  group_by(Team) %>%
+  mutate(rate_change = (value) - lag(value),
+         rate_change = ifelse(is.na(rate_change), 2200 - value, rate_change)) %>% 
+  ungroup()
+
+glicko_clean<-glicko[apply(glicko!=0, 1, all),]
+glicko_clean %<>% filter(var == "Rating")
+glicko_clean$match <- as.integer(glicko_clean$match)
+
+glicko_clean %<>%
+  group_by(Team) %>%
+  mutate(match_num = order(order(match, decreasing=F))) %>%
+  select(Team, match_num, value, rate_change) %>% 
+  ungroup()
 
 #join with match dataset
 match$date <- as.integer(format(match$Date, "%Y%m%d"))
@@ -138,7 +181,7 @@ round <- wrangle_fixture(round = 3)
 # clean up strings
 round <- round %>% 
   select(Date, Match_id, Match_id, Season, Team, Opposition, Status, Venue, Round, results, Margin) %>% 
- # mutate(Status = ifelse(Team == "Collingwood" & Status == "Away", "Home", ifelse(Team == "Brisbane" & Status == "Home", "Away", Status))) %>% 
+  mutate(Status = ifelse(Team == "Collingwood" & Status == "Away", "Home", ifelse(Team == "Brisbane" & Status == "Home", "Away", Status))) %>% 
   left_join(betting_join, by=c('Team', 'Opposition', 'Status'))
 
 #bind rows need to use plyr to fill blank columns
