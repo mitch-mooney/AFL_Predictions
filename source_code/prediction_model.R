@@ -68,6 +68,6 @@ Sum_pred_cat<-score_data_lean %>%
   summarise(rating.mean=mean(Margin), rating.sd = sd(Margin))
 
 # linear formula for predicting margin from win probability
-formula <- lm(Margin ~ pred_win_prob, na.action=na.exclude, data= score_data_lean)
-score_data_lean %<>% mutate(margin_est_linear = predict(formula)) # add estimate of margin
-
+#formula <- lm(Margin ~ pred_win_prob, na.action=na.exclude, data= score_data_lean)
+#score_data_lean %<>% mutate(margin_est_linear = predict(formula)-1.5) # add estimate of margin
+score_data_lean %<>% mutate(margin_est_linear = -57+117*pred_win_prob-1.5) # add estimate of margin

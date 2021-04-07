@@ -10,7 +10,7 @@ line.median<-line_odds(line.odds_json)
 # gather median h2h odds
 h2h.median <- h2h_odds(h2h.odds_json)
 # join and clean line and h2h
-betting <- line.median %>% 
+betting.df <- line.median %>% 
   left_join(h2h.median, by = c("team.a", "team.b", "Date", "Season")) %>% 
   mutate(Home.Win.Odds = ifelse(team.a == Home.Team, median_team.a, median_team.b),
          Away.Win.Odds = ifelse(team.b == Away.Team, median_team.b, median_team.a),
@@ -19,27 +19,27 @@ betting <- line.median %>%
   select(Date, Home.Team, Away.Team, Home.Win.Odds, Away.Win.Odds,Home.Line.Odds, Away.Line.Odds)
 
 #clean up team names
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "Port$", "Port Adelaide")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "Port$", "Port Adelaide")
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "St$", "St Kilda")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "St$", "St Kilda")
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "Gold$", "Gold Coast")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "Gold$", "Gold Coast")
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "Western$", "Western Bulldogs")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "Western$", "Western Bulldogs")
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "North$", "North Melbourne")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "North$", "North Melbourne")
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "West$", "West Coast")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "West$", "West Coast")
-betting$Home.Team<-stringr::str_replace(betting$Home.Team, "Greater", "GWS")
-betting$Away.Team<-stringr::str_replace(betting$Away.Team, "Greater", "GWS")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "Port$", "Port Adelaide")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "Port$", "Port Adelaide")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "St$", "St Kilda")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "St$", "St Kilda")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "Gold$", "Gold Coast")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "Gold$", "Gold Coast")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "Western$", "Western Bulldogs")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "Western$", "Western Bulldogs")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "North$", "North Melbourne")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "North$", "North Melbourne")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "West$", "West Coast")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "West$", "West Coast")
+betting.df$Home.Team<-stringr::str_replace(betting.df$Home.Team, "Greater", "GWS")
+betting.df$Away.Team<-stringr::str_replace(betting.df$Away.Team, "Greater", "GWS")
 
-betting_idx <- rep(1:nrow(betting), 2)
-betting_df <- betting[betting_idx,]
+betting_idx <- rep(1:nrow(betting.df), 2)
+betting_df <- betting.df[betting_idx,]
 
 betting_join<-betting_df%>%
-  group_by(Date)%>%
-  mutate(num = row_number(),
+  group_by(Date,Home.Team)%>%
+  mutate(num = rep(1:2),
          Status = ifelse(num == 1, "Home", "Away"),
          Team = ifelse(num == 1, Home.Team, Away.Team),
          Opposition = ifelse(num == 1, Away.Team, Home.Team),
