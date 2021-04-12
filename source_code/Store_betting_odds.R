@@ -1,5 +1,8 @@
+## Get match results
+results<-get_match_results()
+
 newest.results <- results %>% 
-  filter(Season == 2021, Round.Number == 3) %>% 
+  filter(Season == 2021, Round.Number == 4) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 
@@ -26,6 +29,8 @@ newest.betting %<>%
          Home.Line.Odds = line_Odds,
          Away.Line.Odds = Opp_lineOdds) %>% 
   select("Date", "Venue", "Home.Team", "Away.Team","Home.Score","Away.Score", "Home.Margin", "Away.Margin","Home.Win.Odds", "Away.Win.Odds", "Home.Line.Odds", "Away.Line.Odds", "Round", "Season")
+
+betting %<>% select(!X)
 
 betting_csv <- rbind(betting, newest.betting)
 

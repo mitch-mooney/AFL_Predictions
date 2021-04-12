@@ -12,10 +12,9 @@ fixture<-get_fixture(2021)
 
 ##########----- Gather Data from fitZroy package -----########## 
 # player stats
-#dat <- get_footywire_stats(ids = ids)
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-get_footywire_stats(ids= 10346:10353) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
+dat.new<-get_footywire_stats(ids= 10354:10361) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 write.csv(dat, file = 'AFLstats.csv')
 ## betting data
@@ -158,7 +157,8 @@ bet <- betting%>%
          line_Odds = ifelse(Team == Home.Team, Home.Line.Odds, Away.Line.Odds),
          Opp_lineOdds = ifelse(Opposition == Home.Team, Home.Line.Odds, Away.Line.Odds))%>%
   ungroup() %>% 
-  select(Date,Status, Home.Team, Team, Odds, Opp_Odds, line_Odds, Opp_lineOdds) 
+  select(Date,Status, Home.Team, Team, Odds, Opp_Odds, line_Odds, Opp_lineOdds) %>% 
+  distinct()
   
 #clean up team names
 bet$Team<-stringr::str_replace(bet$Team, "Footscray", "Western Bulldogs")
@@ -169,12 +169,12 @@ bet$Team<-stringr::str_replace(bet$Team, "Brisbane Lions", "Brisbane")
 bet$Date <- as.Date(bet$Date,format = "%d/%m/%Y")
 
 #merge with match stats
-match <- merge(match, bet, by=c("Date","Status", "Team"))
+match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 4)
+round <- wrangle_fixture(round = 5)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 #round$Date<- as.Date(round$Date,format = "%d/%m/%Y %H:%M")
@@ -269,4 +269,3 @@ score_data_lean <- new %>%
 score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
 score_data_lean %<>%
   filter(Margin != 0) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
-
