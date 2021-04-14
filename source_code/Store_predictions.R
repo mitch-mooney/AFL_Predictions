@@ -120,15 +120,15 @@ score_sim$score_sim %>%
   filter(game < (games/2 +1)) %>% #change this to suit how many matches there are that round
   ggplot(aes(x = value, color = team))+
   stat_ecdf(size = 1.5)+
-  geom_vline(xintercept = 0, alpha = 0.5)+
-  geom_hline(yintercept = 0.5, alpha = 0.5)+
+  geom_vline(xintercept = 0, size = 1.5, alpha = 0.9, color = '#498181')+
+  geom_hline(yintercept = 0.5, size = 1.5,alpha = 0.9, color = '#498181')+
   scale_colour_manual(values = cols)+
   labs(title = "Simulated cummulative density function",
-       x = "Margin",
+       x = "Home Team Margin",
        y = "cummulative density")+
   xlim(-75,75) +
   # Add images to end point of line graph per team
-  theme_dark()+
+  theme_AFL(base_size = 10, background_hex = '#64B2B2')+
   theme(legend.position = 'None')+
   facet_grid(~game+match,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
 
