@@ -16,10 +16,10 @@ simulation <- function(runs){
   score_data_lean$margin_est_rand<-NA
   next_col <- which(colnames(score_data_lean)=="margin_est_rand")
   for (j in 1:nrow(score_data_lean)){
-    num<-as.numeric(score_data_lean[j,28])
+    num<-as.numeric(score_data_lean[j,29])
     sample<- sample(resampling[,num], 10000, replace=FALSE)
     mean_margin <- round(mean(sample),0)
-    score_data_lean[j,30]<- mean_margin
+    score_data_lean[j,31]<- mean_margin
   }
   
   #create simulation of margin estimate

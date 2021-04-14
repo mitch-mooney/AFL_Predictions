@@ -245,14 +245,16 @@ new %<>%
          last_CP = lag(CP, order_by = Date),
          last_CM = lag(CM, order_by = Date),
          last_MI5 = lag(MI5, order_by = Date),
-         last_AF = lag(AF, order_by = Date))%>%
+         last_AF = lag(AF, order_by = Date),
+         venue = as.numeric(factor(Venue)))%>%
   ungroup()
 # Select metrics to include in training the model; I've left out a lot of metrics because these ones seem to make the model perform better after trial and error.
 future_data_lean <- new %>%
   select(results, Season, team, opposition, status, last_scoreDiff, 
          pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc, 
          matches_won, last_encounter_margin, last_rateDiff,last_Odds,
-         last_LineOdds, last_encounter_SC,last_encounter_disposals,season_for,season_against,opp_season_for,opp_season_against
+         last_LineOdds, last_encounter_SC,last_encounter_disposals,
+         season_for,season_against,opp_season_for,opp_season_against,venue
   )
 
 future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
@@ -264,7 +266,8 @@ score_data_lean <- new %>%
   select(Margin, Season, team, opposition, status, last_scoreDiff, 
          pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc, 
          matches_won, last_encounter_margin, last_rateDiff,last_Odds,
-         last_LineOdds, last_encounter_SC,last_encounter_disposals,season_for,season_against,opp_season_for,opp_season_against
+         last_LineOdds, last_encounter_SC,last_encounter_disposals,
+         season_for,season_against,opp_season_for,opp_season_against,venue
   )
 score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
 score_data_lean %<>%
