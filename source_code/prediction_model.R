@@ -10,7 +10,7 @@ model.data <- model_data(data)
 model <- model_training(inputs = model.data$full_data_matrix, target = model.data$full_data_target)
 
 model %>% save_model_tf("model/model")
-model <- load_model_tf("model/model")
+#model <- load_model_tf("model/model")
 #evaluate model from test dataset
 model %>% 
   evaluate(model.data$test, model.data$testLabels)
