@@ -38,31 +38,37 @@ reactable_function <- function(data){
     do.call(span, args)
   }
   
-  reactable(spark_table,defaultSorted = list(Rank= "asc"), pagination = FALSE, defaultPageSize = 20,  rowStyle = function(index) {
-    if (spark_table[index, "Rank"] < 9) {
-      list(fontWeight = "bold")
-    }
-  }, columns = list(
-    Rank = colDef(maxWidth = 75, align = "center"),
-    change = colDef(
-      header = span("", class = "sr-only"),
-      sortable = FALSE,
-      align = "left",
-      width = 40,
-      cell = function(change) trend_indicator(change)
-    ),
-    Player = colDef(name = "Team", maxWidth = 150, align = "center", cell = function(value) {
-      img_src <- knitr::image_uri(sprintf("images/%s.png", value))
-      image <- img(src = img_src, height = "45px", alt = value)
-      tagList(
-        div(style = list(display = "inline-block", width = "200px"), image)
-      )
-    }),
-    Rating = colDef(maxWidth = 100, align = "center", format = colFormat(digits = 0)),
-    
-    sparkline = colDef(name = "2021 Progress", cell = function(value, index) {
-      sparkline(spark_table$sparkline[[index]], lineWidth = 3, height = "50px", width = "150px")
-    })
-    
-  ))
+  reactable(spark_table,defaultSorted = list(Rank= "asc"), pagination = FALSE, defaultPageSize = 20,  
+            rowStyle = function(index) {
+              if (spark_table[index, "Rank"] > 8) {
+                list(background = "hsl(233, 9%, 45%)")
+              }
+            },
+            rowClass = function(index) {
+              if (spark_table[index, "Rank"] < 9) {
+                "bold"
+              }
+            }, columns = list(
+              Rank = colDef(maxWidth = 75, align = "center"),
+              change = colDef(
+                header = span("", class = "sr-only"),
+                sortable = FALSE,
+                align = "left",
+                width = 20,
+                cell = function(change) trend_indicator(change)
+              ),
+              Player = colDef(name = "Team", maxWidth = 150, align = "center", cell = function(value) {
+                img_src <- knitr::image_uri(sprintf("images/%s.png", value))
+                image <- img(src = img_src, height = "45px", alt = value)
+                tagList(
+                  div(style = list(display = "inline-block", width = "150px"), image)
+                )
+              }),
+              Rating = colDef(maxWidth = 100, align = "center", format = colFormat(digits = 0)),
+              
+              sparkline = colDef(name = "2021 Progress", cell = function(value, index) {
+                sparkline(spark_table$sparkline[[index]], lineWidth = 2, height = "50px", width = "150px")
+              })
+              
+            ))
 }

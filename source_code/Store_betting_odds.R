@@ -2,7 +2,7 @@
 results<-get_match_results()
 
 newest.results <- results %>% 
-  filter(Season == 2021, Round.Number == 5) %>% 
+  filter(Season == 2021, Round.Number == 6) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 
@@ -35,3 +35,4 @@ betting %<>% select(!X)
 betting_csv <- rbind(betting, newest.betting)
 
 write.csv(betting_csv, "csv_files/betting_odds.csv")
+

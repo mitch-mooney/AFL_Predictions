@@ -14,9 +14,9 @@ fixture<-get_fixture(2021)
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-get_footywire_stats(ids= 10363:10371) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
+dat.new<-get_footywire_stats(ids= 10372:10380) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
-write.csv(dat, file = 'AFLstats.csv')
+write.csv(dat, file = 'csv_files/AFLstats.csv')
 ## betting data
 #betting_odds<-get_footywire_betting_odds(
 #  start_season = "2010",
@@ -24,6 +24,7 @@ write.csv(dat, file = 'AFLstats.csv')
 
 #read in betting odd .csv
 betting_odds <- read.csv('csv_files/betting_odds.csv')
+#betting_odds <- betting_csv
 
 ## Get match results
 results<-get_match_results()
@@ -174,7 +175,7 @@ match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 6)
+round <- wrangle_fixture(round = 7)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 #round$Date<- as.Date(round$Date,format = "%d/%m/%Y %H:%M")
