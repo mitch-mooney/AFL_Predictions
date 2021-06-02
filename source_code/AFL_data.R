@@ -14,8 +14,8 @@ fixture<-get_fixture(2021)
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = 2021, round_number = 10, check_existing = TRUE) %>% 
-  filter(Round == "Round 10") %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
+dat.new<-fetch_player_stats_footywire(season = 2021, round_number = 11, check_existing = TRUE) %>% 
+  filter(Round == "Round 11") %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 write.csv(dat, file = 'csv_files/AFLstats.csv')
 ## betting data
@@ -176,14 +176,14 @@ match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 11)
+round <- wrangle_fixture(round = 12)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 #round$Date<- as.Date(round$Date,format = "%d/%m/%Y %H:%M")
 # clean up strings
 round <- round %>% 
   select(Date, Match_id, Match_id, Season, Team, Opposition, Status, Venue, Round, results, Margin) %>% 
-  #mutate(Status = ifelse(Team == "Collingwood" & Status == "Away", "Home", ifelse(Team == "Brisbane" & Status == "Home", "Away", Status))) %>% 
+  #mutate(Status = ifelse(Team == "Sydney" & Status == "Away", "Home", ifelse(Team == "St Kilda" & Status == "Home", "Away", Status))) %>% 
   left_join(betting_join, by=c('Team', 'Opposition', 'Status'))
 
 #bind rows need to use plyr to fill blank columns
