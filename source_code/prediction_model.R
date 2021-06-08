@@ -72,3 +72,4 @@ margin_formula <- score_data_lean %>% filter(Margin < 998)
 formula <- lm(Margin ~ pred_win_prob, data= margin_formula)
 score_data_lean %<>% mutate(margin_est_linear = predict(formula, newdata = score_data_lean)) # add estimate of margin
 #score_data_lean %<>% mutate(margin_est_linear = -57+117*pred_win_prob-1.5) # add estimate of margin
+
