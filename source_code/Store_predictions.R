@@ -132,6 +132,8 @@ score_sim$score_sim %>%
   theme(legend.position = 'None')+
   facet_grid(~game+match,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
 
+
+### Ratings update  ###
 matches<-results %>% 
   filter(Season >= 2010) %>% 
   group_by(Season, Round.Number) %>% 
