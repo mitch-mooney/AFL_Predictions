@@ -30,7 +30,10 @@ newest.betting %<>%
          Away.Line.Odds = Opp_lineOdds) %>% 
   select("Date", "Venue", "Home.Team", "Away.Team","Home.Score","Away.Score", "Home.Margin", "Away.Margin","Home.Win.Odds", "Away.Win.Odds", "Home.Line.Odds", "Away.Line.Odds", "Round", "Season")
 
-betting %<>% select(!X)
+betting %<>% 
+  select(!X) %>% 
+  unique() %>% 
+  drop_na(Date)
 
 betting_csv <- rbind(betting, newest.betting)
 
