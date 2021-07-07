@@ -14,7 +14,7 @@ fixture<-get_fixture(2021)
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = 2021, round_number = 15, check_existing = TRUE) %>% 
+dat.new<-fetch_player_stats_footywire(season = 2021, round_number = 16, check_existing = TRUE) %>% 
   filter(Round == "Round 15") %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 write.csv(dat, file = 'csv_files/AFLstats.csv')
@@ -176,7 +176,7 @@ match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 16)
+round <- wrangle_fixture(round = 17)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 #round$Date<- as.Date(round$Date,format = "%d/%m/%Y %H:%M")
@@ -274,3 +274,31 @@ score_data_lean <- new %>%
 score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
 score_data_lean %<>%
   filter(Margin != 0) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
+
+
+#### Training data without betting odds
+#Create data frame for margin predictions used in DeepLearning_Margin.R
+# Select metrics to include in training the model; I've left out a lot of metrics because these ones seem to make the model perform better after trial and error.
+future_data_lean <- new %>%
+  select(results, Season, team, opposition, status, last_scoreDiff, 
+         pre_rate,pre_oppRate,last_score_acc, 
+         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
+         last_LineOdds, last_encounter_SC,last_encounter_disposals,
+         season_for,season_against,opp_season_for,opp_season_against,venue
+  )
+
+future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
+future_data_lean %<>%
+  filter(results == 0 | results == 1 | results == 999) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
+
+
+score_data_lean <- new %>%
+  select(Margin, Season, team, opposition, status, last_scoreDiff, 
+         pre_rate,pre_oppRate,last_score_acc, 
+         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
+         last_LineOdds, last_encounter_SC,last_encounter_disposals,
+         season_for,season_against,opp_season_for,opp_season_against,venue
+  )
+score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
+score_data_lean %<>%
+  filter(Margin != 0)

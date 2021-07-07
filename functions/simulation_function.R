@@ -14,12 +14,14 @@ simulation <- function(runs){
   
   # for a value in pred_cat select and average 100 random rows in resample
   score_data_lean$margin_est_rand<-NA
-  next_col <- which(colnames(score_data_lean)=="margin_est_rand")
+  next_col <- as.numeric(which(colnames(score_data_lean)=="margin_est_rand"))
   for (j in 1:nrow(score_data_lean)){
-    num<-as.numeric(score_data_lean[j,29])
+    next_col <- as.numeric(next_col)
+    new_col <- next_col + 1
+    num<-as.numeric(score_data_lean[j,next_col])
     sample<- sample(resampling[,num], 10000, replace=FALSE)
     mean_margin <- round(mean(sample),0)
-    score_data_lean[j,31]<- mean_margin
+    score_data_lean[j,new_col]<- mean_margin
   }
   
   #create simulation of margin estimate
