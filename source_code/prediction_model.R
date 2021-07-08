@@ -11,7 +11,7 @@ model <- model_training(inputs = model.data$full_data_matrix, target = model.dat
 
 model %>% save_model_tf("model/model") # save model with betting data trained
 model <- load_model_tf("model/model") # load model with  betting data trained
-#model <- load_model_tf("model/model_betless") # load model with betting data excluded
+model <- load_model_tf("model/model_betless") # load model with betting data excluded
 #evaluate model from test dataset
 model %>% 
   evaluate(model.data$test, model.data$testLabels)
