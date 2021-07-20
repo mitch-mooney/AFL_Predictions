@@ -2,7 +2,7 @@
 results<-fetch_results_afltables(season = 2021)
 
 newest.results <- results %>% 
-  filter(Season == 2021, Round.Number == 17) %>% 
+  filter(Season == 2021, Round.Number == 18) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 
