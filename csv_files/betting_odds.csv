@@ -2342,12 +2342,21 @@
 "2341","11/07/2021","Docklands","Footscray","Sydney",60,79,-19,19,1.32,3.5,-20.5,20.5,17,2021
 "2342","11/07/2021","M.C.G.","Richmond","Collingwood",71,87,-16,16,1.6,2.35,-7.5,7.5,17,2021
 "2343","12/07/2021","Perth Stadium","West Coast","North Melbourne",60,70,-10,10,1.22,4.4,-26.5,26.5,17,2021
-"11000","15/07/2021","Perth Stadium","Fremantle","Geelong",31,100,-69,69,2.3,1.62,8.5,-8.5,18,2021
-"2344","16/07/2021","Carrara","Richmond","Brisbane Lions",106,86,20,-20,2.67,1.48,13.5,-13.5,18,2021
-"3100","18/07/2021","Carrara","GWS","Sydney",72,98,-26,26,2.5,1.53,11.5,-11.5,18,2021
-"4100","17/07/2021","M.C.G.","Melbourne","Hawthorn",79,79,0,0,1.09,7.75,-40.5,40.5,18,2021
-"5100","17/07/2021","Carrara","Gold Coast","Footscray",79,90,-11,11,4.1,1.24,25.5,-25.5,18,2021
-"6100","17/07/2021","Docklands","St Kilda","Port Adelaide",61,74,-13,13,2.04,1.8,2.5,-2.5,18,2021
-"7100","18/07/2021","Carrara","North Melbourne","Essendon",74,92,-18,18,3.15,1.36,18.5,-18.5,18,2021
-"8100","18/07/2021","M.C.G.","Collingwood","Carlton",62,91,-29,29,1.95,1.87,1.5,-1.5,18,2021
-"9100","18/07/2021","Adelaide Oval","Adelaide","West Coast",56,98,-42,42,2.25,1.65,7.5,-7.5,18,2021
+"2344","15/07/2021","Perth Stadium","Fremantle","Geelong",31,100,-69,69,2.3,1.62,8.5,-8.5,18,2021
+"2345","16/07/2021","Carrara","Richmond","Brisbane Lions",106,86,20,-20,2.67,1.48,13.5,-13.5,18,2021
+"2346","18/07/2021","Carrara","GWS","Sydney",72,98,-26,26,2.5,1.53,11.5,-11.5,18,2021
+"2347","17/07/2021","M.C.G.","Melbourne","Hawthorn",79,79,0,0,1.09,7.75,-40.5,40.5,18,2021
+"2348","17/07/2021","Carrara","Gold Coast","Footscray",79,90,-11,11,4.1,1.24,25.5,-25.5,18,2021
+"2349","17/07/2021","Docklands","St Kilda","Port Adelaide",61,74,-13,13,2.04,1.8,2.5,-2.5,18,2021
+"2350","18/07/2021","Carrara","North Melbourne","Essendon",74,92,-18,18,3.15,1.36,18.5,-18.5,18,2021
+"2351","18/07/2021","M.C.G.","Collingwood","Carlton",62,91,-29,29,1.95,1.87,1.5,-1.5,18,2021
+"2352","18/07/2021","Adelaide Oval","Adelaide","West Coast",56,98,-42,42,2.25,1.65,7.5,-7.5,18,2021
+"11000",NA,NA,"Port Adelaide","Collingwood",NA,NA,NA,NA,1.35,3.2,-17.5,17.5,NA,NA
+"2353",NA,NA,"Carlton","North Melbourne",NA,NA,NA,NA,1.44,2.8,-14.5,14.5,NA,NA
+"3100",NA,NA,"Brisbane Lions","Gold Coast",NA,NA,NA,NA,1.22,4.25,-27.5,27.5,NA,NA
+"4100",NA,NA,"West Coast","St Kilda",NA,NA,NA,NA,1.44,2.8,-14.5,14.5,NA,NA
+"5100",NA,NA,"Melbourne","Footscray",NA,NA,NA,NA,1.85,1.96,-1.5,1.5,NA,NA
+"6100",NA,NA,"Adelaide","Hawthorn",NA,NA,NA,NA,2.35,1.6,8.5,-8.5,NA,NA
+"7100",NA,NA,"Sydney","Fremantle",NA,NA,NA,NA,1.29,3.7,-21.5,21.5,NA,NA
+"8100",NA,NA,"Geelong","Richmond",NA,NA,NA,NA,1.37,3.1,-16.5,16.5,NA,NA
+"9100",NA,NA,"Essendon","GWS",NA,NA,NA,NA,1.7,2.15,-5.5,5.5,NA,NA
