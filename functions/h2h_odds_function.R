@@ -21,7 +21,7 @@ h2h_odds <- function(h2h_json){
     # loop through the sites and extract line
     for (j in odds){
       site <- j[["site_nice"]]
-      points <- j[["odds"]][["h2h"]]
+      points <- j[["odds"]][["h2h"]][1:2]
       names(points) <- c("team.a_odds", "team.b_odds")
       points <- dplyr::bind_rows(points)
       points$site <- site

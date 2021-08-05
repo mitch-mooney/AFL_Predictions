@@ -8,9 +8,7 @@ library(ggpmisc)
 library(magrittr)
 
 # Get Football Draw
-fixture<-fetch_fixture_footywire(2021, 19)
-
-fixture <- fetch_fixture_squiggle(season = 2021, round_number = 19)
+fixture <- fetch_fixture_squiggle(season = 2021, round_number = 21)
 fixture %<>%
   rename(Date = date,
          Season = year,
@@ -28,8 +26,8 @@ fixture %<>%
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = 2021, round_number = 18, check_existing = TRUE) %>% 
-  filter(Round == "Round 18") %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
+dat.new<-fetch_player_stats_footywire(season = 2021, round_number = 20, check_existing = TRUE) %>% 
+  filter(Round == "Round 20") %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 dat <- dat %>% unique()
 write.csv(dat, file = 'csv_files/AFLstats.csv')
@@ -191,10 +189,10 @@ match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 19)
+round <- wrangle_fixture(round = 21)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
-#round$Date<- as.Date(round$Date,format = "%d/%m/%Y %H:%M")
+round$Date<- as.Date(round$Date,format = "%Y-%m-%d %H:%M:%S")
 # clean up strings
 round <- round %>% 
   select(Date, Match_id, Match_id, Season, Team, Opposition, Status, Venue, Round, results, Margin) %>% 
