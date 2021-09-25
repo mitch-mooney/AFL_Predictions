@@ -211,6 +211,8 @@ new$opposition <- as.numeric(ordered(new$Opposition, levels = c("Adelaide","Bris
                                                                 "Geelong","Gold Coast","GWS" ,"Hawthorn","Melbourne","North Melbourne", 
                                                                 "Port Adelaide","Richmond","St Kilda","Sydney","West Coast","Western Bulldogs")))
 new$status <- as.numeric(ordered(new$Status, levels = c("Home", "Away")))
+
+new$matchType <- ifelse(grepl('Final', new$Round), 1, 0)
 #new$date <- as.integer(format(new$Date, "%Y%m%d"))
 #finalize the variable lists for modeling
 new %<>%
@@ -269,7 +271,7 @@ future_data_lean <- new %>%
          pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc, 
          matches_won, last_encounter_margin, last_rateDiff,last_Odds,
          last_LineOdds, last_encounter_SC,last_encounter_disposals,
-         season_for,season_against,opp_season_for,opp_season_against,venue
+         season_for,season_against,opp_season_for,opp_season_against,venue, matchType
   )
 
 future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
@@ -282,7 +284,7 @@ score_data_lean <- new %>%
          pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc, 
          matches_won, last_encounter_margin, last_rateDiff,last_Odds,
          last_LineOdds, last_encounter_SC,last_encounter_disposals,
-         season_for,season_against,opp_season_for,opp_season_against,venue
+         season_for,season_against,opp_season_for,opp_season_against,venue, matchType
   )
 score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
 score_data_lean %<>%
