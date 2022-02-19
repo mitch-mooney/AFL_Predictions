@@ -16,6 +16,11 @@ reactable_function <- function(data){
                  "Rating", "sparkline")
   spark_table <- spark_table[, col_order]
   
+  return(spark_table)
+}
+
+render_table <- function(spark_table){
+  
   # Icon to indicate trend: unchanged, up, down, or new
   trend_indicator <- function(change = c("Unchanged", "Up", "Down")) {
     value <- match.arg(change)
