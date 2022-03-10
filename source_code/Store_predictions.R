@@ -45,11 +45,16 @@ table_final %<>%
 t <- table_final %>% 
   select(Team, Opposition, Round, Loss_prob, Win_Prob, margin_estimate_1, Team_predicted) %>% 
   rename(Pred_Winner=Team_predicted,Pred_Margin = margin_estimate_1) %>% 
-  mutate(Pred_Margin = round(Pred_Margin,0))
+  mutate(Pred_Margin = round(Pred_Margin,0),
+         Season = as.numeric(format(Sys.Date(), "%Y")))
 
 current_round <- unique(t$Round)
+
 season_pred <- read.csv('csv_files/round_predictions.csv')
-season_pred %<>% filter(!Round %in% current_round) %>% select("Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner")
+season_pred %<>% 
+  filter(!Round %in% current_round) %>% 
+  select("Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner")
+
 season_pred.new <- rbind(season_pred, t)
 write.csv(season_pred.new, 'csv_files/round_predictions.csv')
 

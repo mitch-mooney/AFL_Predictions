@@ -1,8 +1,8 @@
 ## Get match results
-results<-fetch_results_afltables(season = 2021)
+results<-fetch_results_afltables(season = 2022)
 
 newest.results <- results %>% 
-  filter(Season == 2021, Round.Number == 27) %>% 
+  filter(Season == 2022, Round.Number == 1) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 

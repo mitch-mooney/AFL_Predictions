@@ -1,208 +1,208 @@
-,Team,Opposition,Round,Loss_prob,Win_Prob,Pred_Margin,Pred_Winner,Season
-1,Carlton,Collingwood,Round 2,0.45,0.55,9,Carlton,2021
-2,Geelong,Brisbane,Round 2,0.43,0.57,11,Geelong,2021
-3,Sydney,Adelaide,Round 2,0.35,0.65,20,Sydney,2021
-4,Port Adelaide,Essendon,Round 2,0.13,0.87,43,Port Adelaide,2021
-5,Gold Coast,North Melbourne,Round 2,0.32,0.68,24,Gold Coast,2021
-6,St Kilda,Melbourne,Round 2,0.41,0.59,13,St Kilda,2021
-7,Hawthorn,Richmond,Round 2,0.74,0.26,-22,Richmond,2021
-8,Fremantle,GWS,Round 2,0.48,0.52,6,Fremantle,2021
-9,Western Bulldogs,West Coast,Round 2,0.38,0.62,17,Western Bulldogs,2021
-10,North Melbourne,Western Bulldogs,Round 3,0.89,0.11,-46,Western Bulldogs,2021
-11,Adelaide,Gold Coast,Round 3,0.54,0.46,-5,Gold Coast,2021
-12,Richmond,Sydney,Round 3,0.34,0.66,19,Richmond,2021
-13,Essendon,St Kilda,Round 3,0.69,0.31,-23,St Kilda,2021
-14,West Coast,Port Adelaide,Round 3,0.57,0.43,-8,Port Adelaide,2021
-15,Carlton,Fremantle,Round 3,0.38,0.62,14,Carlton,2021
-16,GWS,Melbourne,Round 3,0.58,0.42,-9,Melbourne,2021
-17,Geelong,Hawthorn,Round 3,0.34,0.66,19,Geelong,2021
-18,Collingwood,Brisbane,Round 3,0.53,0.47,-3,Brisbane,2021
-19,Sydney,Essendon,Round 4,0.28,0.72,25,Sydney,2021
-20,Port Adelaide,Richmond,Round 4,0.41,0.59,11,Port Adelaide,2021
-21,Western Bulldogs,Brisbane,Round 4,0.46,0.54,5,Western Bulldogs,2021
-22,St Kilda,West Coast,Round 4,0.73,0.27,-27,West Coast,2021
-23,Collingwood,GWS,Round 4,0.3,0.7,23,Collingwood,2021
-24,Gold Coast,Carlton,Round 4,0.48,0.52,2,Gold Coast,2021
-25,North Melbourne,Adelaide,Round 4,0.63,0.37,-15,Adelaide,2021
-26,Fremantle,Hawthorn,Round 4,0.39,0.61,13,Fremantle,2021
-27,Melbourne,Geelong,Round 4,0.58,0.42,-10,Geelong,2021
-28,St Kilda,Richmond,Round 5,0.65,0.35,-17,Richmond,2021
-29,West Coast,Collingwood,Round 5,0.35,0.65,18,West Coast,2021
-30,Western Bulldogs,Gold Coast,Round 5,0.19,0.81,36,Western Bulldogs,2021
-31,Sydney,GWS,Round 5,0.38,0.62,13,Sydney,2021
-32,Brisbane,Essendon,Round 5,0.3,0.7,23,Brisbane,2021
-33,Carlton,Port Adelaide,Round 5,0.6,0.4,-12,Port Adelaide,2021
-34,Adelaide,Fremantle,Round 5,0.49,0.51,1,Adelaide,2021
-35,Hawthorn,Melbourne,Round 5,0.68,0.32,-21,Melbourne,2021
-36,Geelong,North Melbourne,Round 5,0.06,0.94,51,Geelong,2021
-37,GWS,Western Bulldogs,Round 6,0.67,0.33,-20,Western Bulldogs,2021
-38,Geelong,West Coast,Round 6,0.44,0.56,7,Geelong,2021
-39,Gold Coast,Sydney,Round 6,0.63,0.37,-15,Sydney,2021
-40,Carlton,Brisbane,Round 6,0.54,0.46,-5,Brisbane,2021
-41,Fremantle,North Melbourne,Round 6,0.1,0.9,47,Fremantle,2021
-42,Melbourne,Richmond,Round 6,0.58,0.42,-10,Richmond,2021
-43,Hawthorn,Adelaide,Round 6,0.38,0.62,14,Hawthorn,2021
-44,Collingwood,Essendon,Round 6,0.41,0.59,11,Collingwood,2021
-45,Port Adelaide,St Kilda,Round 6,0.28,0.72,25,Port Adelaide,2021
-46,Brisbane,Port Adelaide,Round 7,0.57,0.43,-8,Port Adelaide,2021
-47,Collingwood,Gold Coast,Round 7,0.41,0.59,11,Collingwood,2021
-48,Essendon,Carlton,Round 7,0.61,0.39,-13,Carlton,2021
-49,North Melbourne,Melbourne,Round 7,0.94,0.06,-52,Melbourne,2021
-50,Richmond,Western Bulldogs,Round 7,0.65,0.35,-17,Western Bulldogs,2021
-51,St Kilda,Hawthorn,Round 7,0.41,0.59,11,St Kilda,2021
-52,Sydney,Geelong,Round 7,0.66,0.34,-19,Geelong,2021
-53,Adelaide,GWS,Round 7,0.51,0.49,-1,GWS,2021
-54,West Coast,Fremantle,Round 7,0.42,0.58,9,West Coast,2021
-55,Richmond,Geelong,Round 8,0.44,0.56,8,Richmond,2021
-56,GWS,Essendon,Round 8,0.36,0.64,17,GWS,2021
-57,Gold Coast,St Kilda,Round 8,0.51,0.49,0,St Kilda,2021
-58,North Melbourne,Collingwood,Round 8,0.7,0.3,-21,Collingwood,2021
-59,Port Adelaide,Adelaide,Round 8,0.19,0.81,36,Port Adelaide,2021
-60,Melbourne,Sydney,Round 8,0.34,0.66,20,Melbourne,2021
-61,Hawthorn,West Coast,Round 8,0.64,0.36,-14,West Coast,2021
-62,Brisbane,Fremantle,Round 8,0.26,0.74,29,Brisbane,2021
-63,Western Bulldogs,Carlton,Round 8,0.31,0.69,23,Western Bulldogs,2021
-64,St Kilda,Geelong,Round 9,0.69,0.31,-19,Geelong,2021
-65,Sydney,Collingwood,Round 9,0.31,0.69,24,Sydney,2021
-66,Hawthorn,North Melbourne,Round 9,0.3,0.7,24,Hawthorn,2021
-67,Gold Coast,Brisbane,Round 9,0.69,0.31,-19,Brisbane,2021
-68,Port Adelaide,Western Bulldogs,Round 9,0.44,0.56,8,Port Adelaide,2021
-69,Richmond,GWS,Round 9,0.38,0.62,15,Richmond,2021
-70,Essendon,Fremantle,Round 9,0.45,0.55,8,Essendon,2021
-71,West Coast,Adelaide,Round 9,0.17,0.83,40,West Coast,2021
-72,Melbourne,Carlton,Round 9,0.33,0.67,21,Melbourne,2021
-73,Brisbane,Richmond,Round 10,0.38,0.62,16,Brisbane,2021
-74,Carlton,Hawthorn,Round 10,0.31,0.69,23,Carlton,2021
-75,Geelong,Gold Coast,Round 10,0.12,0.88,45,Geelong,2021
-76,Adelaide,Melbourne,Round 10,0.83,0.17,-35,Melbourne,2021
-77,Fremantle,Sydney,Round 10,0.56,0.44,-5,Sydney,2021
-78,Western Bulldogs,St Kilda,Round 10,0.28,0.72,27,Western Bulldogs,2021
-79,GWS,West Coast,Round 10,0.65,0.35,-15,West Coast,2021
-80,Collingwood,Port Adelaide,Round 10,0.7,0.3,-21,Port Adelaide,2021
-81,Essendon,North Melbourne,Round 10,0.32,0.68,23,Essendon,2021
-82,Western Bulldogs,Melbourne,Round 11,0.45,0.55,6,Western Bulldogs,2021
-83,Collingwood,Geelong,Round 11,0.72,0.28,-25,Geelong,2021
-84,Brisbane,GWS,Round 11,0.24,0.76,29,Brisbane,2021
-85,St Kilda,North Melbourne,Round 11,0.24,0.76,30,St Kilda,2021
-86,West Coast,Essendon,Round 11,0.31,0.69,22,West Coast,2021
-87,Gold Coast,Hawthorn,Round 11,0.34,0.66,19,Gold Coast,2021
-88,Richmond,Adelaide,Round 11,0.27,0.73,26,Richmond,2021
-89,Sydney,Carlton,Round 11,0.36,0.64,16,Sydney,2021
-90,Port Adelaide,Fremantle,Round 11,0.28,0.72,25,Port Adelaide,2021
-91,Melbourne,Brisbane,Round 12,0.45,0.55,6,Melbourne,2021
-92,Adelaide,Collingwood,Round 12,0.36,0.64,16,Adelaide,2021
-93,Essendon,Richmond,Round 12,0.63,0.37,-14,Richmond,2021
-94,Carlton,West Coast,Round 12,0.48,0.52,3,Carlton,2021
-95,Fremantle,Western Bulldogs,Round 12,0.69,0.31,-21,Western Bulldogs,2021
-96,Sydney,St Kilda,Round 12,0.33,0.67,19,Sydney,2021
-97,Fremantle,Gold Coast,Round 13,0.47,0.53,4,Fremantle,2021
-98,Melbourne,Collingwood,Round 13,0.19,0.81,35,Melbourne,2021
-99,North Melbourne,GWS,Round 13,0.7,0.3,-22,GWS,2021
-100,St Kilda,Adelaide,Round 13,0.51,0.49,0,Adelaide,2021
-101,Sydney,Hawthorn,Round 13,0.19,0.81,35,Sydney,2021
-102,Port Adelaide,Geelong,Round 13,0.53,0.47,-2,Geelong,2021
-103,West Coast,Richmond,Round 13,0.55,0.45,-5,Richmond,2021
-104,Hawthorn,Essendon,Round 14,0.64,0.36,-15,Essendon,2021
-105,North Melbourne,Brisbane,Round 14,0.83,0.17,-37,Brisbane,2021
-106,Geelong,Western Bulldogs,Round 14,0.42,0.58,9,Geelong,2021
-107,Gold Coast,Port Adelaide,Round 14,0.64,0.36,-15,Port Adelaide,2021
-108,GWS,Carlton,Round 14,0.41,0.59,10,GWS,2021
-109,Brisbane,Geelong,Round 15,0.4,0.6,11,Brisbane,2021
-110,Richmond,St Kilda,Round 15,0.21,0.79,33,Richmond,2021
-111,North Melbourne,Gold Coast,Round 15,0.47,0.53,4,North Melbourne,2021
-112,Collingwood,Fremantle,Round 15,0.48,0.52,2,Collingwood,2021
-113,Port Adelaide,Sydney,Round 15,0.31,0.69,22,Port Adelaide,2021
-114,Essendon,Melbourne,Round 15,0.71,0.29,-23,Melbourne,2021
-115,GWS,Hawthorn,Round 15,0.48,0.52,2,GWS,2021
-116,West Coast,Western Bulldogs,Round 15,0.49,0.51,2,West Coast,2021
-117,Carlton,Adelaide,Round 15,0.38,0.62,14,Carlton,2021
-118,Western Bulldogs,North Melbourne,Round 16,0.07,0.93,49,Western Bulldogs,2021
-119,Adelaide,Brisbane,Round 16,0.76,0.24,-28,Brisbane,2021
-120,Fremantle,Carlton,Round 16,0.52,0.48,-2,Carlton,2021
-121,Collingwood,St Kilda,Round 16,0.49,0.51,1,Collingwood,2021
-122,Geelong,Essendon,Round 16,0.23,0.77,31,Geelong,2021
-123,Gold Coast,Richmond,Round 16,0.73,0.27,-25,Richmond,2021
-124,Hawthorn,Port Adelaide,Round 16,0.69,0.31,-21,Port Adelaide,2021
-125,Melbourne,GWS,Round 16,0.21,0.79,32,Melbourne,2021
-126,Sydney,West Coast,Round 16,0.49,0.51,2,Sydney,2021
-127,Port Adelaide,Melbourne,Round 17,0.48,0.52,4,Port Adelaide,2021
-128,Essendon,Adelaide,Round 17,0.31,0.69,23,Essendon,2021
-129,Hawthorn,Fremantle,Round 17,0.64,0.36,-14,Fremantle,2021
-130,Carlton,Geelong,Round 17,0.7,0.3,-21,Geelong,2021
-131,Brisbane,St Kilda,Round 17,0.25,0.75,29,Brisbane,2021
-132,GWS,Gold Coast,Round 17,0.34,0.66,19,GWS,2021
-133,Western Bulldogs,Sydney,Round 17,0.31,0.69,23,Western Bulldogs,2021
-134,Richmond,Collingwood,Round 17,0.38,0.62,15,Richmond,2021
-135,West Coast,North Melbourne,Round 17,0.23,0.77,32,West Coast,2021
-136,Richmond,Brisbane,Round 18,0.67,0.33,-17,Brisbane,2021
-137,Adelaide,West Coast,Round 18,0.64,0.36,-14,West Coast,2021
-138,Fremantle,Geelong,Round 18,0.65,0.35,-15,Geelong,2021
-139,Collingwood,Carlton,Round 18,0.61,0.39,-10,Carlton,2021
-140,Gold Coast,Western Bulldogs,Round 18,0.78,0.22,-30,Western Bulldogs,2021
-141,GWS,Sydney,Round 18,0.67,0.33,-17,Sydney,2021
-142,Melbourne,Hawthorn,Round 18,0.11,0.89,44,Melbourne,2021
-143,North Melbourne,Essendon,Round 18,0.7,0.3,-21,Essendon,2021
-144,St Kilda,Port Adelaide,Round 18,0.62,0.38,-11,Port Adelaide,2021
-145,Adelaide,Hawthorn,Round 19,0.63,0.37,-12,Hawthorn,2021
-146,Brisbane,Gold Coast,Round 19,0.22,0.78,33,Brisbane,2021
-147,Carlton,North Melbourne,Round 19,0.38,0.62,15,Carlton,2021
-148,Essendon,GWS,Round 19,0.43,0.57,10,Essendon,2021
-149,Geelong,Richmond,Round 19,0.34,0.66,20,Geelong,2021
-150,Melbourne,Western Bulldogs,Round 19,0.49,0.51,2,Melbourne,2021
-151,Port Adelaide,Collingwood,Round 19,0.33,0.67,21,Port Adelaide,2021
-152,Sydney,Fremantle,Round 19,0.31,0.69,22,Sydney,2021
-153,West Coast,St Kilda,Round 19,0.36,0.64,18,West Coast,2021
-154,Collingwood,West Coast,Round 20,0.63,0.37,-13,West Coast,2021
-155,Essendon,Sydney,Round 20,0.69,0.31,-20,Sydney,2021
-156,Fremantle,Richmond,Round 20,0.64,0.36,-14,Richmond,2021
-157,Gold Coast,Melbourne,Round 20,0.74,0.26,-25,Melbourne,2021
-158,GWS,Port Adelaide,Round 20,0.67,0.33,-18,Port Adelaide,2021
-159,Hawthorn,Brisbane,Round 20,0.74,0.26,-25,Brisbane,2021
-160,North Melbourne,Geelong,Round 20,0.87,0.13,-40,Geelong,2021
-161,St Kilda,Carlton,Round 20,0.41,0.59,12,St Kilda,2021
-162,Western Bulldogs,Adelaide,Round 20,0.12,0.88,44,Western Bulldogs,2021
-163,Adelaide,Port Adelaide,Round 21,0.83,0.17,-35,Port Adelaide,2021
-164,Carlton,Gold Coast,Round 21,0.3,0.7,24,Carlton,2021
-165,Fremantle,Brisbane,Round 21,0.66,0.34,-16,Brisbane,2021
-166,Geelong,GWS,Round 21,0.22,0.78,32,Geelong,2021
-167,Hawthorn,Collingwood,Round 21,0.61,0.39,-11,Collingwood,2021
-168,Richmond,North Melbourne,Round 21,0.33,0.67,21,Richmond,2021
-169,St Kilda,Sydney,Round 21,0.69,0.31,-19,Sydney,2021
-170,West Coast,Melbourne,Round 21,0.7,0.3,-20,Melbourne,2021
-171,Western Bulldogs,Essendon,Round 21,0.29,0.71,25,Western Bulldogs,2021
-172,Brisbane,Collingwood,Round 22,0.18,0.82,37,Brisbane,2021
-173,Fremantle,West Coast,Round 22,0.67,0.33,-18,West Coast,2021
-174,Geelong,St Kilda,Round 22,0.25,0.75,30,Geelong,2021
-175,Gold Coast,Essendon,Round 22,0.7,0.3,-21,Essendon,2021
-176,GWS,Richmond,Round 22,0.65,0.35,-15,Richmond,2021
-177,Hawthorn,Western Bulldogs,Round 22,0.79,0.21,-31,Western Bulldogs,2021
-178,Melbourne,Adelaide,Round 22,0.12,0.88,44,Melbourne,2021
-179,North Melbourne,Sydney,Round 22,0.69,0.31,-20,Sydney,2021
-180,Port Adelaide,Carlton,Round 22,0.2,0.8,35,Port Adelaide,2021
-181,Adelaide,North Melbourne,Round 23,0.49,0.51,3,Adelaide,2021
-182,Brisbane,West Coast,Round 23,0.26,0.74,27,Brisbane,2021
-183,Carlton,GWS,Round 23,0.7,0.3,-21,GWS,2021
-184,Essendon,Collingwood,Round 23,0.29,0.71,24,Essendon,2021
-185,Geelong,Melbourne,Round 23,0.49,0.51,2,Geelong,2021
-186,Richmond,Hawthorn,Round 23,0.57,0.43,-7,Hawthorn,2021
-187,St Kilda,Fremantle,Round 23,0.43,0.57,9,St Kilda,2021
-188,Sydney,Gold Coast,Round 23,0.23,0.77,31,Sydney,2021
-189,Western Bulldogs,Port Adelaide,Round 23,0.42,0.58,10,Western Bulldogs,2021
-190,Melbourne,Brisbane,Round 24,0.42,0.58,10,Melbourne,2021
-191,Port Adelaide,Geelong,Round 24,0.42,0.58,10,Port Adelaide,2021
-192,Sydney,GWS,Round 24,0.41,0.59,11,Sydney,2021
-193,Western Bulldogs,Essendon,Round 24,0.38,0.62,15,Western Bulldogs,2021
-194,Brisbane,Western Bulldogs,Round 25,0.43,0.57,8,Brisbane,2021
-195,Geelong,GWS,Round 25,0.32,0.68,21,Geelong,2021
-196,Melbourne,Geelong,Round 26,0.38,0.62,14,Melbourne,2021
-197,Port Adelaide,Western Bulldogs,Round 26,0.39,0.61,13,Port Adelaide,2021
-198,Melbourne,Western Bulldogs,Round 27,0.47,0.53,5,Melbourne,2021
-199,Adelaide,Fremantle,Round 1,0.55,0.45,-4,Fremantle,2022
-200,Brisbane,Port Adelaide,Round 1,0.36,0.64,17,Brisbane,2022
-201,Carlton,Richmond,Round 1,0.63,0.37,-14,Richmond,2022
-202,Geelong,Essendon,Round 1,0.31,0.69,23,Geelong,2022
-203,GWS,Sydney,Round 1,0.46,0.54,6,GWS,2022
-204,Hawthorn,North Melbourne,Round 1,0.49,0.51,2,Hawthorn,2022
-205,Melbourne,Western Bulldogs,Round 1,0.4,0.6,12,Melbourne,2022
-206,St Kilda,Collingwood,Round 1,0.52,0.48,-1,Collingwood,2022
-207,West Coast,Gold Coast,Round 1,0.49,0.51,2,West Coast,2022
+"","Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner","Season"
+"1","Carlton","Collingwood","Round 2",0.45,0.55,9,"Carlton",2021
+"2","Geelong","Brisbane","Round 2",0.43,0.57,11,"Geelong",2021
+"3","Sydney","Adelaide","Round 2",0.35,0.65,20,"Sydney",2021
+"4","Port Adelaide","Essendon","Round 2",0.13,0.87,43,"Port Adelaide",2021
+"5","Gold Coast","North Melbourne","Round 2",0.32,0.68,24,"Gold Coast",2021
+"6","St Kilda","Melbourne","Round 2",0.41,0.59,13,"St Kilda",2021
+"7","Hawthorn","Richmond","Round 2",0.74,0.26,-22,"Richmond",2021
+"8","Fremantle","GWS","Round 2",0.48,0.52,6,"Fremantle",2021
+"9","Western Bulldogs","West Coast","Round 2",0.38,0.62,17,"Western Bulldogs",2021
+"10","North Melbourne","Western Bulldogs","Round 3",0.89,0.11,-46,"Western Bulldogs",2021
+"11","Adelaide","Gold Coast","Round 3",0.54,0.46,-5,"Gold Coast",2021
+"12","Richmond","Sydney","Round 3",0.34,0.66,19,"Richmond",2021
+"13","Essendon","St Kilda","Round 3",0.69,0.31,-23,"St Kilda",2021
+"14","West Coast","Port Adelaide","Round 3",0.57,0.43,-8,"Port Adelaide",2021
+"15","Carlton","Fremantle","Round 3",0.38,0.62,14,"Carlton",2021
+"16","GWS","Melbourne","Round 3",0.58,0.42,-9,"Melbourne",2021
+"17","Geelong","Hawthorn","Round 3",0.34,0.66,19,"Geelong",2021
+"18","Collingwood","Brisbane","Round 3",0.53,0.47,-3,"Brisbane",2021
+"19","Sydney","Essendon","Round 4",0.28,0.72,25,"Sydney",2021
+"20","Port Adelaide","Richmond","Round 4",0.41,0.59,11,"Port Adelaide",2021
+"21","Western Bulldogs","Brisbane","Round 4",0.46,0.54,5,"Western Bulldogs",2021
+"22","St Kilda","West Coast","Round 4",0.73,0.27,-27,"West Coast",2021
+"23","Collingwood","GWS","Round 4",0.3,0.7,23,"Collingwood",2021
+"24","Gold Coast","Carlton","Round 4",0.48,0.52,2,"Gold Coast",2021
+"25","North Melbourne","Adelaide","Round 4",0.63,0.37,-15,"Adelaide",2021
+"26","Fremantle","Hawthorn","Round 4",0.39,0.61,13,"Fremantle",2021
+"27","Melbourne","Geelong","Round 4",0.58,0.42,-10,"Geelong",2021
+"28","St Kilda","Richmond","Round 5",0.65,0.35,-17,"Richmond",2021
+"29","West Coast","Collingwood","Round 5",0.35,0.65,18,"West Coast",2021
+"30","Western Bulldogs","Gold Coast","Round 5",0.19,0.81,36,"Western Bulldogs",2021
+"31","Sydney","GWS","Round 5",0.38,0.62,13,"Sydney",2021
+"32","Brisbane","Essendon","Round 5",0.3,0.7,23,"Brisbane",2021
+"33","Carlton","Port Adelaide","Round 5",0.6,0.4,-12,"Port Adelaide",2021
+"34","Adelaide","Fremantle","Round 5",0.49,0.51,1,"Adelaide",2021
+"35","Hawthorn","Melbourne","Round 5",0.68,0.32,-21,"Melbourne",2021
+"36","Geelong","North Melbourne","Round 5",0.06,0.94,51,"Geelong",2021
+"37","GWS","Western Bulldogs","Round 6",0.67,0.33,-20,"Western Bulldogs",2021
+"38","Geelong","West Coast","Round 6",0.44,0.56,7,"Geelong",2021
+"39","Gold Coast","Sydney","Round 6",0.63,0.37,-15,"Sydney",2021
+"40","Carlton","Brisbane","Round 6",0.54,0.46,-5,"Brisbane",2021
+"41","Fremantle","North Melbourne","Round 6",0.1,0.9,47,"Fremantle",2021
+"42","Melbourne","Richmond","Round 6",0.58,0.42,-10,"Richmond",2021
+"43","Hawthorn","Adelaide","Round 6",0.38,0.62,14,"Hawthorn",2021
+"44","Collingwood","Essendon","Round 6",0.41,0.59,11,"Collingwood",2021
+"45","Port Adelaide","St Kilda","Round 6",0.28,0.72,25,"Port Adelaide",2021
+"46","Brisbane","Port Adelaide","Round 7",0.57,0.43,-8,"Port Adelaide",2021
+"47","Collingwood","Gold Coast","Round 7",0.41,0.59,11,"Collingwood",2021
+"48","Essendon","Carlton","Round 7",0.61,0.39,-13,"Carlton",2021
+"49","North Melbourne","Melbourne","Round 7",0.94,0.06,-52,"Melbourne",2021
+"50","Richmond","Western Bulldogs","Round 7",0.65,0.35,-17,"Western Bulldogs",2021
+"51","St Kilda","Hawthorn","Round 7",0.41,0.59,11,"St Kilda",2021
+"52","Sydney","Geelong","Round 7",0.66,0.34,-19,"Geelong",2021
+"53","Adelaide","GWS","Round 7",0.51,0.49,-1,"GWS",2021
+"54","West Coast","Fremantle","Round 7",0.42,0.58,9,"West Coast",2021
+"55","Richmond","Geelong","Round 8",0.44,0.56,8,"Richmond",2021
+"56","GWS","Essendon","Round 8",0.36,0.64,17,"GWS",2021
+"57","Gold Coast","St Kilda","Round 8",0.51,0.49,0,"St Kilda",2021
+"58","North Melbourne","Collingwood","Round 8",0.7,0.3,-21,"Collingwood",2021
+"59","Port Adelaide","Adelaide","Round 8",0.19,0.81,36,"Port Adelaide",2021
+"60","Melbourne","Sydney","Round 8",0.34,0.66,20,"Melbourne",2021
+"61","Hawthorn","West Coast","Round 8",0.64,0.36,-14,"West Coast",2021
+"62","Brisbane","Fremantle","Round 8",0.26,0.74,29,"Brisbane",2021
+"63","Western Bulldogs","Carlton","Round 8",0.31,0.69,23,"Western Bulldogs",2021
+"64","St Kilda","Geelong","Round 9",0.69,0.31,-19,"Geelong",2021
+"65","Sydney","Collingwood","Round 9",0.31,0.69,24,"Sydney",2021
+"66","Hawthorn","North Melbourne","Round 9",0.3,0.7,24,"Hawthorn",2021
+"67","Gold Coast","Brisbane","Round 9",0.69,0.31,-19,"Brisbane",2021
+"68","Port Adelaide","Western Bulldogs","Round 9",0.44,0.56,8,"Port Adelaide",2021
+"69","Richmond","GWS","Round 9",0.38,0.62,15,"Richmond",2021
+"70","Essendon","Fremantle","Round 9",0.45,0.55,8,"Essendon",2021
+"71","West Coast","Adelaide","Round 9",0.17,0.83,40,"West Coast",2021
+"72","Melbourne","Carlton","Round 9",0.33,0.67,21,"Melbourne",2021
+"73","Brisbane","Richmond","Round 10",0.38,0.62,16,"Brisbane",2021
+"74","Carlton","Hawthorn","Round 10",0.31,0.69,23,"Carlton",2021
+"75","Geelong","Gold Coast","Round 10",0.12,0.88,45,"Geelong",2021
+"76","Adelaide","Melbourne","Round 10",0.83,0.17,-35,"Melbourne",2021
+"77","Fremantle","Sydney","Round 10",0.56,0.44,-5,"Sydney",2021
+"78","Western Bulldogs","St Kilda","Round 10",0.28,0.72,27,"Western Bulldogs",2021
+"79","GWS","West Coast","Round 10",0.65,0.35,-15,"West Coast",2021
+"80","Collingwood","Port Adelaide","Round 10",0.7,0.3,-21,"Port Adelaide",2021
+"81","Essendon","North Melbourne","Round 10",0.32,0.68,23,"Essendon",2021
+"82","Western Bulldogs","Melbourne","Round 11",0.45,0.55,6,"Western Bulldogs",2021
+"83","Collingwood","Geelong","Round 11",0.72,0.28,-25,"Geelong",2021
+"84","Brisbane","GWS","Round 11",0.24,0.76,29,"Brisbane",2021
+"85","St Kilda","North Melbourne","Round 11",0.24,0.76,30,"St Kilda",2021
+"86","West Coast","Essendon","Round 11",0.31,0.69,22,"West Coast",2021
+"87","Gold Coast","Hawthorn","Round 11",0.34,0.66,19,"Gold Coast",2021
+"88","Richmond","Adelaide","Round 11",0.27,0.73,26,"Richmond",2021
+"89","Sydney","Carlton","Round 11",0.36,0.64,16,"Sydney",2021
+"90","Port Adelaide","Fremantle","Round 11",0.28,0.72,25,"Port Adelaide",2021
+"91","Melbourne","Brisbane","Round 12",0.45,0.55,6,"Melbourne",2021
+"92","Adelaide","Collingwood","Round 12",0.36,0.64,16,"Adelaide",2021
+"93","Essendon","Richmond","Round 12",0.63,0.37,-14,"Richmond",2021
+"94","Carlton","West Coast","Round 12",0.48,0.52,3,"Carlton",2021
+"95","Fremantle","Western Bulldogs","Round 12",0.69,0.31,-21,"Western Bulldogs",2021
+"96","Sydney","St Kilda","Round 12",0.33,0.67,19,"Sydney",2021
+"97","Fremantle","Gold Coast","Round 13",0.47,0.53,4,"Fremantle",2021
+"98","Melbourne","Collingwood","Round 13",0.19,0.81,35,"Melbourne",2021
+"99","North Melbourne","GWS","Round 13",0.7,0.3,-22,"GWS",2021
+"100","St Kilda","Adelaide","Round 13",0.51,0.49,0,"Adelaide",2021
+"101","Sydney","Hawthorn","Round 13",0.19,0.81,35,"Sydney",2021
+"102","Port Adelaide","Geelong","Round 13",0.53,0.47,-2,"Geelong",2021
+"103","West Coast","Richmond","Round 13",0.55,0.45,-5,"Richmond",2021
+"104","Hawthorn","Essendon","Round 14",0.64,0.36,-15,"Essendon",2021
+"105","North Melbourne","Brisbane","Round 14",0.83,0.17,-37,"Brisbane",2021
+"106","Geelong","Western Bulldogs","Round 14",0.42,0.58,9,"Geelong",2021
+"107","Gold Coast","Port Adelaide","Round 14",0.64,0.36,-15,"Port Adelaide",2021
+"108","GWS","Carlton","Round 14",0.41,0.59,10,"GWS",2021
+"109","Brisbane","Geelong","Round 15",0.4,0.6,11,"Brisbane",2021
+"110","Richmond","St Kilda","Round 15",0.21,0.79,33,"Richmond",2021
+"111","North Melbourne","Gold Coast","Round 15",0.47,0.53,4,"North Melbourne",2021
+"112","Collingwood","Fremantle","Round 15",0.48,0.52,2,"Collingwood",2021
+"113","Port Adelaide","Sydney","Round 15",0.31,0.69,22,"Port Adelaide",2021
+"114","Essendon","Melbourne","Round 15",0.71,0.29,-23,"Melbourne",2021
+"115","GWS","Hawthorn","Round 15",0.48,0.52,2,"GWS",2021
+"116","West Coast","Western Bulldogs","Round 15",0.49,0.51,2,"West Coast",2021
+"117","Carlton","Adelaide","Round 15",0.38,0.62,14,"Carlton",2021
+"118","Western Bulldogs","North Melbourne","Round 16",0.07,0.93,49,"Western Bulldogs",2021
+"119","Adelaide","Brisbane","Round 16",0.76,0.24,-28,"Brisbane",2021
+"120","Fremantle","Carlton","Round 16",0.52,0.48,-2,"Carlton",2021
+"121","Collingwood","St Kilda","Round 16",0.49,0.51,1,"Collingwood",2021
+"122","Geelong","Essendon","Round 16",0.23,0.77,31,"Geelong",2021
+"123","Gold Coast","Richmond","Round 16",0.73,0.27,-25,"Richmond",2021
+"124","Hawthorn","Port Adelaide","Round 16",0.69,0.31,-21,"Port Adelaide",2021
+"125","Melbourne","GWS","Round 16",0.21,0.79,32,"Melbourne",2021
+"126","Sydney","West Coast","Round 16",0.49,0.51,2,"Sydney",2021
+"127","Port Adelaide","Melbourne","Round 17",0.48,0.52,4,"Port Adelaide",2021
+"128","Essendon","Adelaide","Round 17",0.31,0.69,23,"Essendon",2021
+"129","Hawthorn","Fremantle","Round 17",0.64,0.36,-14,"Fremantle",2021
+"130","Carlton","Geelong","Round 17",0.7,0.3,-21,"Geelong",2021
+"131","Brisbane","St Kilda","Round 17",0.25,0.75,29,"Brisbane",2021
+"132","GWS","Gold Coast","Round 17",0.34,0.66,19,"GWS",2021
+"133","Western Bulldogs","Sydney","Round 17",0.31,0.69,23,"Western Bulldogs",2021
+"134","Richmond","Collingwood","Round 17",0.38,0.62,15,"Richmond",2021
+"135","West Coast","North Melbourne","Round 17",0.23,0.77,32,"West Coast",2021
+"136","Richmond","Brisbane","Round 18",0.67,0.33,-17,"Brisbane",2021
+"137","Adelaide","West Coast","Round 18",0.64,0.36,-14,"West Coast",2021
+"138","Fremantle","Geelong","Round 18",0.65,0.35,-15,"Geelong",2021
+"139","Collingwood","Carlton","Round 18",0.61,0.39,-10,"Carlton",2021
+"140","Gold Coast","Western Bulldogs","Round 18",0.78,0.22,-30,"Western Bulldogs",2021
+"141","GWS","Sydney","Round 18",0.67,0.33,-17,"Sydney",2021
+"142","Melbourne","Hawthorn","Round 18",0.11,0.89,44,"Melbourne",2021
+"143","North Melbourne","Essendon","Round 18",0.7,0.3,-21,"Essendon",2021
+"144","St Kilda","Port Adelaide","Round 18",0.62,0.38,-11,"Port Adelaide",2021
+"145","Adelaide","Hawthorn","Round 19",0.63,0.37,-12,"Hawthorn",2021
+"146","Brisbane","Gold Coast","Round 19",0.22,0.78,33,"Brisbane",2021
+"147","Carlton","North Melbourne","Round 19",0.38,0.62,15,"Carlton",2021
+"148","Essendon","GWS","Round 19",0.43,0.57,10,"Essendon",2021
+"149","Geelong","Richmond","Round 19",0.34,0.66,20,"Geelong",2021
+"150","Melbourne","Western Bulldogs","Round 19",0.49,0.51,2,"Melbourne",2021
+"151","Port Adelaide","Collingwood","Round 19",0.33,0.67,21,"Port Adelaide",2021
+"152","Sydney","Fremantle","Round 19",0.31,0.69,22,"Sydney",2021
+"153","West Coast","St Kilda","Round 19",0.36,0.64,18,"West Coast",2021
+"154","Collingwood","West Coast","Round 20",0.63,0.37,-13,"West Coast",2021
+"155","Essendon","Sydney","Round 20",0.69,0.31,-20,"Sydney",2021
+"156","Fremantle","Richmond","Round 20",0.64,0.36,-14,"Richmond",2021
+"157","Gold Coast","Melbourne","Round 20",0.74,0.26,-25,"Melbourne",2021
+"158","GWS","Port Adelaide","Round 20",0.67,0.33,-18,"Port Adelaide",2021
+"159","Hawthorn","Brisbane","Round 20",0.74,0.26,-25,"Brisbane",2021
+"160","North Melbourne","Geelong","Round 20",0.87,0.13,-40,"Geelong",2021
+"161","St Kilda","Carlton","Round 20",0.41,0.59,12,"St Kilda",2021
+"162","Western Bulldogs","Adelaide","Round 20",0.12,0.88,44,"Western Bulldogs",2021
+"163","Adelaide","Port Adelaide","Round 21",0.83,0.17,-35,"Port Adelaide",2021
+"164","Carlton","Gold Coast","Round 21",0.3,0.7,24,"Carlton",2021
+"165","Fremantle","Brisbane","Round 21",0.66,0.34,-16,"Brisbane",2021
+"166","Geelong","GWS","Round 21",0.22,0.78,32,"Geelong",2021
+"167","Hawthorn","Collingwood","Round 21",0.61,0.39,-11,"Collingwood",2021
+"168","Richmond","North Melbourne","Round 21",0.33,0.67,21,"Richmond",2021
+"169","St Kilda","Sydney","Round 21",0.69,0.31,-19,"Sydney",2021
+"170","West Coast","Melbourne","Round 21",0.7,0.3,-20,"Melbourne",2021
+"171","Western Bulldogs","Essendon","Round 21",0.29,0.71,25,"Western Bulldogs",2021
+"172","Brisbane","Collingwood","Round 22",0.18,0.82,37,"Brisbane",2021
+"173","Fremantle","West Coast","Round 22",0.67,0.33,-18,"West Coast",2021
+"174","Geelong","St Kilda","Round 22",0.25,0.75,30,"Geelong",2021
+"175","Gold Coast","Essendon","Round 22",0.7,0.3,-21,"Essendon",2021
+"176","GWS","Richmond","Round 22",0.65,0.35,-15,"Richmond",2021
+"177","Hawthorn","Western Bulldogs","Round 22",0.79,0.21,-31,"Western Bulldogs",2021
+"178","Melbourne","Adelaide","Round 22",0.12,0.88,44,"Melbourne",2021
+"179","North Melbourne","Sydney","Round 22",0.69,0.31,-20,"Sydney",2021
+"180","Port Adelaide","Carlton","Round 22",0.2,0.8,35,"Port Adelaide",2021
+"181","Adelaide","North Melbourne","Round 23",0.49,0.51,3,"Adelaide",2021
+"182","Brisbane","West Coast","Round 23",0.26,0.74,27,"Brisbane",2021
+"183","Carlton","GWS","Round 23",0.7,0.3,-21,"GWS",2021
+"184","Essendon","Collingwood","Round 23",0.29,0.71,24,"Essendon",2021
+"185","Geelong","Melbourne","Round 23",0.49,0.51,2,"Geelong",2021
+"186","Richmond","Hawthorn","Round 23",0.57,0.43,-7,"Hawthorn",2021
+"187","St Kilda","Fremantle","Round 23",0.43,0.57,9,"St Kilda",2021
+"188","Sydney","Gold Coast","Round 23",0.23,0.77,31,"Sydney",2021
+"189","Western Bulldogs","Port Adelaide","Round 23",0.42,0.58,10,"Western Bulldogs",2021
+"190","Melbourne","Brisbane","Round 24",0.42,0.58,10,"Melbourne",2021
+"191","Port Adelaide","Geelong","Round 24",0.42,0.58,10,"Port Adelaide",2021
+"192","Sydney","GWS","Round 24",0.41,0.59,11,"Sydney",2021
+"193","Western Bulldogs","Essendon","Round 24",0.38,0.62,15,"Western Bulldogs",2021
+"194","Brisbane","Western Bulldogs","Round 25",0.43,0.57,8,"Brisbane",2021
+"195","Geelong","GWS","Round 25",0.32,0.68,21,"Geelong",2021
+"196","Melbourne","Geelong","Round 26",0.38,0.62,14,"Melbourne",2021
+"197","Port Adelaide","Western Bulldogs","Round 26",0.39,0.61,13,"Port Adelaide",2021
+"198","Melbourne","Western Bulldogs","Round 27",0.47,0.53,5,"Melbourne",2021
+"199","Adelaide","Fremantle","Round 1",0.56,0.44,-6,"Fremantle",2022
+"200","Brisbane","Port Adelaide","Round 1",0.42,0.58,10,"Brisbane",2022
+"201","Carlton","Richmond","Round 1",0.66,0.34,-17,"Richmond",2022
+"202","Geelong","Essendon","Round 1",0.39,0.61,14,"Geelong",2022
+"203","GWS","Sydney","Round 1",0.54,0.46,-3,"Sydney",2022
+"204","Hawthorn","North Melbourne","Round 1",0.46,0.54,6,"Hawthorn",2022
+"205","Melbourne","Western Bulldogs","Round 1",0.43,0.57,10,"Melbourne",2022
+"206","St Kilda","Collingwood","Round 1",0.41,0.59,11,"St Kilda",2022
+"207","West Coast","Gold Coast","Round 1",0.36,0.64,17,"West Coast",2022
