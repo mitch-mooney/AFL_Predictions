@@ -49,11 +49,12 @@ t <- table_final %>%
          Season = as.numeric(format(Sys.Date(), "%Y")))
 
 current_round <- unique(t$Round)
+current_season <- unique(t$Season)
 
 season_pred <- read.csv('csv_files/round_predictions.csv')
 season_pred %<>% 
-  filter(!Round %in% current_round) %>% 
-  select("Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner")
+  filter(!Round %in% current_round & !Season %in% current_season) %>% 
+  select("Team","Opposition","Round","Loss_prob","Win_Prob","Pred_Margin","Pred_Winner", "Season")
 
 season_pred.new <- rbind(season_pred, t)
 write.csv(season_pred.new, 'csv_files/round_predictions.csv')

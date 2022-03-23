@@ -1,8 +1,9 @@
 model_data <- function(data){
 
+col_num<-as.numeric(ncol(data))
 #include all future data with previous data
 data <- as.matrix(data)
-dimnames(data) <- NULL        
+dimnames(data) <- NULL    
 data[,2:col_num] <- normalize(data[,2:col_num])
 # identify where the new data is 999 is always the largest number of the matrix
 first <- which(data>=sort(data, decreasing = T)[1], arr.ind = T)
