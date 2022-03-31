@@ -8,7 +8,7 @@ library(ggpmisc)
 library(magrittr)
 
 # Get Football Draw
-fixture <- fetch_fixture_squiggle(season = 2022, round_number = 2)
+fixture <- fetch_fixture_squiggle(season = 2022, round_number = 3)
 fixture %<>%
   rename(Date = date,
          Season = year,
@@ -189,7 +189,7 @@ match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 2)
+round <- wrangle_fixture(round = 3)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 round$Date<- as.Date(round$Date,format = "%Y-%m-%d %H:%M:%S")
