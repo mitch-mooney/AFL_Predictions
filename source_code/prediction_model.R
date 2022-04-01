@@ -17,28 +17,49 @@ model %>%
   evaluate(model.data$test, model.data$testLabels)
 # look at the model prediction probabilities
 prob<- model %>% 
-  predict_proba(model.data$test)
+  predict(model.data$test)
 #predict test data targets
+#pred <- model %>% 
+#  predict_classes(model.data$test)
+
 pred <- model %>% 
-  predict_classes(model.data$test)
+  predict(model.data$test) %>% 
+  k_argmax() %>% 
+  as.matrix()
+
 #create a confusion matrix using absolute values
 table(Predicted = pred, Actual = model.data$testtarget)
 
 #predict future events targets
+#pred_new <- model %>% 
+#  predict_classes(model.data$future_matrix)
+#
 pred_new <- model %>% 
-  predict_classes(model.data$future_matrix)
+  predict(model.data$future_matrix) %>% 
+  k_argmax() %>% 
+  as.matrix()
+
 #predict target probabilities
+#prob_future<-model %>% 
+#  predict_proba(model.data$future_matrix)
+
 prob_future<-model %>% 
-  predict_proba(model.data$future_matrix)
+  predict(model.data$future_matrix)
+
 future_rows<-as.numeric(nrow(prob_future))
+
 prob_pred_future<-cbind(round(prob_future[1:future_rows,1:model.data$test_dim], 3),
                  pred_new[1:future_rows])
+
 prob_pred_df <- as.data.frame(prob_pred_future)
 
 #put down predictions for all matches to add to score_margin dataframe
 data_mat<-rbind(model.data$data, model.data$full_future_matrix)
+
 x<-data_mat[,2:col_num]
-all_match_pred<-model %>% predict_proba(x)
+
+all_match_pred<-model %>% 
+  predict(x)
 
 score_data_lean<-cbind(score_data_lean, all_match_pred)
 score_data_lean<- score_data_lean %>%  
