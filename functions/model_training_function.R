@@ -16,7 +16,7 @@ model_training <- function(inputs, target){
   #compile model choose an optimizer
   model %>% 
     compile(loss = 'binary_crossentropy',
-            optimizer = optimizer_adam(lr=0.002),
+            optimizer = optimizer_adam(learning_rate=0.002),
             #optimizer = optimizer_sgd(lr = 0.002),
             #optimizer = optimizer_rmsprop(lr = 0.003),
             metrics = 'accuracy')

@@ -7,8 +7,10 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
+round <- 4
+
 # Get Football Draw
-fixture <- fetch_fixture_squiggle(season = 2022, round_number = 3)
+fixture <- fetch_fixture_squiggle(season = 2022, round_number = round)
 fixture %<>%
   rename(Date = date,
          Season = year,
@@ -26,7 +28,7 @@ fixture %<>%
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = 2022, round_number = 1, check_existing = TRUE)  %>% 
+dat.new<-fetch_player_stats_footywire(season = 2022, round_number = round-1, check_existing = TRUE)  %>% 
   mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 dat <- dat %>% unique()
@@ -189,7 +191,7 @@ match <- dplyr::inner_join(match, bet, by=c("Date","Status", "Team"))
 ##########----- Add next round fixture to dataframe -----########## 
 
 # add new fixture to dataframe for prediction
-round <- wrangle_fixture(round = 3)
+round <- wrangle_fixture(round = round)
 #round <- readr::read_csv('csv_files/fixture.csv')
 # change date format
 round$Date<- as.Date(round$Date,format = "%Y-%m-%d %H:%M:%S")
