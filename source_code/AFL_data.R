@@ -7,7 +7,7 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <- 5
+round.no <- 6
 
 # Get Football Draw
 fixture <- fetch_fixture_squiggle(season = 2022, round_number = round.no)
