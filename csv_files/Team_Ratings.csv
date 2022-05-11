@@ -1,145 +1,19 @@
 "Season","Team","Round","rating"
-2022,"Adelaide","Round 1",2060.02871938002
-2022,"Adelaide","Round 2",2015.94338746192
-2022,"Adelaide","Round 3",2131.93320297184
-2022,"Adelaide","Round 4",2078.98048267653
-2022,"Adelaide","Round 5",2172.62252464116
-2022,"Adelaide","Round 6",2263.59958747683
 2022,"Adelaide","Round 8",2148.19103128006
-2022,"Brisbane","Round 1",2425.67170982919
-2022,"Brisbane","Round 2",2458.58164132462
-2022,"Brisbane","Round 3",2473.06433722008
-2022,"Brisbane","Round 4",2414.53894815059
-2022,"Brisbane","Round 5",2433.78182487175
-2022,"Brisbane","Round 6",2457.74734048144
 2022,"Brisbane","Round 8",2528.06093773512
-2022,"Carlton","Round 1",2178.23828528763
-2022,"Carlton","Round 2",2284.98172025624
-2022,"Carlton","Round 3",2371.51988558572
-2022,"Carlton","Round 4",2264.88265036769
-2022,"Carlton","Round 5",2325.24728875268
-2022,"Carlton","Round 6",2271.00771091294
 2022,"Carlton","Round 8",2336.85147940231
-2022,"Collingwood","Round 1",2198.12666772575
-2022,"Collingwood","Round 2",2240.76502462301
-2022,"Collingwood","Round 3",2205.34393079095
-2022,"Collingwood","Round 4",2108.22818878412
-2022,"Collingwood","Round 5",2087.49513783187
-2022,"Collingwood","Round 6",2170.1661170568
 2022,"Collingwood","Round 8",2169.1083027316
-2022,"Essendon","Round 1",2251.27097333556
-2022,"Essendon","Round 2",2216.338041336
-2022,"Essendon","Round 3",2207.51224583957
-2022,"Essendon","Round 4",2257.85071079889
-2022,"Essendon","Round 5",2204.65461012845
-2022,"Essendon","Round 6",2128.6138120084
 2022,"Essendon","Round 8",2175.23919097438
-2022,"Fremantle","Round 1",2281.63408504839
-2022,"Fremantle","Round 2",2211.61509220409
-2022,"Fremantle","Round 3",2241.52535960764
-2022,"Fremantle","Round 4",2302.36511296925
-2022,"Fremantle","Round 5",2351.76840233014
-2022,"Fremantle","Round 6",2401.23477510067
 2022,"Fremantle","Round 8",2466.0948080831
-2022,"Geelong","Round 1",2490.32865222971
-2022,"Geelong","Round 2",2424.80202683249
-2022,"Geelong","Round 3",2456.42324263784
-2022,"Geelong","Round 4",2512.85436508557
-2022,"Geelong","Round 5",2419.72899196746
-2022,"Geelong","Round 6",2433.74626840645
 2022,"Geelong","Round 8",2408.90761871232
-2022,"Gold Coast","Round 1",2135.5579106897
-2022,"Gold Coast","Round 2",2128.43838212449
-2022,"Gold Coast","Round 3",2077.93463483248
-2022,"Gold Coast","Round 4",2189.05076196127
-2022,"Gold Coast","Round 5",2156.11227583451
-2022,"Gold Coast","Round 6",2130.55764251492
 2022,"Gold Coast","Round 8",2179.82188421452
-2022,"GWS","Round 1",2307.99208367639
-2022,"GWS","Round 2",2231.02927430673
-2022,"GWS","Round 3",2271.12389834558
-2022,"GWS","Round 4",2213.33001514844
-2022,"GWS","Round 5",2205.78694429065
-2022,"GWS","Round 6",2177.98742994024
 2022,"GWS","Round 8",2209.16250432217
-2022,"Hawthorn","Round 1",2332.52253908577
-2022,"Hawthorn","Round 2",2418.96971708363
-2022,"Hawthorn","Round 3",2332.82591583768
-2022,"Hawthorn","Round 4",2272.31390042835
-2022,"Hawthorn","Round 5",2370.98518072511
-2022,"Hawthorn","Round 6",2321.16174605681
 2022,"Hawthorn","Round 8",2218.28975180039
-2022,"Melbourne","Round 1",2713.12677663879
-2022,"Melbourne","Round 2",2719.15118765862
-2022,"Melbourne","Round 3",2727.93189282334
-2022,"Melbourne","Round 4",2739.06151891878
-2022,"Melbourne","Round 5",2748.01956859591
-2022,"Melbourne","Round 6",2756.80161718105
 2022,"Melbourne","Round 8",2789.03918549438
-2022,"North Melbourne","Round 1",1992.57648731279
-2022,"North Melbourne","Round 2",2071.39412702924
-2022,"North Melbourne","Round 3",2055.35542308564
-2022,"North Melbourne","Round 4",2036.04008974553
-2022,"North Melbourne","Round 5",2014.09936825345
-2022,"North Melbourne","Round 6",1998.31011508322
 2022,"North Melbourne","Round 8",1961.24087740988
-2022,"Port Adelaide","Round 1",2446.27123053429
-2022,"Port Adelaide","Round 2",2371.5734989626
-2022,"Port Adelaide","Round 3",2268.60003745083
-2022,"Port Adelaide","Round 4",2257.73659726458
-2022,"Port Adelaide","Round 5",2195.66062836092
-2022,"Port Adelaide","Round 6",2233.24377449784
 2022,"Port Adelaide","Round 8",2379.61821333555
-2022,"Richmond","Round 1",2156.95190284495
-2022,"Richmond","Round 2",2246.5900551209
-2022,"Richmond","Round 3",2191.97358255006
-2022,"Richmond","Round 4",2286.40093501431
-2022,"Richmond","Round 5",2198.293927141
-2022,"Richmond","Round 6",2190.53583396411
 2022,"Richmond","Round 8",2283.5049925141
-2022,"St Kilda","Round 1",2213.62518431742
-2022,"St Kilda","Round 2",2288.56660943876
-2022,"St Kilda","Round 3",2342.438702808
-2022,"St Kilda","Round 4",2398.62161337488
-2022,"St Kilda","Round 5",2427.41058789347
-2022,"St Kilda","Round 6",2454.43784089775
 2022,"St Kilda","Round 8",2353.24858889302
-2022,"Sydney","Round 1",2404.36824048246
-2022,"Sydney","Round 2",2477.0522080016
-2022,"Sydney","Round 3",2404.80875303842
-2022,"Sydney","Round 4",2422.7559957424
-2022,"Sydney","Round 5",2439.57275994761
-2022,"Sydney","Round 6",2492.84352804597
 2022,"Sydney","Round 8",2325.45981506545
-2022,"West Coast","Round 1",2068.99450358398
-2022,"West Coast","Round 2",1996.4086269216
-2022,"West Coast","Round 3",1965.91791220382
-2022,"West Coast","Round 4",2057.6097367653
-2022,"West Coast","Round 5",2041.5104785263
-2022,"West Coast","Round 6",2003.9038225898
 2022,"West Coast","Round 8",1964.77287617676
-2022,"Western Bulldogs","Round 1",2450.43661839393
-2022,"Western Bulldogs","Round 2",2372.1536461699
-2022,"Western Bulldogs","Round 3",2435.51201966097
-2022,"Western Bulldogs","Round 4",2349.78169508333
-2022,"Western Bulldogs","Round 5",2368.45846251561
-2022,"Western Bulldogs","Round 6",2284.4590469648
 2022,"Western Bulldogs","Round 8",2268.86072638886
-2022,"Adelaide","Round 9",NA
-2022,"Collingwood","Round 9",NA
-2022,"Gold Coast","Round 9",NA
-2022,"GWS","Round 9",NA
-2022,"Hawthorn","Round 9",NA
-2022,"North Melbourne","Round 9",NA
-2022,"St Kilda","Round 9",NA
-2022,"Sydney","Round 9",NA
-2022,"West Coast","Round 9",NA
-2022,"Brisbane","Round 9",NA
-2022,"Western Bulldogs","Round 9",NA
-2022,"Fremantle","Round 9",NA
-2022,"Carlton","Round 9",NA
-2022,"Richmond","Round 9",NA
-2022,"Port Adelaide","Round 9",NA
-2022,"Geelong","Round 9",NA
-2022,"Essendon","Round 9",NA
-2022,"Melbourne","Round 9",NA
