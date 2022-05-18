@@ -58,6 +58,13 @@ season_pred.new <- rbind(season_pred, t)
 write.csv(season_pred.new, 'csv_files/round_predictions.csv')
 
 
+# Add team rating csv
+data.frame(Season = as.numeric(format(Sys.Date(), "%Y")),
+           Team = glicko_rate$ratings$Player,
+           Round = round.no-1,
+           rating = glicko_rate$ratings$Rating) %>% 
+  write.csv('csv_files/Team_Ratings.csv', row.names = FALSE)
+
 # use reactable to use team logos
 options(reactable.theme = reactableTheme(
   color = "hsl(233, 9%, 87%)",
