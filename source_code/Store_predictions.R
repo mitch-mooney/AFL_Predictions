@@ -183,4 +183,5 @@ spark_table <- glicko_clean %>%
 
 spark_table <- merge(team_rate,spark_table, by=c("Rating", "Player"), all.x=TRUE, all.y=TRUE)
 
-reactable_function(data = spark_table)
+tabledf<-reactable_function(data = spark_table)
+render_table(tabledf)
