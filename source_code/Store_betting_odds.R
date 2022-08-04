@@ -1,4 +1,5 @@
 ## Get match results
+
 results<-fetch_results_afltables(season = 2022)
 
 newest.results <- results %>% 
