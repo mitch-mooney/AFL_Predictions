@@ -1,4 +1,13 @@
 ## Get match results
+library(tidyverse)
+library(fitzRoy)
+library(data.table)
+library(PlayerRatings)
+library(plotly)
+library(lubridate)
+library(reshape2)
+library(ggpmisc)
+library(magrittr)
 
 results<-fetch_results_afltables(season = 2022)
 
