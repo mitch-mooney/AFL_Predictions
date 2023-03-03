@@ -24,7 +24,7 @@ model_training <- function(inputs, target){
   history <- model %>% 
     fit(inputs,
         target,
-        epochs = 1500,
+        epochs = 600,
         batch_size = 256,
         validation_split = 0.3)
   #list(model = model, histroy = history, summary = summary(model))

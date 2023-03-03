@@ -7,8 +7,9 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <-27
-fixture <- fetch_fixture_squiggle(season = 2022, round_number = round.no)
+round.no <-1
+YEAR <- as.numeric(format(Sys.Date(), "%Y"))
+fixture <- fetch_fixture_squiggle(season = YEAR, round_number = round.no)
 fixture %<>%
   rename(Date = date,
          Season = year,
@@ -26,7 +27,7 @@ fixture %<>%
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = 2022, round_number = round.no-1, check_existing = TRUE)  %>% 
+dat.new<-fetch_player_stats_footywire(season = YEAR, round_number = round.no-1, check_existing = TRUE)  %>% 
   mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 dat <- dat %>% unique()
@@ -41,7 +42,7 @@ betting_odds <- read.csv('csv_files/betting_odds.csv')
 #betting_odds <- betting_csv
 
 ## Get match results
-results<-fetch_results_afltables(season = 2010:2022)
+results<-fetch_results_afltables(season = 2010:YEAR)
 
 ##########----- Clean and merge results with stats -----########## 
 
