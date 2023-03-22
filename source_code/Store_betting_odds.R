@@ -9,10 +9,10 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-results<-fetch_results_afltables(season = 2022)
+results<-fetch_results_afltables(season = 2023)
 
 newest.results <- results %>% 
-  filter(Season == 2022, Round.Number == round.no) %>% 
+  filter(Season == 2023, Round.Number == round.no) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 
