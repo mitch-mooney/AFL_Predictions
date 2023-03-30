@@ -27,7 +27,7 @@ fixture %<>%
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = YEAR, round_number = round.no-1, check_existing = TRUE)  %>% 
+dat.new<-fetch_player_stats_footywire(season = YEAR, round_number = round.no-1, check_existing = FALSE)  %>% 
   mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 dat <- dat %>% unique()
