@@ -7,7 +7,7 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <-4
+round.no <-5
 YEAR <- as.numeric(format(Sys.Date(), "%Y"))
 fixture <- fetch_fixture_squiggle(season = YEAR, round_number = round.no)
 fixture %<>%
@@ -27,7 +27,7 @@ fixture %<>%
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = YEAR, check_existing = FALSE)  %>% 
+dat.new<-fetch_player_stats_footywire(season = YEAR, check_existing = TRUE)  %>% 
   mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 dat <- plyr::rbind.fill(dat, dat.new)
 dat <- dat %>% unique()
