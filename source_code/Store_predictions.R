@@ -46,6 +46,8 @@ t <- table_final %>%
   select(Team, Opposition, Round, Loss_prob, Win_Prob, margin_estimate_1, Team_predicted) %>% 
   rename(Pred_Winner=Team_predicted,Pred_Margin = margin_estimate_1) %>% 
   mutate(Pred_Margin = round(Pred_Margin,0),
+         Pred_Margin = ifelse(Win_Prob >=0.5 & Pred_Margin < 0, 0,
+                              ifelse(Win_Prob <= 0.5 & Pred_Margin > 0, 0, Pred_Margin)),
          Season = as.numeric(format(Sys.Date(), "%Y")))
 
 current_round <- unique(t$Round)
