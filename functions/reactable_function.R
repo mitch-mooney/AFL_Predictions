@@ -71,7 +71,7 @@ render_table <- function(spark_table){
               }),
               Rating = colDef(maxWidth = 100, align = "center", format = colFormat(digits = 0)),
               
-              sparkline = colDef(name = "2022 Progress", cell = function(value, index) {
+              sparkline = colDef(name = "2023 Progress", cell = function(value, index) {
                 sparkline(spark_table$sparkline[[index]], lineWidth = 2, height = "50px", width = "150px")
               })
               
