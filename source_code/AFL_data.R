@@ -7,7 +7,7 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <- 25
+round.no <- 26
 YEAR <- as.numeric(format(Sys.Date(), "%Y"))
 fixture <- fetch_fixture_squiggle(season = YEAR, round_number = round.no)
 fixture %<>%
