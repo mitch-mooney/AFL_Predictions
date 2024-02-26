@@ -1,5 +1,5 @@
 #run simulations on n runs
-score_sim <- simulation(runs = 10000) # returns a list of data frames to use below
+score_sim <- simulation(runs = 1000) # returns a list of data frames to use below
 # summarize findings from simulation
 mean_score <- score_sim$score_sim %>%
   group_by(game, team, opp) %>% 
