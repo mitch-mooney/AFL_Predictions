@@ -7,7 +7,7 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <- 0
+round.no <- 1
 YEAR <- as.numeric(format(Sys.Date(), "%Y"))
 fixture <- fetch_fixture_squiggle(season = YEAR, round_number = round.no)
 fixture %<>%
@@ -70,6 +70,7 @@ res <- results_df%>%
   select(Date, Season, Team, goals, behinds, points, opp_goals, opp_behinds, opp_points, Margin)
 # clean team names
 res$Team<-stringr::str_replace(res$Team, "Footscray", "Western Bulldogs")
+
 res$Team<-stringr::str_replace(res$Team, "Brisbane Lions", "Brisbane")
 
 # get team summarized data for merging
