@@ -12,7 +12,7 @@ library(magrittr)
 results<-fetch_results_afltables(season = YEAR)
 
 newest.results <- results %>% 
-  filter(Season == YEAR, Round.Number == round.no) %>% 
+  filter(Season == YEAR, Round.Number == round.no+1) %>% 
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>% 

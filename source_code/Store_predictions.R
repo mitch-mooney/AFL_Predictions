@@ -12,10 +12,11 @@ prob_pred_df <- prob_pred_df%>%
          #Draw_Prob = V3,
          Tips = V3)
 
-new_predictions<-score_sim$score_data_lean %>% 
+#new_predictions<-score_sim$score_data_lean %>% 
+new_predictions<-score_data_lean %>% 
   filter(Margin == 999) %>% 
   mutate(Tips = ifelse(pred_win_prob > 0.5, 1, 0)) %>% 
-  select(Tips,	pred_loss_prob,	pred_win_prob,margin_est_linear,margin_est_rand)
+  select(Tips,	pred_loss_prob,	pred_win_prob,margin_est_linear)
 
 table<-cbind(round, new_predictions)
 table$Margin <- NULL
@@ -24,12 +25,11 @@ table %<>%
   mutate(Team_predicted = ifelse(Tips == 1, Team, Opposition))
   
 table %<>%
-  select(Date,Match_id,	Season,	Team,	Opposition,	Status,	Venue,	Round,	results,	Odds,	line_Odds,	Opp_Odds,	Opp_lineOdds,	Tips,	pred_loss_prob,	pred_win_prob, Team_predicted,	margin_est_linear,	margin_est_rand) %>% 
+  select(Date,Match_id,	Season,	Team,	Opposition,	Status,	Venue,	Round,	results,	Odds,	line_Odds,	Opp_Odds,	Opp_lineOdds,	Tips,	pred_loss_prob,	pred_win_prob, Team_predicted,	margin_est_linear) %>% 
   rename(
     Loss_prob = pred_loss_prob,
     Win_Prob = pred_win_prob,
-    margin_estimate_1 = margin_est_linear,
-    margin_estimate_2 = margin_est_rand
+    margin_estimate_1 = margin_est_linear
   )
 
 
