@@ -45,7 +45,8 @@ betting %<>%
   unique() %>% 
   drop_na(Date)
 
-betting_csv <- rbind(betting, newest.betting)
+betting_csv <- rbind(betting, newest.betting) %>% 
+  drop_na(Date)
 
 write.csv(betting_csv, "csv_files/betting_odds.csv")
 
