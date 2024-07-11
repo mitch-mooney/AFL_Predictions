@@ -26,11 +26,11 @@ newest.betting <- betting_join %>%
                             ifelse(Away.Team == "Brisbane", "Brisbane Lions", Away.Team))) %>% 
   left_join(newest.results, by = c("Home.Team", "Away.Team"))
 
-newest.betting %<>% 
+newest.betting <- newest.betting %>% 
   mutate(Home.Margin = Home.Points - Away.Points,
          Away.Margin = Away.Points - Home.Points,
          Season = as.integer(format(Date, "%Y")),
-         Date = as.character.Date(Date, format = "%d/%m/%Y")) %>% 
+         Date = format(Date, format = "%d/%m/%Y")) %>% 
   rename(Round = Round.Number,
          Home.Score = Home.Points,
          Away.Score = Away.Points,
@@ -38,7 +38,8 @@ newest.betting %<>%
          Away.Win.Odds = Opp_Odds,
          Home.Line.Odds = line_Odds,
          Away.Line.Odds = Opp_lineOdds) %>% 
-  select("Date", "Venue", "Home.Team", "Away.Team","Home.Score","Away.Score", "Home.Margin", "Away.Margin","Home.Win.Odds", "Away.Win.Odds", "Home.Line.Odds", "Away.Line.Odds", "Round", "Season")
+  select("Date", "Venue", "Home.Team", "Away.Team","Home.Score","Away.Score", "Home.Margin", "Away.Margin","Home.Win.Odds", "Away.Win.Odds", "Home.Line.Odds", "Away.Line.Odds", "Round", "Season") %>% 
+  drop_na(Date)
 
 betting %<>% 
   select(!X) %>% 
