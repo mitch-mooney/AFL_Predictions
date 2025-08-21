@@ -7,9 +7,10 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <- 20
+round.no <- 24
 YEAR <- as.numeric(format(Sys.Date(), "%Y"))
 fixture <- fetch_fixture_squiggle(season = YEAR, round_number = round.no)
+
 fixture %<>%
   rename(Date = date,
          Season = year,
@@ -219,6 +220,7 @@ new$matchType <- ifelse(grepl('Final', new$Round), 1, 0)
 #new$date <- as.integer(format(new$Date, "%Y%m%d"))
 #finalize the variable lists for modeling
 new %<>%
+  arrange(Date) %>% 
   group_by(Team) %>%
   mutate(last_scoreDiff = lag(Margin, order_by=Date),
          last_result = lag(results, order_by=Date),
@@ -270,8 +272,8 @@ new %<>%
   ungroup()
 # Select metrics to include in training the model; I've left out a lot of metrics because these ones seem to make the model perform better after trial and error.
 future_data_lean <- new %>%
-  select(results, Season, team, opposition, status, last_scoreDiff, 
-         pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc, 
+  select(results, Season, team, opposition, status, last_scoreDiff,
+         pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc,
          matches_won, last_encounter_margin, last_rateDiff,last_Odds,
          last_LineOdds, last_encounter_SC,last_encounter_disposals,
          season_for,season_against,opp_season_for,opp_season_against,venue, matchType
@@ -283,8 +285,8 @@ future_data_lean %<>%
 
 #Create data frame for margin predictions used in DeepLearning_Margin.R
 score_data_lean <- new %>%
-  select(Margin, Season, team, opposition, status, last_scoreDiff, 
-         pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc, 
+  select(Margin, Team, Opposition, Season, team, opposition, status, last_scoreDiff,
+         pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc,
          matches_won, last_encounter_margin, last_rateDiff,last_Odds,
          last_LineOdds, last_encounter_SC,last_encounter_disposals,
          season_for,season_against,opp_season_for,opp_season_against,venue, matchType
@@ -297,26 +299,26 @@ score_data_lean %<>%
 #### Training data without betting odds
 #Create data frame for margin predictions used in DeepLearning_Margin.R
 # Select metrics to include in training the model; I've left out a lot of metrics because these ones seem to make the model perform better after trial and error.
-#future_data_lean <- new %>%
-#  select(results, Season, team, opposition, status, last_scoreDiff, 
-#         pre_rate,pre_oppRate,last_score_acc, 
+# future_data_lean <- new %>%
+#  select(results, Season, team, opposition, status, last_scoreDiff,
+#         pre_rate,pre_oppRate,last_score_acc,
 #         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
 #         last_LineOdds, last_encounter_SC,last_encounter_disposals,
 #         season_for,season_against,opp_season_for,opp_season_against,venue
 #  )
-#
-#future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
-#future_data_lean %<>%
+# 
+# future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
+# future_data_lean %<>%
 #  filter(results == 0 | results == 1 | results == 999) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
-#
-#
-#score_data_lean <- new %>%
-#  select(Margin, Season, team, opposition, status, last_scoreDiff, 
-#         pre_rate,pre_oppRate,last_score_acc, 
+# 
+# 
+# score_data_lean <- new %>%
+#  select(Margin, Season, team, opposition, status, last_scoreDiff,
+#         pre_rate,pre_oppRate,last_score_acc,
 #         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
 #         last_LineOdds, last_encounter_SC,last_encounter_disposals,
 #         season_for,season_against,opp_season_for,opp_season_against,venue
 #  )
-#score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
-#score_data_lean %<>%
+# score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
+# score_data_lean %<>%
 #  filter(Margin != 0)

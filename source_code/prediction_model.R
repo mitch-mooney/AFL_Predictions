@@ -1,4 +1,3 @@
-
 library(keras)
 
 data <- future_data_lean
@@ -62,12 +61,12 @@ x<-data_mat[,2:col_num]
 all_match_pred<-model %>% 
   predict(x)
 
-score_data_lean<-cbind(score_data_lean, all_match_pred)
-score_data_lean<- score_data_lean %>%  
+future_data_lean<-cbind(future_data_lean, all_match_pred)
+future_data_lean<- future_data_lean %>%  
   rename(pred_loss_prob = `1`, pred_win_prob = `2`)
 
 
-score_data_lean<-score_data_lean %>%
+future_data_lean<-future_data_lean %>%
   mutate(pred_cat = ifelse(pred_win_prob < 0.1, 1, 
                            ifelse(pred_win_prob > 0.1 & pred_win_prob < 0.2, 2,
                                   ifelse(pred_win_prob > 0.2 &pred_win_prob < 0.3, 3,
@@ -78,21 +77,30 @@ score_data_lean<-score_data_lean %>%
                                                                      ifelse(pred_win_prob > 0.7 & pred_win_prob < 0.8, 8,
                                                                             ifelse(pred_win_prob > 0.8 & pred_win_prob < 0.9, 9, 10))))))))))
 #make numerical value categories
-score_data_lean$pred_cat_factor <- as.factor(score_data_lean$pred_cat)
+future_data_lean$pred_cat_factor <- as.factor(future_data_lean$pred_cat)
 
 # New facet label names for supp variable
-score_data_lean$pred_cat <- factor(score_data_lean$pred_cat_factor, levels = c(1,2,3,4,5,6,7,8,9,10), 
+future_data_lean$pred_cat <- factor(future_data_lean$pred_cat_factor, levels = c(1,2,3,4,5,6,7,8,9,10), 
                           labels = c("0-10%", "10-20%", "20-30%", "30-40%", "40-50%", "50-60%", "60-70%", "70-80%", "80-90%", "90-100%"))
 
 # Find the mean of each group removing the unknown margins
-Sum_pred_cat<-score_data_lean %>%
+Sum_pred_cat<-future_data_lean %>%
+  left_join(
+    score_data_lean %>% 
+      select(Margin, Season, team, opposition, status, venue, matchType)
+  ) %>%
   group_by(pred_cat) %>% 
   filter(Margin != 999) %>% 
   summarise(rating.mean=mean(Margin), rating.sd = sd(Margin))
 
 # linear formula for predicting margin from win probability
-margin_formula <- score_data_lean %>% filter(Margin < 998)
+margin_formula <- future_data_lean %>% 
+  left_join(
+    score_data_lean %>% 
+      select(Margin, Season, team, opposition, status, venue, matchType)
+  ) %>% 
+  filter(Margin < 998)
 formula <- lm(Margin ~ pred_win_prob, data= margin_formula)
-score_data_lean %<>% mutate(margin_est_linear = predict(formula, newdata = score_data_lean)) # add estimate of margin
+future_data_lean %<>% mutate(margin_est_linear = predict(formula, newdata = future_data_lean)) # add estimate of margin
 #score_data_lean %<>% mutate(margin_est_linear = -57+117*pred_win_prob-1.5) # add estimate of margin
 

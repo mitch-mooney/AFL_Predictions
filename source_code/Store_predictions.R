@@ -13,12 +13,23 @@ prob_pred_df <- prob_pred_df%>%
          Tips = V3)
 
 #new_predictions<-score_sim$score_data_lean %>% 
-new_predictions<-score_data_lean %>% 
+new_predictions<-future_data_lean %>% 
+  left_join(
+    score_data_lean %>% 
+      select(Team, Opposition, Margin, Season, team, opposition, status, venue, matchType)
+  ) %>% 
   filter(Margin == 999) %>% 
   mutate(Tips = ifelse(pred_win_prob > 0.5, 1, 0)) %>% 
-  select(Tips,	pred_loss_prob,	pred_win_prob,margin_est_linear)
+  select(Team, Opposition, Tips,	pred_loss_prob,	pred_win_prob,margin_est_linear)
 
-table<-cbind(round, new_predictions)
+round <- round %>% 
+  filter(Match_id<10) %>% 
+  left_join(
+    new_predictions,
+    by = c("Team", "Opposition")
+  ) 
+
+#table<-cbind(round, new_predictions)
 table$Margin <- NULL
 
 table %<>% 
@@ -110,80 +121,80 @@ reactable(t, columns = list(
 ))
 
 
-# simulation plot
-# create plot for simulation
-score_sim$score_sim %>% 
-  mutate(result = ifelse(value < 0, opp, team)) %>% 
-  filter(game < (games/2 +1)) %>% #change this to suit how many matches there are that round
-  ggplot(aes(x = value, color = result))+
-  geom_histogram(binwidth = 1,  alpha = 0.8)+
-  geom_vline(data=mean_score[1:(games/2),], aes(xintercept=rating.mean,  colour=result), #change mean_score[1:games/2]
-             linetype="dashed", size=1)+
-  scale_colour_manual(values = cols)+
-  labs(title = paste("Match simulation of AFL:", score_sim$score_sim$round,sep = " "),
-       color = "Team",
-       x = "simulated margin")+
-  scale_x_continuous(breaks = seq(-100, 100, 20))+
-  theme_AFL(base_size = 12)+
-  facet_grid(game+match~.,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
-
-# CDF plot of the simulations
-score_sim$score_sim %>% 
-  mutate(result = ifelse(value < 0, opp, team)) %>% 
-  filter(game < (games/2 +1)) %>% #change this to suit how many matches there are that round
-  ggplot(aes(x = value, color = team))+
-  stat_ecdf(size = 1.25)+
-  geom_vline(xintercept = 0, size = 1.5, alpha = 0.9, color = '#498181')+
-  geom_hline(yintercept = 0.5, size = 1.5,alpha = 0.9, color = '#498181')+
-  scale_colour_manual(values = cols)+
-  labs(title = "Simulated cummulative density function",
-       x = "Home Team Margin",
-       y = "cummulative density")+
-  xlim(-75,75) +
-  # Add images to end point of line graph per team
-  theme_AFL(base_size = 8, background_hex = '#64B2B2')+
-  theme(legend.position = 'None')+
-  facet_grid(~game+match,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
-
-
-### Ratings update  ###
-matches<-results %>% 
-  filter(Season >= 2010) %>% 
-  group_by(Season, Round.Number) %>% 
-  summarise_each(funs(n_distinct(Date))) %>% 
-  select(Season, Round.Number, Date)
-
-lag <-tail(matches$Date, 1)
-round_num <- tail(matches$Round.Number, 1)
-
-#glicko ratings table
-rating_history <- glicko %>% 
-  filter(var == "Rating") %>% 
-  group_by(match) %>% 
-  mutate(rank = rank(-value))%>% 
-  group_by(Team) %>% 
-  mutate(lag = lag(rank, n =lag)) %>% 
-  ungroup()%>% 
-  mutate(change = ifelse(rank < lag, "Up", ifelse(rank > lag, "Down", "Unchanged")),
-         match = as.numeric(match)) %>% 
-  filter(match == max(match)) %>% 
-  select(Team, change) %>%
-  rename(Player = Team)
-
-team_rate <- glicko_rate$ratings
-team_rate %<>% 
-  select(!c(Lag, Deviation, Volatility)) %>% 
-  mutate(Rating = round(Rating, 0), Rank = rank(-Rating)) %>% 
-  select(Rank, Player, Rating)
-
-team_rate<-left_join(rating_history, team_rate, by = c("Player"))
-
-spark_table <- glicko_clean %>%
-  group_by(Team) %>%
-  summarise(Rating = round(tail(value, n = 1), 0),sparkline = list(tail(value, n = round_num))) %>% 
-  rename(Player = Team)
-
-spark_table <- merge(team_rate,spark_table, by=c("Rating", "Player"), all.x=TRUE, all.y=TRUE)
-
-tabledf<-reactable_function(data = spark_table)
-render_table(tabledf)
+# # simulation plot
+# # create plot for simulation
+# score_sim$score_sim %>% 
+#   mutate(result = ifelse(value < 0, opp, team)) %>% 
+#   filter(game < (games/2 +1)) %>% #change this to suit how many matches there are that round
+#   ggplot(aes(x = value, color = result))+
+#   geom_histogram(binwidth = 1,  alpha = 0.8)+
+#   geom_vline(data=mean_score[1:(games/2),], aes(xintercept=rating.mean,  colour=result), #change mean_score[1:games/2]
+#              linetype="dashed", size=1)+
+#   scale_colour_manual(values = cols)+
+#   labs(title = paste("Match simulation of AFL:", score_sim$score_sim$round,sep = " "),
+#        color = "Team",
+#        x = "simulated margin")+
+#   scale_x_continuous(breaks = seq(-100, 100, 20))+
+#   theme_AFL(base_size = 12)+
+#   facet_grid(game+match~.,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
+# 
+# # CDF plot of the simulations
+# score_sim$score_sim %>% 
+#   mutate(result = ifelse(value < 0, opp, team)) %>% 
+#   filter(game < (games/2 +1)) %>% #change this to suit how many matches there are that round
+#   ggplot(aes(x = value, color = team))+
+#   stat_ecdf(size = 1.25)+
+#   geom_vline(xintercept = 0, size = 1.5, alpha = 0.9, color = '#498181')+
+#   geom_hline(yintercept = 0.5, size = 1.5,alpha = 0.9, color = '#498181')+
+#   scale_colour_manual(values = cols)+
+#   labs(title = "Simulated cummulative density function",
+#        x = "Home Team Margin",
+#        y = "cummulative density")+
+#   xlim(-75,75) +
+#   # Add images to end point of line graph per team
+#   theme_AFL(base_size = 8, background_hex = '#64B2B2')+
+#   theme(legend.position = 'None')+
+#   facet_grid(~game+match,labeller = label_wrap_gen(width = 0.5, multi_line = TRUE))
+# 
+# 
+# ### Ratings update  ###
+# matches<-results %>% 
+#   filter(Season >= 2010) %>% 
+#   group_by(Season, Round.Number) %>% 
+#   summarise_each(funs(n_distinct(Date))) %>% 
+#   select(Season, Round.Number, Date)
+# 
+# lag <-tail(matches$Date, 1)
+# round_num <- tail(matches$Round.Number, 1)
+# 
+# #glicko ratings table
+# rating_history <- glicko %>% 
+#   filter(var == "Rating") %>% 
+#   group_by(match) %>% 
+#   mutate(rank = rank(-value))%>% 
+#   group_by(Team) %>% 
+#   mutate(lag = lag(rank, n =lag)) %>% 
+#   ungroup()%>% 
+#   mutate(change = ifelse(rank < lag, "Up", ifelse(rank > lag, "Down", "Unchanged")),
+#          match = as.numeric(match)) %>% 
+#   filter(match == max(match)) %>% 
+#   select(Team, change) %>%
+#   rename(Player = Team)
+# 
+# team_rate <- glicko_rate$ratings
+# team_rate %<>% 
+#   select(!c(Lag, Deviation, Volatility)) %>% 
+#   mutate(Rating = round(Rating, 0), Rank = rank(-Rating)) %>% 
+#   select(Rank, Player, Rating)
+# 
+# team_rate<-left_join(rating_history, team_rate, by = c("Player"))
+# 
+# spark_table <- glicko_clean %>%
+#   group_by(Team) %>%
+#   summarise(Rating = round(tail(value, n = 1), 0),sparkline = list(tail(value, n = round_num))) %>% 
+#   rename(Player = Team)
+# 
+# spark_table <- merge(team_rate,spark_table, by=c("Rating", "Player"), all.x=TRUE, all.y=TRUE)
+# 
+# tabledf<-reactable_function(data = spark_table)
+# render_table(tabledf)
