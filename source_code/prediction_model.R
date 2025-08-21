@@ -1,3 +1,4 @@
+
 library(keras)
 
 data <- future_data_lean
