@@ -22,8 +22,7 @@ new_predictions<-future_data_lean %>%
   mutate(Tips = ifelse(pred_win_prob > 0.5, 1, 0)) %>% 
   select(Team, Opposition, Tips,	pred_loss_prob,	pred_win_prob,margin_est_linear)
 
-round <- round %>% 
-  filter(Match_id<10) %>% 
+table <- round %>% 
   left_join(
     new_predictions,
     by = c("Team", "Opposition")
