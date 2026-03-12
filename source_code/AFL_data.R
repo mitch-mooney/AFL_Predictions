@@ -7,9 +7,25 @@ library(reshape2)
 library(ggpmisc)
 library(magrittr)
 
-round.no <- 0
 YEAR <- as.numeric(format(Sys.Date(), "%Y"))
-fixture <- fetch_fixture_squiggle(season = YEAR, round_number = round.no)
+
+# Fetch full season fixture then auto-detect the current/upcoming round
+fixture_raw <- tryCatch(
+  fetch_fixture_squiggle(season = YEAR),
+  error = function(e) stop("Failed to fetch fixture from Squiggle: ", conditionMessage(e))
+)
+
+round.no <- fixture_raw %>%
+  filter(as.Date(date) >= Sys.Date()) %>%
+  pull(round) %>%
+  min()
+
+if (!is.finite(round.no)) stop("No upcoming rounds found in the ", YEAR, " fixture — season may be complete.")
+
+message("Auto-detected round: Round ", round.no)
+
+fixture <- fixture_raw %>%
+  filter(round == round.no)
 
 fixture %<>%
   rename(Date = date,
@@ -20,16 +36,19 @@ fixture %<>%
          Away.Team = ateam,
          Venue = venue) %>% 
   select(Date, Season, Season.Game, Round, Home.Team, Away.Team, Venue) %>% 
-  mutate(Home.Team = ifelse(Home.Team == "Greater Western Sydney", "GWS", Home.Team),
-         Away.Team = ifelse(Away.Team == "Greater Western Sydney", "GWS", Away.Team))
+  mutate(Home.Team = normalize_team_names(Home.Team),
+         Away.Team = normalize_team_names(Away.Team))
 
 
 ##########----- Gather Data from fitZroy package -----########## 
 # player stats
 dat <- read.csv('csv_files/AFLstats.csv')
 dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
-dat.new<-fetch_player_stats_footywire(season = YEAR, check_existing = TRUE, round_number = round.no -1)  %>% 
-  mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
+dat.new <- tryCatch(
+  fetch_player_stats_footywire(season = YEAR, check_existing = TRUE, round_number = round.no - 1) %>%
+    mutate(Date = as.Date(Date, format = "%Y-%m-%d")),
+  error = function(e) stop("Failed to fetch player stats from Footywire: ", conditionMessage(e))
+)
 
 dat <- plyr::rbind.fill(dat, dat.new)
 dat <- dat %>% unique()
@@ -44,7 +63,10 @@ betting_odds <- read.csv('csv_files/betting_odds.csv')
 #betting_odds <- betting_csv
 
 ## Get match results
-results<-fetch_results_afltables(season = 2010:YEAR)
+results <- tryCatch(
+  fetch_results_afltables(season = START_SEASON:YEAR),
+  error = function(e) stop("Failed to fetch match results from AFLTables: ", conditionMessage(e))
+)
 
 ##########----- Clean and merge results with stats -----########## 
 
@@ -55,7 +77,7 @@ results_df <- results[res_idx,]
 # Add variables for joining
 res <- results_df%>%
   group_by(Game)%>%
-  filter(Season > 2009)%>%
+  filter(Season >= START_SEASON)%>%
   mutate(num = row_number(),
          Status = ifelse(num == 1, "Home", "Away"),
          Team = ifelse(num == 1, Home.Team, Away.Team),
@@ -70,9 +92,7 @@ res <- results_df%>%
   ungroup()%>%
   select(Date, Season, Team, goals, behinds, points, opp_goals, opp_behinds, opp_points, Margin)
 # clean team names
-res$Team<-stringr::str_replace(res$Team, "Footscray", "Western Bulldogs")
-
-res$Team<-stringr::str_replace(res$Team, "Brisbane Lions", "Brisbane")
+res$Team <- normalize_team_names(res$Team)
 
 # get team summarized data for merging
 match<-dat %>%
@@ -180,8 +200,7 @@ bet <- betting%>%
   distinct()
   
 #clean up team names
-bet$Team<-stringr::str_replace(bet$Team, "Footscray", "Western Bulldogs")
-bet$Team<-stringr::str_replace(bet$Team, "Brisbane Lions", "Brisbane")
+bet$Team <- normalize_team_names(bet$Team)
 
 #If you have to read in the .csv locally you'll have to change the Date column to date format
 #bet$Date <- strptime(as.character(bet$Date), "%d/%m/%Y")
@@ -198,22 +217,27 @@ round <- wrangle_fixture(round = round.no)
 # change date format
 round$Date<- as.Date(round$Date,format = "%Y-%m-%d %H:%M:%S")
 # clean up strings
-round <- round %>% 
-  select(Date, Match_id, Match_id, Season, Team, Opposition, Status, Venue, Round, results, Margin) %>% 
-  #mutate(Status = ifelse(Team == "Sydney" & Status == "Away", "Home", ifelse(Team == "St Kilda" & Status == "Home", "Away", Status))) %>% 
-  left_join(betting_join, by=c('Team', 'Opposition', 'Status'))
+round <- round %>%
+  select(Date, Match_id, Match_id, Season, Team, Opposition, Status, Venue, Round, results, Margin)
+
+# Join current round odds if available (produced by betting_odds.R).
+# The betless model does not use current round odds as direct inputs, so predictions
+# can still be generated without them — odds columns will simply be NA in the output.
+if (exists("betting_join") && nrow(betting_join) > 0) {
+  round <- round %>% left_join(betting_join, by = c('Team', 'Opposition', 'Status'))
+} else {
+  warning("betting_join not found — run betting_odds.R before AFL_data.R for odds data. ",
+          "Proceeding without current round odds (Odds/line_Odds will be NA in output).")
+  round <- round %>%
+    mutate(Odds = NA_real_, line_Odds = NA_real_, Opp_Odds = NA_real_, Opp_lineOdds = NA_real_)
+}
 
 #bind rows need to use plyr to fill blank columns
 new<-plyr::rbind.fill(match, round)
 
 #change team names & home and away status to integer values
-new$team <- as.numeric(ordered(new$Team, levels = c("Adelaide","Brisbane","Carlton","Collingwood","Essendon","Fremantle",       
-                                                    "Geelong","Gold Coast","GWS" ,"Hawthorn","Melbourne","North Melbourne", 
-                                                    "Port Adelaide","Richmond","St Kilda","Sydney","West Coast","Western Bulldogs")))
-
-new$opposition <- as.numeric(ordered(new$Opposition, levels = c("Adelaide","Brisbane","Carlton","Collingwood","Essendon","Fremantle",       
-                                                                "Geelong","Gold Coast","GWS" ,"Hawthorn","Melbourne","North Melbourne", 
-                                                                "Port Adelaide","Richmond","St Kilda","Sydney","West Coast","Western Bulldogs")))
+new$team       <- as.numeric(ordered(new$Team,       levels = AFL_TEAMS))
+new$opposition <- as.numeric(ordered(new$Opposition, levels = AFL_TEAMS))
 new$status <- as.numeric(ordered(new$Status, levels = c("Home", "Away")))
 
 new$matchType <- ifelse(grepl('Final', new$Round), 1, 0)
@@ -270,55 +294,46 @@ new %<>%
          last_AF = lag(AF, order_by = Date),
          venue = as.numeric(factor(Venue)))%>%
   ungroup()
-# Select metrics to include in training the model; I've left out a lot of metrics because these ones seem to make the model perform better after trial and error.
+# --- Optional: add candidate features for experimentation -------------------
+# Uncomment to add extra features before selection. Then add their column names
+# to the select() calls below and retrain via source("source_code/retrain_model.R").
+# Use analysis_code/feature_investigation.R to check if they actually help first.
+# WARNING: changing features changes col_num — model must be retrained afterwards.
+# new <- add_extra_features(new)
+
+# Feature selection for model/model_betless (betting odds excluded from inputs)
+# matchType is included for downstream joins but dropped from model inputs in prediction_model.R
 future_data_lean <- new %>%
   select(results, Season, team, opposition, status, last_scoreDiff,
-         pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc,
-         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
-         last_LineOdds, last_encounter_SC,last_encounter_disposals,
-         season_for,season_against,opp_season_for,opp_season_against,venue, matchType
-  )
+         pre_rate, pre_oppRate, last_score_acc,
+         matches_won, last_encounter_margin, last_rateDiff, last_Odds,
+         last_LineOdds, last_encounter_SC, last_encounter_disposals,
+         season_for, season_against, opp_season_for, opp_season_against, venue, matchType
+  ) %>%
+  filter(complete.cases(.)) %>%
+  filter(results == 0 | results == 1 | results == 999)
 
-future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
-future_data_lean %<>%
-  filter(results == 0 | results == 1 | results == 999) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
+# Full feature set including current-round odds — for primary model when MODEL_BETLESS = FALSE.
+# complete.cases() naturally excludes future matches where odds are unavailable.
+if (!MODEL_BETLESS) {
+  future_data_full <- new %>%
+    select(results, Season, team, opposition, status, last_scoreDiff,
+           pre_rate, pre_oppRate, Odds, Opp_Odds, line_Odds, Opp_lineOdds, last_score_acc,
+           matches_won, last_encounter_margin, last_rateDiff, last_Odds,
+           last_LineOdds, last_encounter_SC, last_encounter_disposals,
+           season_for, season_against, opp_season_for, opp_season_against, venue, matchType
+    ) %>%
+    filter(complete.cases(.)) %>%
+    filter(results == 0 | results == 1 | results == 999)
+}
 
-#Create data frame for margin predictions used in DeepLearning_Margin.R
+# Margin prediction dataframe — includes Team/Opposition/matchType for downstream joins
 score_data_lean <- new %>%
   select(Margin, Team, Opposition, Season, team, opposition, status, last_scoreDiff,
-         pre_rate,pre_oppRate,Odds, Opp_Odds,line_Odds,Opp_lineOdds,last_score_acc,
-         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
-         last_LineOdds, last_encounter_SC,last_encounter_disposals,
-         season_for,season_against,opp_season_for,opp_season_against,venue, matchType
-  )
-score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
-score_data_lean %<>%
-  filter(Margin != 0) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
-
-
-#### Training data without betting odds
-#Create data frame for margin predictions used in DeepLearning_Margin.R
-# Select metrics to include in training the model; I've left out a lot of metrics because these ones seem to make the model perform better after trial and error.
-# future_data_lean <- new %>%
-#  select(results, Season, team, opposition, status, last_scoreDiff,
-#         pre_rate,pre_oppRate,last_score_acc,
-#         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
-#         last_LineOdds, last_encounter_SC,last_encounter_disposals,
-#         season_for,season_against,opp_season_for,opp_season_against,venue
-#  )
-# 
-# future_data_lean<-future_data_lean[complete.cases(future_data_lean), ] #remove NAs from data frame
-# future_data_lean %<>%
-#  filter(results == 0 | results == 1 | results == 999) #remove draws ensure that the loss function is "binary_crossentropy", if you want to keep Draws change to "categorical_crossentropy"
-# 
-# 
-# score_data_lean <- new %>%
-#  select(Margin, Season, team, opposition, status, last_scoreDiff,
-#         pre_rate,pre_oppRate,last_score_acc,
-#         matches_won, last_encounter_margin, last_rateDiff,last_Odds,
-#         last_LineOdds, last_encounter_SC,last_encounter_disposals,
-#         season_for,season_against,opp_season_for,opp_season_against,venue
-#  )
-# score_data_lean<-score_data_lean[complete.cases(score_data_lean), ] #remove NAs from data frame
-# score_data_lean %<>%
-#  filter(Margin != 0)
+         pre_rate, pre_oppRate, last_score_acc,
+         matches_won, last_encounter_margin, last_rateDiff, last_Odds,
+         last_LineOdds, last_encounter_SC, last_encounter_disposals,
+         season_for, season_against, opp_season_for, opp_season_against, venue, matchType
+  ) %>%
+  filter(complete.cases(.)) %>%
+  filter(Margin != 0)

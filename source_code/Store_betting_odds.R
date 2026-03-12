@@ -12,18 +12,16 @@ library(magrittr)
 results<-fetch_results_afltables(season = YEAR)
 
 newest.results <- results %>% 
-  filter(Season == YEAR, Round.Number == round.no+1) %>% 
+  filter(Season == YEAR, Round.Number == round.no) %>%
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
-newest.betting <- betting_join %>% 
-  filter(Status == "Home") %>% 
-  select(!Status) %>% 
+newest.betting <- betting_join %>%
+  filter(Status == "Home") %>%
+  select(!Status) %>%
   rename(Home.Team = Team,
-         Away.Team = Opposition) %>% 
-  mutate(Home.Team = ifelse(Home.Team == "Western Bulldogs", "Footscray", 
-                            ifelse(Home.Team == "Brisbane", "Brisbane Lions", Home.Team)),
-         Away.Team = ifelse(Away.Team == "Western Bulldogs", "Footscray", 
-                            ifelse(Away.Team == "Brisbane", "Brisbane Lions", Away.Team))) %>% 
+         Away.Team = Opposition) %>%
+  mutate(Home.Team = to_afltables_names(Home.Team),
+         Away.Team = to_afltables_names(Away.Team)) %>%
   left_join(newest.results, by = c("Home.Team", "Away.Team"))
 
 newest.betting <- newest.betting %>% 
@@ -41,12 +39,12 @@ newest.betting <- newest.betting %>%
   select("Date", "Venue", "Home.Team", "Away.Team","Home.Score","Away.Score", "Home.Margin", "Away.Margin","Home.Win.Odds", "Away.Win.Odds", "Home.Line.Odds", "Away.Line.Odds", "Round", "Season") %>% 
   drop_na(Date)
 
-betting %<>% 
-  select(!X) %>% 
-  unique() %>% 
+betting_odds %<>%
+  select(!X) %>%
+  unique() %>%
   drop_na(Date)
 
-betting_csv <- rbind(betting, newest.betting) %>% 
+betting_csv <- rbind(betting_odds, newest.betting) %>%
   drop_na(Date)
 
 write.csv(betting_csv, "csv_files/betting_odds.csv")

@@ -18,11 +18,8 @@ wrangle_fixture <- function(round = 1, data = fixture){
     mutate(Match_id = rep(1:(0+nrow(fixture_df)/2), times=2, each=1)) %>% 
     select(Date, Match_id, Season, Team, Opposition, Status,Venue, Round, results, Margin)
   
-  fixture_join$Team<-stringr::str_replace(fixture_join$Team, "Brisbane Lions$", "Brisbane")
-  fixture_join$Opposition<-stringr::str_replace(fixture_join$Opposition, "Brisbane Lions$", "Brisbane")
-  
-  fixture_join$Team<-stringr::str_replace(fixture_join$Team, "Footscray$", "Western Bulldogs")
-  fixture_join$Opposition<-stringr::str_replace(fixture_join$Opposition, "Footscray$", "Western Bulldogs")
+  fixture_join$Team       <- normalize_team_names(fixture_join$Team)
+  fixture_join$Opposition <- normalize_team_names(fixture_join$Opposition)
   
   return(fixture_join)
 }

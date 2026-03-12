@@ -35,7 +35,7 @@ simulation <- function(runs){
   # Look at including home or away match into the loop.
   score_sim <- matrix(0, nrow = 10000, ncol = games)
   for (k in 1:nrow(margin_sim)){
-    num<-as.numeric(margin_sim[k,18])
+    num <- as.numeric(margin_sim[k, "pred_cat_factor"])
     sample<- sample(resampling[,num], 10000, replace=FALSE)
     score_sim[,k] <- sample
   }

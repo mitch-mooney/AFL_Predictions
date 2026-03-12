@@ -1,4 +1,4 @@
-reactable_function <- function(data){
+reactable_function <- function(spark_table){
   
   options(reactable.theme = reactableTheme(
     color = "hsl(233, 9%, 87%)",

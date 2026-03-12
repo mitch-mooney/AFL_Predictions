@@ -1,51 +1,41 @@
 # loop through json creating a data frame and bind together
 line_odds <- function(betting_json){
-  bet_data <- betting_json$data
   line_data <- tibble()
-  for (i in bet_data){
-    # find teams
-    teams <- i$teams
-    names(teams) <- c("team.a", "team.b")
-    teams <- dplyr::bind_rows(teams)
-    
-    # Commence date time
-    Date <- as.POSIXct(i[["commence_time"]],
-                       origin = "1970-01-1",
-                       tz="UTC")
-    #bind datetime with teams
-    teams <- cbind(teams, Date)
-    
-    # find odds
-    odds <- i[["sites"]]
+  for (i in betting_json){  # no $data wrapper in v4
+    home_team <- i$home_team
+    away_team <- i$away_team
+    team.a    <- home_team
+    team.b    <- away_team
+
+    Date <- as.POSIXct(i[["commence_time"]], format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+
     line.df <- tibble()
-    # loop through the sites and extract line
-    for (j in odds){
-      site <- j[["site_nice"]]
-      points <- j[["odds"]][["spreads"]][["points"]]
-      names(points) <- c("team.a_line", "team.b_line")
-      points <- dplyr::bind_rows(points)
-      points$site <- site
-      
-      line.df <- rbind(line.df, points)
-      
+    for (j in i[["bookmakers"]]){            # "bookmakers" not "sites"
+      site <- j[["title"]]                   # "title" not "site_nice"
+      spreads_market <- Filter(function(m) m$key == "spreads", j$markets)
+      if (length(spreads_market) == 0) next
+      outcomes <- spreads_market[[1]]$outcomes
+      # match by team name, not position
+      pt_a <- Filter(function(o) o$name == team.a, outcomes)
+      pt_b <- Filter(function(o) o$name == team.b, outcomes)
+      if (length(pt_a) == 0 || length(pt_b) == 0) next
+      row <- tibble(team.a_line = pt_a[[1]]$point, team.b_line = pt_b[[1]]$point, site = site)
+      line.df <- rbind(line.df, row)
     }
-    
-    line_sum <- line.df %>% summarise(median_team.a = median(as.numeric(team.a_line)), median_team.b = median(as.numeric(team.b_line)))
-    
-    teams <- cbind(teams, line_sum)
-    
-    # identify home team and away team
-    Home.Team <- i$home_team
-    teams <- teams %>% 
-      dplyr::mutate(Home.Team = ifelse(team.a == Home.Team, team.a, team.b),
-                    Away.Team = ifelse(team.a == Home.Team, team.b, team.a),
-                    Home.Line.Odds = ifelse(team.a == Home.Team, median_team.a, median_team.b),
-                    Away.Line.Odds = ifelse(team.a == Home.Team, median_team.b, median_team.a)) %>% 
-      select(Date, Home.Team, Away.Team, Home.Line.Odds,Away.Line.Odds,team.a,team.b)
+    if (nrow(line.df) == 0) next
+
+    line_sum <- line.df %>% summarise(median_team.a = median(as.numeric(team.a_line)),
+                                      median_team.b = median(as.numeric(team.b_line)))
+    teams <- tibble(team.a = team.a, team.b = team.b, Date = Date) %>%
+      cbind(line_sum) %>%
+      mutate(Home.Team      = home_team,
+             Away.Team      = away_team,
+             Home.Line.Odds = ifelse(team.a == home_team, median_team.a, median_team.b),
+             Away.Line.Odds = ifelse(team.a == home_team, median_team.b, median_team.a)) %>%
+      select(Date, Home.Team, Away.Team, Home.Line.Odds, Away.Line.Odds, team.a, team.b)
+
     line_data <- rbind(line_data, teams)
   }
   line_data <- line_data %>% mutate(Season = format(Date, "%Y"))
   return(line_data)
 }
-
-

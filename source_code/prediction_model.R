@@ -1,17 +1,19 @@
 library(keras)
 
-data <- future_data_lean
+# Betless model always runs first — provides predictions for all matches as the baseline/fallback
+data <- future_data_lean %>% select(-matchType)
 col_num<-as.numeric(ncol(data))
 data[1:col_num] <- lapply(data[1:col_num], as.numeric) #make sure all variables are numeric
 
 # returns a list of matrix used for running model
 model.data <- model_data(data)
-# trains the model using the data frames you choose from the list target needs to be categorical
+# load pre-trained model (to retrain, use source("source_code/retrain_model.R"))
 #model <- model_training(inputs = model.data$full_data_matrix, target = model.data$full_data_target)
-
-#model %>% save_model_tf("model/model") # save model with betting data trained
-model <- load_model_tf("model/model") # load model with  betting data trained
-#model <- load_model_tf("model/model_betless") # load model with betting data excluded
+#model %>% save_model_tf("model/model_betless")
+model <- tryCatch(
+  load_model_tf(MODEL_PATH),
+  error = function(e) stop("Failed to load Keras model from '", MODEL_PATH, "': ", conditionMessage(e))
+)
 #evaluate model from test dataset
 model %>% 
   evaluate(model.data$test, model.data$testLabels)
@@ -62,8 +64,55 @@ all_match_pred<-model %>%
   predict(x)
 
 future_data_lean<-cbind(future_data_lean, all_match_pred)
-future_data_lean<- future_data_lean %>%  
+future_data_lean<- future_data_lean %>%
   rename(pred_loss_prob = `1`, pred_win_prob = `2`)
+
+# --- Primary model override ---
+# When MODEL_BETLESS = FALSE, replace betless predictions for matches where current odds exist.
+# Matches without odds retain their betless predictions as a fallback.
+if (!MODEL_BETLESS && exists("future_data_full")) {
+  future_rows_with_odds <- future_data_full %>%
+    filter(results == 999) %>%
+    select(team, opposition, Season, status)
+
+  if (nrow(future_rows_with_odds) > 0) {
+    col_num_full <- ncol(future_data_full)
+    data_full <- future_data_full
+    data_full[1:col_num_full] <- lapply(data_full[1:col_num_full], as.numeric)
+    model.data.full <- model_data(data_full)
+
+    model_primary <- tryCatch(
+      load_model_tf(MODEL_PATH_FULL),
+      error = function(e) {
+        warning("Primary model '", MODEL_PATH_FULL, "' failed to load — using betless for all matches.")
+        NULL
+      }
+    )
+
+    if (!is.null(model_primary)) {
+      prob_primary <- model_primary %>% predict(model.data.full$future_matrix)
+
+      primary_preds <- future_rows_with_odds %>%
+        mutate(pred_loss_prob_primary = prob_primary[, 1],
+               pred_win_prob_primary  = prob_primary[, 2])
+
+      future_data_lean <- future_data_lean %>%
+        left_join(primary_preds, by = c("team", "opposition", "Season", "status")) %>%
+        mutate(
+          pred_loss_prob = ifelse(!is.na(pred_loss_prob_primary) & results == 999,
+                                  pred_loss_prob_primary, pred_loss_prob),
+          pred_win_prob  = ifelse(!is.na(pred_win_prob_primary) & results == 999,
+                                  pred_win_prob_primary, pred_win_prob)
+        ) %>%
+        select(-pred_loss_prob_primary, -pred_win_prob_primary)
+
+      n_primary  <- nrow(future_rows_with_odds)
+      n_fallback <- sum(future_data_lean$results == 999) - n_primary
+      message(n_primary, " match(es) predicted with primary model (", MODEL_PATH_FULL, "), ",
+              n_fallback, " with betless fallback (", MODEL_PATH, ").")
+    }
+  }
+}
 
 
 future_data_lean<-future_data_lean %>%
