@@ -40,7 +40,7 @@ newest.betting <- newest.betting %>%
   drop_na(Date)
 
 betting_odds %<>%
-  select(!X) %>%
+ # select(!X) %>%
   unique() %>%
   drop_na(Date)
 
