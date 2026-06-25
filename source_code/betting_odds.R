@@ -39,4 +39,6 @@ betting_join<-betting_df%>%
   ungroup() %>% 
   select(Team, Opposition, Status, Odds, line_Odds, Opp_Odds, Opp_lineOdds)
 
+write.csv(betting_join, "csv_files/betting_odds_round.csv")
+
 

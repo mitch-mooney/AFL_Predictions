@@ -1,5 +1,5 @@
 wrangle_fixture <- function(round = 1, data = fixture){
-  fixture_round <- fixture %>% 
+  fixture_round <- data %>%
     filter(Round == round)
   
   fixture_idx <- rep(1:nrow(fixture_round), 2)

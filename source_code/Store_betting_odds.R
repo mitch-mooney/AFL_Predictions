@@ -11,8 +11,11 @@ library(magrittr)
 
 results<-fetch_results_afltables(season = YEAR)
 
+betting_join <- read.csv("csv_files/betting_odds_round.csv") %>%
+  select(-X)
+
 newest.results <- results %>% 
-  filter(Season == YEAR, Round.Number == round.no) %>%
+  filter(Season == YEAR, Round.Number == round.no+1) %>%
   select(Date, Venue, Round.Number, Home.Team, Away.Team, Home.Points, Away.Points)
 
 newest.betting <- betting_join %>%
@@ -40,7 +43,7 @@ newest.betting <- newest.betting %>%
   drop_na(Date)
 
 betting_odds %<>%
- # select(!X) %>%
+  select(-starts_with("X")) %>%
   unique() %>%
   drop_na(Date)
 
@@ -48,4 +51,3 @@ betting_csv <- rbind(betting_odds, newest.betting) %>%
   drop_na(Date)
 
 write.csv(betting_csv, "csv_files/betting_odds.csv")
-

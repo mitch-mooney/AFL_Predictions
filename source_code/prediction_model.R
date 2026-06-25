@@ -1,6 +1,7 @@
 library(keras)
 
-# Betless model always runs first — provides predictions for all matches as the baseline/fallback
+# Betless model always runs first — provides predictions for all matches as the baseline/fallback.
+# matchType is dropped to match how the betless model is trained in retrain_model.R.
 data <- future_data_lean %>% select(-matchType)
 col_num<-as.numeric(ncol(data))
 data[1:col_num] <- lapply(data[1:col_num], as.numeric) #make sure all variables are numeric
@@ -8,12 +9,12 @@ data[1:col_num] <- lapply(data[1:col_num], as.numeric) #make sure all variables 
 # returns a list of matrix used for running model
 model.data <- model_data(data)
 # load pre-trained model (to retrain, use source("source_code/retrain_model.R"))
-model <- model_training(inputs = model.data$full_data_matrix, target = model.data$full_data_target)
-model %>% save_model_tf("model/model")
-model <- tryCatch(
-  load_model_tf(MODEL_PATH_FULL),
-  error = function(e) stop("Failed to load Keras model from '", MODEL_PATH_FULL, "': ", conditionMessage(e))
-)
+#model <- model_training(inputs = model.data$full_data_matrix, target = model.data$full_data_target)
+#model %>% save_model_tf("model/model")
+# Baseline is the betless model (model/model_betless). When MODEL_BETLESS = FALSE, the
+# primary odds-aware model (model/model) overrides these for matches with odds — see below.
+model <- load_model_tf(MODEL_PATH)
+
 #evaluate model from test dataset
 model %>% 
   evaluate(model.data$test, model.data$testLabels)
