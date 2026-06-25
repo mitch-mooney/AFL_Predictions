@@ -37,26 +37,19 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
 
   ##########----- Clean and merge results with stats -----##########
 
-  # Create an index of the rows you want with duplication
-  res_idx <- rep(1:nrow(results), 2)
-  # Use that index to generate your new data frame
-  results_df <- results[res_idx,]
-  # Add variables for joining
-  res <- results_df%>%
-    group_by(Game)%>%
-    filter(Season >= START_SEASON)%>%
-    mutate(num = row_number(),
-           Status = ifelse(num == 1, "Home", "Away"),
-           Team = ifelse(num == 1, Home.Team, Away.Team),
-           Opposition = ifelse(Team == Home.Team, Away.Team, Home.Team),
-           goals = ifelse(Team == Home.Team, Home.Goals, Away.Goals),
-           behinds = ifelse(Team == Home.Team, Home.Behinds, Away.Behinds),
-           points = ifelse(Team == Home.Team, Home.Points, Away.Points),
-           opp_goals = ifelse(Team == Home.Team, Away.Goals, Home.Goals),
-           opp_behinds = ifelse(Team == Home.Team, Away.Behinds, Home.Behinds),
-           opp_points = ifelse(Team == Home.Team, Away.Points, Home.Points),
-           Margin = points - opp_points) %>%
-    ungroup()%>%
+  # One row per team, swapping the home/away score columns. (filter first — Season
+  # drops whole matches, so it is equivalent to the old in-group filter.)
+  res <- results %>%
+    filter(Season >= START_SEASON) %>%
+    expand_home_away("Game", pairs = list(
+      goals       = c("Home.Goals",   "Away.Goals"),
+      behinds     = c("Home.Behinds", "Away.Behinds"),
+      points      = c("Home.Points",  "Away.Points"),
+      opp_goals   = c("Away.Goals",   "Home.Goals"),
+      opp_behinds = c("Away.Behinds", "Home.Behinds"),
+      opp_points  = c("Away.Points",  "Home.Points")
+    )) %>%
+    mutate(Margin = points - opp_points) %>%
     select(Date, Season, Team, goals, behinds, points, opp_goals, opp_behinds, opp_points, Margin)
   # clean team names
   res$Team <- normalize_team_names(res$Team)
@@ -147,23 +140,15 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
 
   ##########----- Clean and merge betting statistics -----##########
 
-  # Create an index of the rows you want with duplication
-  idx <- rep(1:nrow(betting_odds), 2)
-  # Use that index to genderate your new data frame
-  betting <- betting_odds[idx,]
-  # Add variables for joining
-  bet <- betting%>%
-    group_by(X, Home.Team)%>%
-    mutate(num = seq(1,2),
-           Status = ifelse(num == 1, "Home", "Away"),
-           Team = ifelse(num == 1, Home.Team, Away.Team),
-           Opposition = ifelse(Team == Home.Team, Away.Team, Home.Team),
-           Odds = ifelse(Team == Home.Team, Home.Win.Odds, Away.Win.Odds),
-           Opp_Odds = ifelse(Opposition == Home.Team, Home.Win.Odds, Away.Win.Odds),
-           line_Odds = ifelse(Team == Home.Team, Home.Line.Odds, Away.Line.Odds),
-           Opp_lineOdds = ifelse(Opposition == Home.Team, Home.Line.Odds, Away.Line.Odds))%>%
-    ungroup() %>%
-    select(Date,Status, Home.Team, Team, Odds, Opp_Odds, line_Odds, Opp_lineOdds) %>%
+  # One row per team, swapping the home/away odds columns (see expand_home_away).
+  bet <- betting_odds %>%
+    expand_home_away(c("X", "Home.Team"), pairs = list(
+      Odds         = c("Home.Win.Odds",  "Away.Win.Odds"),
+      Opp_Odds     = c("Away.Win.Odds",  "Home.Win.Odds"),
+      line_Odds    = c("Home.Line.Odds", "Away.Line.Odds"),
+      Opp_lineOdds = c("Away.Line.Odds", "Home.Line.Odds")
+    )) %>%
+    select(Date, Status, Home.Team, Team, Odds, Opp_Odds, line_Odds, Opp_lineOdds) %>%
     distinct()
 
   #clean up team names

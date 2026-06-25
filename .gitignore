@@ -8,3 +8,6 @@
 *.RData
 VideoDecodeStats/
 AFL_glicko.mp4
+
+# Golden snapshot fixtures (regenerable via tests/capture_core_golden.R)
+tests/golden/

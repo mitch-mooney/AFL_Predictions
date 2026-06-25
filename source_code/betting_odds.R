@@ -23,20 +23,13 @@ betting.df <- line.median %>%
          Away.Team = expand_odds_team_names(sapply(strsplit(Away.Team, " "), `[`, 1))) %>%
   select(Date, Home.Team, Away.Team, Home.Win.Odds, Away.Win.Odds, Home.Line.Odds, Away.Line.Odds)
 
-betting_idx <- rep(1:nrow(betting.df), 2)
-betting_df <- betting.df[betting_idx,]
-
-betting_join<-betting_df%>%
-  group_by(Date,Home.Team)%>%
-  mutate(num = rep(1:2),
-         Status = ifelse(num == 1, "Home", "Away"),
-         Team = ifelse(num == 1, Home.Team, Away.Team),
-         Opposition = ifelse(num == 1, Away.Team, Home.Team),
-         Odds = ifelse(num == 1, Home.Win.Odds, Away.Win.Odds),
-         line_Odds = ifelse(num==1, Home.Line.Odds, Away.Line.Odds),
-         Opp_Odds = ifelse(num==1, Away.Win.Odds, Home.Win.Odds),
-         Opp_lineOdds = ifelse(num==1, Away.Line.Odds, Home.Line.Odds)) %>% 
-  ungroup() %>% 
+betting_join <- betting.df %>%
+  expand_home_away(c("Date", "Home.Team"), pairs = list(
+    Odds         = c("Home.Win.Odds",  "Away.Win.Odds"),
+    line_Odds    = c("Home.Line.Odds", "Away.Line.Odds"),
+    Opp_Odds     = c("Away.Win.Odds",  "Home.Win.Odds"),
+    Opp_lineOdds = c("Away.Line.Odds", "Home.Line.Odds")
+  )) %>%
   select(Team, Opposition, Status, Odds, line_Odds, Opp_Odds, Opp_lineOdds)
 
 write.csv(betting_join, "csv_files/betting_odds_round.csv")
