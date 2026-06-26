@@ -21,7 +21,7 @@ model_training <- function(inputs, target){
   model <- keras_model_sequential()
   model %>%
     layer_dense(units = MODEL_UNITS[1], activation = activations[1],
-                input_shape = c(col_num - 1)) %>%
+                input_shape = c(ncol(inputs))) %>%   # n features, was the global col_num - 1
     layer_dropout(rate = MODEL_DROPOUT[1]) %>%
     layer_dense(units = MODEL_UNITS[2], activation = activations[2]) %>%
     layer_dropout(rate = MODEL_DROPOUT[2]) %>%
