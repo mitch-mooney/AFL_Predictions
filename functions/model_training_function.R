@@ -6,6 +6,18 @@ model_training <- function(inputs, target){
   # Activation sequence is specific to this architecture — do not generalise to all-relu
   activations <- c("relu", "sigmoid", "sigmoid", "relu")
 
+  # Guard: the layer block below is hardcoded to one dense+dropout pair per entry,
+  # so MODEL_UNITS / MODEL_DROPOUT (config.R) must match the architecture depth
+  # (length(activations)). A mismatch would otherwise feed NA to a layer (too few)
+  # or silently drop layers (too many). Edit config.R and the layer block together.
+  n_layers <- length(activations)
+  if (length(MODEL_UNITS) != n_layers || length(MODEL_DROPOUT) != n_layers) {
+    stop("model_training: MODEL_UNITS (", length(MODEL_UNITS),
+         ") and MODEL_DROPOUT (", length(MODEL_DROPOUT),
+         ") must each have ", n_layers, " entries to match the ",
+         n_layers, "-layer architecture.")
+  }
+
   model <- keras_model_sequential()
   model %>%
     layer_dense(units = MODEL_UNITS[1], activation = activations[1],
