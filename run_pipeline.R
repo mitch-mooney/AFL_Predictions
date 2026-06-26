@@ -37,7 +37,10 @@ glicko_rate      <- features$glicko_rate
 round.no         <- features$round.no
 
 message("\n[3/4] Generating predictions...")
-source("source_code/prediction_model.R")
+source("source_code/prediction_model.R")   # defines predict_round()
+predictions <- predict_round(future_data_lean, score_data_lean, future_data_full)
+prob_pred_df     <- predictions$prob_pred_df
+future_data_lean <- predictions$future_data_lean
 
 message("\n[4/4] Archiving predictions and rendering table...")
 source("source_code/Store_predictions.R")
