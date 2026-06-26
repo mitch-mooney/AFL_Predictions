@@ -1,6 +1,7 @@
 # AFL Predictions
 
 [![tests](https://github.com/mitch-mooney/AFL_Predictions/actions/workflows/tests.yml/badge.svg)](https://github.com/mitch-mooney/AFL_Predictions/actions/workflows/tests.yml)
+[![run-pipeline](https://github.com/mitch-mooney/AFL_Predictions/actions/workflows/run-pipeline.yml/badge.svg)](https://github.com/mitch-mooney/AFL_Predictions/actions/workflows/run-pipeline.yml)
 
 A weekly AFL match prediction system using player statistics, Glicko ratings, and a Keras deep learning model.
 
