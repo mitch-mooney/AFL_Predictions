@@ -50,7 +50,7 @@ current_round     <- stored$current_round
 current_season    <- stored$current_season
 
 message("\nDone. Predictions saved to csv_files/round_predictions.csv")
-message("Run source('source_code/Store_betting_odds.R') after results are in.")
+message("After results are in: source('source_code/Store_betting_odds.R'); store_betting_odds(round.no)")
 
 message("\n=== ", current_round, " — ", current_season, " Selections ===")
 print(htmltools::browsable(predictions_table))
