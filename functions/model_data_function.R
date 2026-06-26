@@ -1,19 +1,21 @@
-model_data <- function(data){
+model_data <- function(data, future_value = 999){
 
 col_num<-as.numeric(ncol(data))
 #include all future data with previous data
 data <- as.matrix(data)
-dimnames(data) <- NULL    
+dimnames(data) <- NULL
 data[,2:col_num] <- normalize(data[,2:col_num])
-# identify where the new data is 999 is always the largest number of the matrix
-first <- which(data>=sort(data, decreasing = T)[1], arr.ind = T)
-firstRow <- head(first[,1], n=1)
-lastRow <- tail(first[,1], n=1)
+# Future (upcoming) rows are flagged by the results sentinel in column 1 (the
+# target), which normalize() leaves untouched. Detect them explicitly rather than
+# assuming the sentinel is the matrix-wide maximum and the rows are contiguous.
+future_rows <- which(data[,1] == future_value)
+if (length(future_rows) == 0)
+  stop("model_data: no future rows (column 1 == ", future_value, ") found")
 # separate future data
-future_matrix <- data[firstRow:lastRow,2:col_num] #have to adjust the row for new data
-full_future_matrix<-data[firstRow:lastRow,1:col_num]
+future_matrix <- data[future_rows, 2:col_num]
+full_future_matrix <- data[future_rows, 1:col_num]
 #remove future data from training set
-data<- data[-firstRow:-lastRow,] #have to adjust the row for new data
+data <- data[-future_rows, ]
 full_data_matrix <- data[,2:col_num]
 full_data_target <- to_categorical(data[,1])
 # organize training set
