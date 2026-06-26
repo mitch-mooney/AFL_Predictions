@@ -3,9 +3,10 @@ name: run-pipeline
 # Weekly run of the full prediction pipeline (odds -> features -> Keras predict ->
 # store), committing the updated CSVs back to the repo.
 #
-# Setup required once: add an ODDS_API_KEY repository secret (Settings -> Secrets
-# and variables -> Actions). Without it the pipeline still runs and falls back to
-# the betless model (current-round odds are simply unavailable).
+# Setup required once: add an ODD_API_KEY repository secret (Settings -> Secrets
+# and variables -> Actions); the run step maps it to the ODDS_API_KEY env var the
+# pipeline reads. Without it the pipeline still runs and falls back to the betless
+# model (current-round odds are simply unavailable).
 #
 # Heaviest/riskiest step is installing TensorFlow and loading the committed Keras
 # model — if the CI TF version can't load the saved model, that step needs
@@ -46,7 +47,8 @@ jobs:
 
       - name: Run pipeline
         env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          # secret is named ODD_API_KEY in the repo; the pipeline reads ODDS_API_KEY
+          ODDS_API_KEY: ${{ secrets.ODD_API_KEY }}
         # Neutralise the headless reactable render (browseURL no-op) so it can't
         # fail the run after the CSVs are written.
         run: Rscript -e 'options(browser = function(url) invisible(NULL)); source("run_pipeline.R")'
