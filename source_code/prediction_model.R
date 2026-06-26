@@ -80,21 +80,13 @@ predict_round_core <- function(future_data_lean, score_data_lean,
   }
 
   future_data_lean <- future_data_lean %>%
-    mutate(pred_cat = ifelse(pred_win_prob < 0.1, 1,
-                             ifelse(pred_win_prob > 0.1 & pred_win_prob < 0.2, 2,
-                                    ifelse(pred_win_prob > 0.2 &pred_win_prob < 0.3, 3,
-                                           ifelse(pred_win_prob > 0.3 & pred_win_prob < 0.4, 4,
-                                                  ifelse(pred_win_prob > 0.4 & pred_win_prob < 0.5, 5,
-                                                         ifelse(pred_win_prob > 0.5 & pred_win_prob < 0.6, 6,
-                                                                ifelse(pred_win_prob > 0.6 & pred_win_prob< 0.7, 7,
-                                                                       ifelse(pred_win_prob > 0.7 & pred_win_prob < 0.8, 8,
-                                                                              ifelse(pred_win_prob > 0.8 & pred_win_prob < 0.9, 9, 10))))))))))
+    mutate(pred_cat = bin_prediction(pred_win_prob))
   #make numerical value categories
   future_data_lean$pred_cat_factor <- as.factor(future_data_lean$pred_cat)
 
   # New facet label names for supp variable
-  future_data_lean$pred_cat <- factor(future_data_lean$pred_cat_factor, levels = c(1,2,3,4,5,6,7,8,9,10),
-                            labels = c("0-10%", "10-20%", "20-30%", "30-40%", "40-50%", "50-60%", "60-70%", "70-80%", "80-90%", "90-100%"))
+  future_data_lean$pred_cat <- factor(future_data_lean$pred_cat_factor, levels = 1:10,
+                            labels = PRED_BIN_LABELS)
 
   # Find the mean of each group removing the unknown margins
   Sum_pred_cat <- future_data_lean %>%

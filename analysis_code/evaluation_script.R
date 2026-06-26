@@ -2,6 +2,10 @@
 # Requires `season_predictions` to be loaded into the environment first.
 # Load example: season_predictions <- read.csv("csv_files/round_predictions.csv")
 
+# shared binning helper + its config breakpoints
+source("functions/config.R")
+source("functions/bin_prediction.R")
+
 #bits and brier scores following https://rpubs.com/DamienG/613310
 season_predictions$predicted_prob = pmax(season_predictions$Loss_prob, season_predictions$Win_Prob)
 season_predictions$brier = (season_predictions$predicted_prob - season_predictions$Tip_Outcome)^2
@@ -80,15 +84,7 @@ favorites <- season_predictions %>%
          ROI = return *10)
 
 favorites %<>%
-  mutate(pred_cat = ifelse(predicted_prob < 0.1, 1, 
-                           ifelse(predicted_prob > 0.1 & predicted_prob < 0.2, 2,
-                                  ifelse(predicted_prob > 0.2 &predicted_prob < 0.3, 3,
-                                         ifelse(predicted_prob > 0.3 & predicted_prob < 0.4, 4,
-                                                ifelse(predicted_prob > 0.4 & predicted_prob < 0.5, 5,
-                                                       ifelse(predicted_prob > 0.5 & predicted_prob < 0.6, 6,
-                                                              ifelse(predicted_prob > 0.6 & predicted_prob< 0.7, 7,
-                                                                     ifelse(predicted_prob > 0.7 & predicted_prob < 0.8, 8,
-                                                                            ifelse(predicted_prob > 0.8 & predicted_prob < 0.9, 9, 10))))))))))
+  mutate(pred_cat = bin_prediction(predicted_prob))
 
 favorites %>% 
   filter(predicted_prob > 0.5,

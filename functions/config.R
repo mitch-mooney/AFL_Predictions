@@ -32,3 +32,9 @@ AFL_TEAMS <- c(
   "Geelong", "Gold Coast", "GWS", "Hawthorn", "Melbourne", "North Melbourne",
   "Port Adelaide", "Richmond", "St Kilda", "Sydney", "West Coast", "Western Bulldogs"
 )
+
+# Win-probability bins for calibration categories — breakpoints + labels for the
+# 10 deciles. Used by bin_prediction() (functions/bin_prediction.R).
+PRED_BINS       <- seq(0.1, 0.9, 0.1)
+PRED_BIN_LABELS <- c("0-10%", "10-20%", "20-30%", "30-40%", "40-50%",
+                     "50-60%", "60-70%", "70-80%", "80-90%", "90-100%")
