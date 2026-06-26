@@ -15,17 +15,19 @@
 message("=== AFL Predictions Pipeline — ", as.numeric(format(Sys.Date(), "%Y")), " ===")
 
 message("\n[1/4] Fetching betting odds (optional — predictions still run without them)...")
-tryCatch(
-  source("source_code/betting_odds.R"),
-  error = function(e) warning("betting_odds.R failed: ", conditionMessage(e),
-                               "\nProceeding without current round odds.")
+source("source_code/betting_odds.R")   # bootstrap + defines fetch_round_odds()
+betting_join <- tryCatch(
+  fetch_round_odds(),
+  error = function(e) {
+    warning("betting_odds fetch failed: ", conditionMessage(e),
+            "\nProceeding without current round odds.")
+    NULL
+  }
 )
 
 message("\n[2/4] Fetching stats and building features...")
 source("source_code/AFL_data.R")   # defines build_features_core() + build_features()
-features <- build_features(
-  betting_join = if (exists("betting_join")) betting_join else NULL
-)
+features <- build_features(betting_join = betting_join)
 # Destructure into the global names the downstream stages still read.
 future_data_lean <- features$future_data_lean
 future_data_full <- features$future_data_full
