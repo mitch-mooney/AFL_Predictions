@@ -1,0 +1,46 @@
+name: tests
+
+# Runs the hermetic unit tests on every push / PR. These are the tests that need
+# only base R + a few CRAN packages — no Keras/TensorFlow, no network, and no
+# golden fixtures (tests/golden/ is gitignored). The heavier checks are intentionally
+# NOT run here:
+#   - Keras-dependent : check_model_data.R, check_retrain_model.R, verify_predict_golden.R
+#   - golden snapshots: verify_core_golden.R, verify_odds_golden.R, verify_store_odds_golden.R
+#   - network/API     : check_fixture.R, capture_*.R
+# Run those locally where R has keras/fitzRoy and the golden fixtures present.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  hermetic-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true   # binary packages -> fast install
+
+      - name: Install R package dependencies
+        shell: Rscript {0}
+        run: install.packages(c("dplyr", "tibble", "rlang", "rprojroot"))
+
+      - name: Run hermetic unit tests
+        run: |
+          for t in \
+            tests/check_team_names.R \
+            tests/check_bin_prediction.R \
+            tests/check_expand_home_away.R \
+            tests/check_add_lag_features.R \
+            tests/check_add_season_to_date.R \
+            tests/check_match_aggregations.R \
+            tests/check_primary_override.R \
+            tests/check_parse_odds_json.R \
+            tests/check_model_training_guard.R ; do
+            echo "::group::$t"
+            Rscript "$t"
+            echo "::endgroup::"
+          done
