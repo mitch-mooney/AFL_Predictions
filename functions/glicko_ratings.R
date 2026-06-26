@@ -8,9 +8,14 @@
 # `match` must carry Date, Status, Team, Opposition, results (results coded
 # 0/1/2; 2 = draw, mapped to 0.5 for Glicko).
 #
-# Extracted verbatim from the old inline block — known fragilities preserved
-# byte-for-byte (rank() ties on same-date matches; the apply(glicko != 0) filter).
-# Fix those later under tests/verify_core_golden.R, not here.
+# rank(date) gives one Glicko rating period per calendar date (all that date's
+# games rated simultaneously) — the right granularity for AFL's round structure,
+# so it is kept as-is.
+#
+# Post-game ratings are selected via `played` — the (team, period) pairs the team
+# actually appeared in — rather than the old `apply(glicko != 0)` filter, which
+# used "rating changed" as a proxy for "played" and would silently drop (and
+# misalign) any game that produced exactly zero rating change.
 glicko_ratings <- function(match) {
   ratings <- match %>%
     filter(Status == 'Home') %>%
@@ -20,6 +25,15 @@ glicko_ratings <- function(match) {
 
   ratings$date <- as.integer(format(ratings$Date, "%Y%m%d"))
   ratings$match <- rank(ratings$date)
+
+  # period = dense_rank(date) matches glicko2's sequential history period labels
+  # (1..n_dates); `played` is every (team, period) pair, home and away.
+  ratings$period <- dplyr::dense_rank(ratings$date)
+  played <- dplyr::bind_rows(
+    dplyr::transmute(ratings, period, Team = Team),
+    dplyr::transmute(ratings, period, Team = Opposition)
+  ) %>%
+    dplyr::distinct()
 
   ratings %<>%
     select(match, Team, Opposition, results)
@@ -51,9 +65,10 @@ glicko_ratings <- function(match) {
            rate_change = ifelse(is.na(rate_change), 2200 - value, rate_change)) %>%
     ungroup()
 
-  glicko_clean<-glicko[apply(glicko!=0, 1, all),]
-  glicko_clean %<>% filter(var == "Rating")
-  glicko_clean$match <- as.integer(glicko_clean$match)
+  # keep only (Team, period) rows where the team actually played that period
+  glicko$match <- as.integer(glicko$match)
+  keep <- paste(glicko$Team, glicko$match) %in% paste(played$Team, played$period)
+  glicko_clean <- glicko[keep, ]
 
   glicko_clean %<>%
     group_by(Team) %>%
