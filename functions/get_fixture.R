@@ -8,21 +8,8 @@
 #
 # Replaces the previous Squiggle fetch (fetch_fixture_squiggle), which is broken
 # against current curl (curl_parse_url no longer exported).
-
-# AFL.com (fitzRoy source = 'AFL') team strings -> canonical names.
-# Only the strings that differ from canonical need an entry.
-afl_to_canonical_names <- function(x) {
-  lookup <- c(
-    "Adelaide Crows"    = "Adelaide",
-    "Brisbane Lions"    = "Brisbane",
-    "Geelong Cats"      = "Geelong",
-    "Gold Coast SUNS"   = "Gold Coast",
-    "GWS GIANTS"        = "GWS",
-    "Sydney Swans"      = "Sydney",
-    "West Coast Eagles" = "West Coast"
-  )
-  unname(ifelse(x %in% names(lookup), lookup[x], x))
-}
+#
+# Team-name translation (afl_to_canonical_names) lives in functions/team_names.R.
 
 # Returns the full season fixture in canonical form. round.no detection and
 # per-round filtering stay in build_features() (they depend on Sys.Date()).
