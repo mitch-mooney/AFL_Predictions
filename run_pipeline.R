@@ -43,7 +43,11 @@ prob_pred_df     <- predictions$prob_pred_df
 future_data_lean <- predictions$future_data_lean
 
 message("\n[4/4] Archiving predictions and rendering table...")
-source("source_code/Store_predictions.R")
+source("source_code/Store_predictions.R")   # defines store_round()
+stored <- store_round(future_data_lean, score_data_lean, round, glicko_rate, round.no)
+predictions_table <- stored$predictions_table
+current_round     <- stored$current_round
+current_season    <- stored$current_season
 
 message("\nDone. Predictions saved to csv_files/round_predictions.csv")
 message("Run source('source_code/Store_betting_odds.R') after results are in.")
