@@ -1,10 +1,15 @@
-# MANUAL ANALYSIS SCRIPT — not part of the weekly pipeline.
-# Requires `season_predictions` to be loaded into the environment first.
-# Load example: season_predictions <- read.csv("csv_files/round_predictions.csv")
+# MANUAL ANALYSIS SCRIPT — not part of the weekly pipeline. Run from the project root.
+#
+# Requires a `season_predictions` data frame: round predictions joined with actual
+# results. Expected columns include Loss_prob, Win_Prob, Tip_Outcome, Actual,
+# Actual.Margin, margin_estimate_1, Odds, Opp_Odds, Status, Round, Team.
+# (csv_files/round_predictions.csv holds the predictions; join your results onto it.)
 
-# shared binning helper + its config breakpoints
-source("functions/config.R")
-source("functions/bin_prediction.R")
+library(tidyverse)   # dplyr, ggplot2, ...
+library(magrittr)    # %<>%
+
+# Project helpers + config (bin_prediction, PRED_BINS, ...) via the standard loader.
+invisible(sapply(paste0("functions/", list.files("functions/")), source))
 
 #bits and brier scores following https://rpubs.com/DamienG/613310
 season_predictions$predicted_prob = pmax(season_predictions$Loss_prob, season_predictions$Win_Prob)
