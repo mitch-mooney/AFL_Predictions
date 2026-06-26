@@ -148,20 +148,20 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
   new$matchType <- ifelse(grepl('Final', new$Round), 1, 0)
   #new$date <- as.integer(format(new$Date, "%Y%m%d"))
   #finalize the variable lists for modeling
-  new %<>%
+  new <- new %>%
     arrange(Date) %>%
-    group_by(Team) %>%
-    mutate(last_scoreDiff = lag(Margin, order_by=Date),
-           last_result = lag(results, order_by=Date),
-           last_SC = lag(SC_diff, order_by=Date),
-           last_score_acc = lag(score_acc, order_by=Date),
-           last_disposals = lag(D, order_by=Date),
-           last_I50 = lag(I50, order_by=Date),
-           last_One.Percenters = lag(One.Percenters, order_by=Date),
-           pre_rate = lag(value, order_by=Date),
-           last_tackleDiff = lag(tackle_diff, order_by=Date),
-           matches_won = lag(wins_this_season, order_by = Date)) %>%
-    ungroup()
+    add_lag_features("Team", c(
+      last_scoreDiff      = "Margin",
+      last_result         = "results",
+      last_SC             = "SC_diff",
+      last_score_acc      = "score_acc",
+      last_disposals      = "D",
+      last_I50            = "I50",
+      last_One.Percenters = "One.Percenters",
+      pre_rate            = "value",
+      last_tackleDiff     = "tackle_diff",
+      matches_won         = "wins_this_season"
+    ))
 
   new %<>%
     group_by(Season, Team) %>%
@@ -184,20 +184,25 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
            last_encounter_line_Odds = lag(line_Odds, order_by = date)) %>%
     ungroup()
 
-  # use above metrics to create a couple of final variables
-  new %<>%
+  # use above metrics to create a couple of final variables.
+  # last_oppRate lags pre_oppRate, created earlier in the same call (order matters).
+  new <- new %>%
+    add_lag_features("Team", c(
+      last_rateDiff = "rate_diff",
+      pre_oppRate   = "opp_rating",
+      last_opp      = "opposition",
+      last_oppRate  = "pre_oppRate",
+      last_Odds     = "Odds",
+      last_LineOdds = "line_Odds",
+      last_CP       = "CP",
+      last_CM       = "CM",
+      last_MI5      = "MI5",
+      last_AF       = "AF"
+    ))
+  # venue is a PER-TEAM factor encoding — keep it inside group_by(Team).
+  new <- new %>%
     group_by(Team) %>%
-    mutate(last_rateDiff = lag(rate_diff, order_by=Date),
-           pre_oppRate = lag(opp_rating, order_by=Date),
-           last_opp = lag(opposition, order_by=Date),
-           last_oppRate = lag(pre_oppRate, order_by=Date),
-           last_Odds = lag(Odds, order_by = Date),
-           last_LineOdds = lag(line_Odds, order_by = Date),
-           last_CP = lag(CP, order_by = Date),
-           last_CM = lag(CM, order_by = Date),
-           last_MI5 = lag(MI5, order_by = Date),
-           last_AF = lag(AF, order_by = Date),
-           venue = as.numeric(factor(Venue)))%>%
+    mutate(venue = as.numeric(factor(Venue))) %>%
     ungroup()
   # --- Optional: add candidate features for experimentation -------------------
   # Uncomment to add extra features before selection. Then add their column names
