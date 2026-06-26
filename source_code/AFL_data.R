@@ -163,10 +163,11 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
       matches_won         = "wins_this_season"
     ))
 
-  new %<>%
-    group_by(Season, Team) %>%
-    mutate(season_for = lag(cumsum(points),1,default = 0),
-           season_against = lag(cumsum(opp_points),1,default = 0))
+  # season-to-date points scored / conceded BEFORE this match (0 for first game)
+  new <- add_season_to_date(new, c(
+    season_for     = "points",
+    season_against = "opp_points"
+  ))
 
   new %<>%
     group_by(Match_id) %>%
