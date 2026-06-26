@@ -66,9 +66,9 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
   #differential scores
   match %<>%
     group_by(Match_id) %>%
-    mutate(tackle_diff = (T*2) - sum(T),
-           SC_diff = (SC*2)- sum(SC),
-           score_acc = G/(G+B)) %>%
+    mutate(tackle_diff = match_diff(T),
+           SC_diff     = match_diff(SC),
+           score_acc   = G/(G+B)) %>%
     ungroup()
 
   #turn score difference into an integer D = 2, W = 1, L = 0
@@ -171,10 +171,10 @@ build_features_core <- function(results, dat, betting_odds, fixture, round.no,
 
   new %<>%
     group_by(Match_id) %>%
-    mutate(rate_diff = (pre_rate*2)-sum(pre_rate),
-           opp_rating = (sum(pre_rate)-pre_rate),
-           opp_season_for = (sum(season_for)-season_for),
-           opp_season_against = (sum(season_against)-season_against)) %>%
+    mutate(rate_diff          = match_diff(pre_rate),
+           opp_rating         = opponent_value(pre_rate),
+           opp_season_for     = opponent_value(season_for),
+           opp_season_against = opponent_value(season_against)) %>%
     ungroup()
 
   new %<>%
