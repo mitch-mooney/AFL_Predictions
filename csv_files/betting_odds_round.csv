@@ -1,19 +1,19 @@
 "","Team","Opposition","Status","Odds","line_Odds","Opp_Odds","Opp_lineOdds"
-"1","Geelong","Brisbane","Home",1.46,-13.5,2.7,13.5
-"2","Sydney","Western Bulldogs","Home",1.4,-16.5,2.95,16.5
-"3","West Coast","Adelaide","Home",5,32.5,1.18,-32.5
-"4","Hawthorn","Melbourne","Home",1.43,-14.5,2.85,14.5
-"5","GWS","Fremantle","Home",3.35,20.5,1.33,-20.5
-"6","Gold Coast","Collingwood","Home",1.6,-8.5,2.35,8.5
-"7","Richmond","Carlton","Home",6,35.5,1.13,-35.5
-"8","Essendon","St Kilda","Home",4.6,29.5,1.2,-29.5
-"9","Port Adelaide","North Melbourne","Home",1.4,-16.5,3,16.5
-"10","Brisbane","Geelong","Away",2.7,13.5,1.46,-13.5
-"11","Western Bulldogs","Sydney","Away",2.95,16.5,1.4,-16.5
-"12","Adelaide","West Coast","Away",1.18,-32.5,5,32.5
-"13","Melbourne","Hawthorn","Away",2.85,14.5,1.43,-14.5
-"14","Fremantle","GWS","Away",1.33,-20.5,3.35,20.5
-"15","Collingwood","Gold Coast","Away",2.35,8.5,1.6,-8.5
-"16","Carlton","Richmond","Away",1.13,-35.5,6,35.5
-"17","St Kilda","Essendon","Away",1.2,-29.5,4.6,29.5
-"18","North Melbourne","Port Adelaide","Away",3,16.5,1.4,-16.5
+"1","Fremantle","Sydney","Home",1.48,-12.5,2.65,12.5
+"2","Collingwood","North Melbourne","Home",1.38,-17.5,3.05,17.5
+"3","St Kilda","Port Adelaide","Home",1.56,-9.5,2.4,9.5
+"4","GWS","Geelong","Home",2.35,9.5,1.6,-9.5
+"5","Carlton","Hawthorn","Home",2.7,13.5,1.46,-13.5
+"6","Adelaide","Gold Coast","Home",1.35,-17.5,3.2,17.5
+"7","Western Bulldogs","West Coast","Home",1.12,-36.5,6.25,36.5
+"8","Melbourne","Richmond","Home",1.09,-41.5,7.5,41.5
+"9","Brisbane","Essendon","Home",1.02,-62.5,17,62.5
+"10","Sydney","Fremantle","Away",2.65,12.5,1.48,-12.5
+"11","North Melbourne","Collingwood","Away",3.05,17.5,1.38,-17.5
+"12","Port Adelaide","St Kilda","Away",2.4,9.5,1.56,-9.5
+"13","Geelong","GWS","Away",1.6,-9.5,2.35,9.5
+"14","Hawthorn","Carlton","Away",1.46,-13.5,2.7,13.5
+"15","Gold Coast","Adelaide","Away",3.2,17.5,1.35,-17.5
+"16","West Coast","Western Bulldogs","Away",6.25,36.5,1.12,-36.5
+"17","Richmond","Melbourne","Away",7.5,41.5,1.09,-41.5
+"18","Essendon","Brisbane","Away",17,62.5,1.02,-62.5
