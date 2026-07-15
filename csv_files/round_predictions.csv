@@ -1147,34 +1147,43 @@
 "1146","Port Adelaide","Sydney","Round 14",0.68,0.32,-22,"Sydney",2026
 "1147","Richmond","Brisbane","Round 14",0.79,0.21,-36,"Brisbane",2026
 "1148","St Kilda","GWS","Round 14",0.53,0.47,-4,"GWS",2026
-"1150","Gold Coast","Hawthorn","Round 15",0.42,0.58,9,"Gold Coast",2026
-"1151","Adelaide","Melbourne","Round 15",0.32,0.68,21,"Adelaide",2026
-"1152","GWS","Carlton","Round 15",0.3,0.7,23,"GWS",2026
-"1153","Collingwood","Port Adelaide","Round 15",0.37,0.63,15,"Collingwood",2026
-"1154","Richmond","North Melbourne","Round 15",0.69,0.31,-24,"North Melbourne",2026
-"1155","St Kilda","Western Bulldogs","Round 15",0.5,0.5,0,"Western Bulldogs",2026
-"1156","Brisbane","Sydney","Round 16",0.66,0.34,-17,"Sydney",2026
-"1157","Hawthorn","GWS","Round 16",0.38,0.62,15,"Hawthorn",2026
-"1158","Carlton","West Coast","Round 16",0.25,0.75,29,"Carlton",2026
-"1159","Collingwood","Richmond","Round 16",0.21,0.79,34,"Collingwood",2026
-"1160","Port Adelaide","Adelaide","Round 16",0.74,0.26,-26,"Adelaide",2026
-"1161","North Melbourne","Essendon","Round 16",0.42,0.58,9,"North Melbourne",2026
-"1162","Fremantle","Gold Coast","Round 16",0.26,0.74,28,"Fremantle",2026
-"1163","Geelong","Brisbane","Round 17",0.36,0.64,17,"Geelong",2026
-"1164","Sydney","Western Bulldogs","Round 17",0.36,0.64,17,"Sydney",2026
-"1165","West Coast","Adelaide","Round 17",0.77,0.23,-29,"Adelaide",2026
-"1166","Hawthorn","Melbourne","Round 17",0.36,0.64,16,"Hawthorn",2026
-"1167","GWS","Fremantle","Round 17",0.67,0.33,-18,"Fremantle",2026
-"1168","Gold Coast","Collingwood","Round 17",0.44,0.56,8,"Gold Coast",2026
-"1169","Richmond","Carlton","Round 17",0.77,0.23,-30,"Carlton",2026
-"1170","Essendon","St Kilda","Round 17",0.71,0.29,-23,"St Kilda",2026
-"1171","Port Adelaide","North Melbourne","Round 17",0.37,0.63,16,"Port Adelaide",2026
-"1172","Fremantle","Sydney","Round 18",0.41,0.59,11,"Fremantle",2026
-"1173","Collingwood","North Melbourne","Round 18",0.33,0.67,20,"Collingwood",2026
-"1174","St Kilda","Port Adelaide","Round 18",0.41,0.59,10,"St Kilda",2026
-"1175","GWS","Geelong","Round 18",0.53,0.47,-3,"Geelong",2026
-"1176","Carlton","Hawthorn","Round 18",0.59,0.41,-10,"Hawthorn",2026
-"1177","Adelaide","Gold Coast","Round 18",0.31,0.69,22,"Adelaide",2026
-"1178","Western Bulldogs","West Coast","Round 18",0.22,0.78,33,"Western Bulldogs",2026
-"1179","Melbourne","Richmond","Round 18",0.19,0.81,35,"Melbourne",2026
-"1180","Brisbane","Essendon","Round 18",0.13,0.87,43,"Brisbane",2026
+"1149","Gold Coast","Hawthorn","Round 15",0.42,0.58,9,"Gold Coast",2026
+"1150","Adelaide","Melbourne","Round 15",0.32,0.68,21,"Adelaide",2026
+"1151","GWS","Carlton","Round 15",0.3,0.7,23,"GWS",2026
+"1152","Collingwood","Port Adelaide","Round 15",0.37,0.63,15,"Collingwood",2026
+"1153","Richmond","North Melbourne","Round 15",0.69,0.31,-24,"North Melbourne",2026
+"1154","St Kilda","Western Bulldogs","Round 15",0.5,0.5,0,"Western Bulldogs",2026
+"1155","Brisbane","Sydney","Round 16",0.66,0.34,-17,"Sydney",2026
+"1156","Hawthorn","GWS","Round 16",0.38,0.62,15,"Hawthorn",2026
+"1157","Carlton","West Coast","Round 16",0.25,0.75,29,"Carlton",2026
+"1158","Collingwood","Richmond","Round 16",0.21,0.79,34,"Collingwood",2026
+"1159","Port Adelaide","Adelaide","Round 16",0.74,0.26,-26,"Adelaide",2026
+"1160","North Melbourne","Essendon","Round 16",0.42,0.58,9,"North Melbourne",2026
+"1161","Fremantle","Gold Coast","Round 16",0.26,0.74,28,"Fremantle",2026
+"1162","Geelong","Brisbane","Round 17",0.36,0.64,17,"Geelong",2026
+"1163","Sydney","Western Bulldogs","Round 17",0.36,0.64,17,"Sydney",2026
+"1164","West Coast","Adelaide","Round 17",0.77,0.23,-29,"Adelaide",2026
+"1165","Hawthorn","Melbourne","Round 17",0.36,0.64,16,"Hawthorn",2026
+"1166","GWS","Fremantle","Round 17",0.67,0.33,-18,"Fremantle",2026
+"1167","Gold Coast","Collingwood","Round 17",0.44,0.56,8,"Gold Coast",2026
+"1168","Richmond","Carlton","Round 17",0.77,0.23,-30,"Carlton",2026
+"1169","Essendon","St Kilda","Round 17",0.71,0.29,-23,"St Kilda",2026
+"1170","Port Adelaide","North Melbourne","Round 17",0.37,0.63,16,"Port Adelaide",2026
+"1171","Fremantle","Sydney","Round 18",0.41,0.59,11,"Fremantle",2026
+"1172","Collingwood","North Melbourne","Round 18",0.33,0.67,20,"Collingwood",2026
+"1173","St Kilda","Port Adelaide","Round 18",0.41,0.59,10,"St Kilda",2026
+"1174","GWS","Geelong","Round 18",0.53,0.47,-3,"Geelong",2026
+"1175","Carlton","Hawthorn","Round 18",0.59,0.41,-10,"Hawthorn",2026
+"1176","Adelaide","Gold Coast","Round 18",0.31,0.69,22,"Adelaide",2026
+"1177","Western Bulldogs","West Coast","Round 18",0.22,0.78,33,"Western Bulldogs",2026
+"1178","Melbourne","Richmond","Round 18",0.19,0.81,35,"Melbourne",2026
+"1179","Brisbane","Essendon","Round 18",0.13,0.87,43,"Brisbane",2026
+"1180","Geelong","St Kilda","Round 19",0.36,0.64,16,"Geelong",2026
+"1181","Sydney","Adelaide","Round 19",0.39,0.61,13,"Sydney",2026
+"1182","Port Adelaide","Fremantle","Round 19",0.85,0.15,-39,"Fremantle",2026
+"1183","North Melbourne","Melbourne","Round 19",0.65,0.35,-16,"Melbourne",2026
+"1184","Collingwood","Carlton","Round 19",0.43,0.57,9,"Collingwood",2026
+"1185","West Coast","Brisbane","Round 19",0.79,0.21,-32,"Brisbane",2026
+"1186","Richmond","Hawthorn","Round 19",0.86,0.14,-40,"Hawthorn",2026
+"1187","Gold Coast","Western Bulldogs","Round 19",0.46,0.54,5,"Gold Coast",2026
+"1188","Essendon","GWS","Round 19",0.82,0.18,-36,"GWS",2026
