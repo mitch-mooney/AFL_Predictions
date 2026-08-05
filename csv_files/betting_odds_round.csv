@@ -1,19 +1,37 @@
 "","Team","Opposition","Status","Odds","line_Odds","Opp_Odds","Opp_lineOdds"
-"1","Collingwood","Geelong","Home",2.15,4.5,1.7,-4.5
-"2","Fremantle","Western Bulldogs","Home",1.11,-38.5,6.75,38.5
-"3","St Kilda","Sydney","Home",2.7,14.5,1.46,-14.5
-"4","Hawthorn","North Melbourne","Home",1.13,-38.5,6.1,38.5
-"5","Port Adelaide","GWS","Home",1.76,-6.5,2.11,6.5
-"6","Carlton","Brisbane","Home",4,25.5,1.25,-25.5
-"7","Richmond","West Coast","Home",2.02,2.5,1.8,-2.5
-"8","Gold Coast","Melbourne","Home",2.2,7.5,1.67,-7.5
-"9","Essendon","Adelaide","Home",9.25,45.5,1.06,-45.5
-"10","Geelong","Collingwood","Away",1.7,-4.5,2.15,4.5
-"11","Western Bulldogs","Fremantle","Away",6.75,38.5,1.11,-38.5
-"12","Sydney","St Kilda","Away",1.46,-14.5,2.7,14.5
-"13","North Melbourne","Hawthorn","Away",6.1,38.5,1.13,-38.5
-"14","GWS","Port Adelaide","Away",2.11,6.5,1.76,-6.5
-"15","Brisbane","Carlton","Away",1.25,-25.5,4,25.5
-"16","West Coast","Richmond","Away",1.8,-2.5,2.02,2.5
-"17","Melbourne","Gold Coast","Away",1.67,-7.5,2.2,7.5
-"18","Adelaide","Essendon","Away",1.06,-45.5,9.25,45.5
+"1","Western Bulldogs","North Melbourne","Home",1.35,-20.5,3.2,20.5
+"2","Brisbane","Hawthorn","Home",1.7,-5.5,2.15,5.5
+"3","Melbourne","Fremantle","Home",2.65,13.5,1.48,-13.5
+"4","Sydney","Port Adelaide","Home",1.13,-38.5,6.05,38.5
+"5","Geelong","Essendon","Home",1.01,-64.5,17,64.5
+"6","Adelaide","Richmond","Home",1.03,-53.5,14,53.5
+"7","GWS","Gold Coast","Home",1.36,-17.5,3.2,17.5
+"8","West Coast","Collingwood","Home",3,15.5,1.4,-15.5
+"9","St Kilda","Carlton","Home",2.15,5.5,1.7,-5.5
+"10","Fremantle","Adelaide","Home",1.3,-22.5,3.5,22.5
+"11","Richmond","St Kilda","Home",6,36.5,1.13,-36.5
+"12","North Melbourne","Geelong","Home",3.5,24,1.3,-24
+"13","Brisbane","Gold Coast","Home",1.22,-28,4.3,28
+"14","Hawthorn","Collingwood","Home",1.35,-19,3.15,19
+"15","Port Adelaide","Melbourne","Home",2.45,10.5,1.55,-10.5
+"16","GWS","West Coast","Home",1.13,-38,6,38
+"17","Western Bulldogs","Carlton","Home",1.8,-2.5,2.02,2.5
+"18","Essendon","Sydney","Home",12,55,1.03,-55
+"19","North Melbourne","Western Bulldogs","Away",3.2,20.5,1.35,-20.5
+"20","Hawthorn","Brisbane","Away",2.15,5.5,1.7,-5.5
+"21","Fremantle","Melbourne","Away",1.48,-13.5,2.65,13.5
+"22","Port Adelaide","Sydney","Away",6.05,38.5,1.13,-38.5
+"23","Essendon","Geelong","Away",17,64.5,1.01,-64.5
+"24","Richmond","Adelaide","Away",14,53.5,1.03,-53.5
+"25","Gold Coast","GWS","Away",3.2,17.5,1.36,-17.5
+"26","Collingwood","West Coast","Away",1.4,-15.5,3,15.5
+"27","Carlton","St Kilda","Away",1.7,-5.5,2.15,5.5
+"28","Adelaide","Fremantle","Away",3.5,22.5,1.3,-22.5
+"29","St Kilda","Richmond","Away",1.13,-36.5,6,36.5
+"30","Geelong","North Melbourne","Away",1.3,-24,3.5,24
+"31","Gold Coast","Brisbane","Away",4.3,28,1.22,-28
+"32","Collingwood","Hawthorn","Away",3.15,19,1.35,-19
+"33","Melbourne","Port Adelaide","Away",1.55,-10.5,2.45,10.5
+"34","West Coast","GWS","Away",6,38,1.13,-38
+"35","Carlton","Western Bulldogs","Away",2.02,2.5,1.8,-2.5
+"36","Sydney","Essendon","Away",1.03,-55,12,55
