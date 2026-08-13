@@ -39,7 +39,8 @@ jobs:
             tests/check_match_aggregations.R \
             tests/check_primary_override.R \
             tests/check_parse_odds_json.R \
-            tests/check_model_training_guard.R ; do
+            tests/check_model_training_guard.R \
+            tests/check_fetch_with_retry.R ; do
             echo "::group::$t"
             Rscript "$t"
             echo "::endgroup::"
