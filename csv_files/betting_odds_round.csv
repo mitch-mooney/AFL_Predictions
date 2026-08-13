@@ -1,37 +1,37 @@
 "","Team","Opposition","Status","Odds","line_Odds","Opp_Odds","Opp_lineOdds"
-"1","Western Bulldogs","North Melbourne","Home",1.35,-20.5,3.2,20.5
-"2","Brisbane","Hawthorn","Home",1.7,-5.5,2.15,5.5
-"3","Melbourne","Fremantle","Home",2.65,13.5,1.48,-13.5
-"4","Sydney","Port Adelaide","Home",1.13,-38.5,6.05,38.5
-"5","Geelong","Essendon","Home",1.01,-64.5,17,64.5
-"6","Adelaide","Richmond","Home",1.03,-53.5,14,53.5
-"7","GWS","Gold Coast","Home",1.36,-17.5,3.2,17.5
-"8","West Coast","Collingwood","Home",3,15.5,1.4,-15.5
-"9","St Kilda","Carlton","Home",2.15,5.5,1.7,-5.5
-"10","Fremantle","Adelaide","Home",1.3,-22.5,3.5,22.5
-"11","Richmond","St Kilda","Home",6,36.5,1.13,-36.5
-"12","North Melbourne","Geelong","Home",3.5,24,1.3,-24
-"13","Brisbane","Gold Coast","Home",1.22,-28,4.3,28
-"14","Hawthorn","Collingwood","Home",1.35,-19,3.15,19
-"15","Port Adelaide","Melbourne","Home",2.45,10.5,1.55,-10.5
-"16","GWS","West Coast","Home",1.13,-38,6,38
-"17","Western Bulldogs","Carlton","Home",1.8,-2.5,2.02,2.5
-"18","Essendon","Sydney","Home",12,55,1.03,-55
-"19","North Melbourne","Western Bulldogs","Away",3.2,20.5,1.35,-20.5
-"20","Hawthorn","Brisbane","Away",2.15,5.5,1.7,-5.5
-"21","Fremantle","Melbourne","Away",1.48,-13.5,2.65,13.5
-"22","Port Adelaide","Sydney","Away",6.05,38.5,1.13,-38.5
-"23","Essendon","Geelong","Away",17,64.5,1.01,-64.5
-"24","Richmond","Adelaide","Away",14,53.5,1.03,-53.5
-"25","Gold Coast","GWS","Away",3.2,17.5,1.36,-17.5
-"26","Collingwood","West Coast","Away",1.4,-15.5,3,15.5
-"27","Carlton","St Kilda","Away",1.7,-5.5,2.15,5.5
-"28","Adelaide","Fremantle","Away",3.5,22.5,1.3,-22.5
-"29","St Kilda","Richmond","Away",1.13,-36.5,6,36.5
-"30","Geelong","North Melbourne","Away",1.3,-24,3.5,24
-"31","Gold Coast","Brisbane","Away",4.3,28,1.22,-28
-"32","Collingwood","Hawthorn","Away",3.15,19,1.35,-19
-"33","Melbourne","Port Adelaide","Away",1.55,-10.5,2.45,10.5
-"34","West Coast","GWS","Away",6,38,1.13,-38
-"35","Carlton","Western Bulldogs","Away",2.02,2.5,1.8,-2.5
-"36","Sydney","Essendon","Away",1.03,-55,12,55
+"1","Fremantle","Adelaide","Home",1.37,-17.5,3.1,17.5
+"2","Richmond","St Kilda","Home",3.7,22.5,1.3,-22.5
+"3","North Melbourne","Geelong","Home",3.45,22.5,1.3,-22.5
+"4","Brisbane","Gold Coast","Home",1.18,-32.5,4.9,32.5
+"5","Hawthorn","Collingwood","Home",1.35,-19.5,3.2,19.5
+"6","Port Adelaide","Melbourne","Home",4.2,30.5,1.22,-30.5
+"7","GWS","West Coast","Home",1.15,-32.5,5.5,32.5
+"8","Western Bulldogs","Carlton","Home",3,19.5,1.38,-19.5
+"9","Essendon","Sydney","Home",15,60.5,1.02,-60.5
+"10","St Kilda","Gold Coast","Home",1.64,-7.5,2.25,7.5
+"11","Collingwood","Brisbane","Home",2.85,15.5,1.42,-15.5
+"12","Carlton","Fremantle","Home",2.7,13.5,1.45,-13.5
+"13","Melbourne","Western Bulldogs","Home",1.45,-13.5,2.71,13.5
+"14","Geelong","Richmond","Home",1.02,-58.5,14,58.5
+"15","Adelaide","GWS","Home",1.4,-16.5,2.95,16.5
+"16","Essendon","Port Adelaide","Home",3.65,23.5,1.28,-23.5
+"17","Sydney","North Melbourne","Home",1.14,-34,5.75,34
+"18","West Coast","Hawthorn","Home",5.75,35.5,1.14,-35.5
+"19","Adelaide","Fremantle","Away",3.1,17.5,1.37,-17.5
+"20","St Kilda","Richmond","Away",1.3,-22.5,3.7,22.5
+"21","Geelong","North Melbourne","Away",1.3,-22.5,3.45,22.5
+"22","Gold Coast","Brisbane","Away",4.9,32.5,1.18,-32.5
+"23","Collingwood","Hawthorn","Away",3.2,19.5,1.35,-19.5
+"24","Melbourne","Port Adelaide","Away",1.22,-30.5,4.2,30.5
+"25","West Coast","GWS","Away",5.5,32.5,1.15,-32.5
+"26","Carlton","Western Bulldogs","Away",1.38,-19.5,3,19.5
+"27","Sydney","Essendon","Away",1.02,-60.5,15,60.5
+"28","Gold Coast","St Kilda","Away",2.25,7.5,1.64,-7.5
+"29","Brisbane","Collingwood","Away",1.42,-15.5,2.85,15.5
+"30","Fremantle","Carlton","Away",1.45,-13.5,2.7,13.5
+"31","Western Bulldogs","Melbourne","Away",2.71,13.5,1.45,-13.5
+"32","Richmond","Geelong","Away",14,58.5,1.02,-58.5
+"33","GWS","Adelaide","Away",2.95,16.5,1.4,-16.5
+"34","Port Adelaide","Essendon","Away",1.28,-23.5,3.65,23.5
+"35","North Melbourne","Sydney","Away",5.75,34,1.14,-34
+"36","Hawthorn","West Coast","Away",1.14,-35.5,5.75,35.5
