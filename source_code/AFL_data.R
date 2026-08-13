@@ -288,7 +288,9 @@ build_features <- function(year = as.numeric(format(Sys.Date(), "%Y")),
   dat <- dat %>% select(!X) %>% mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
   options(timeout = 300)
   dat.new <- tryCatch(
-    fetch_player_stats_footywire(season = YEAR, check_existing = TRUE, round_number = round.no - 1) %>%
+    fetch_with_retry(
+      fetch_player_stats_footywire(season = YEAR, check_existing = TRUE, round_number = round.no - 1)
+    ) %>%
       mutate(Date = as.Date(Date, format = "%Y-%m-%d")),
     error = function(e) {
       warning("Failed to fetch player stats from Footywire: ", conditionMessage(e),
@@ -308,7 +310,7 @@ build_features <- function(year = as.numeric(format(Sys.Date(), "%Y")),
 
   ## Get match results
   results <- tryCatch(
-    fetch_results_afltables(season = START_SEASON:YEAR),
+    fetch_with_retry(fetch_results_afltables(season = START_SEASON:YEAR)),
     error = function(e) stop("Failed to fetch match results from AFLTables: ", conditionMessage(e))
   )
 
