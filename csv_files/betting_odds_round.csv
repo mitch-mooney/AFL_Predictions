@@ -1,9 +1,5 @@
 "","Team","Opposition","Status","Odds","line_Odds","Opp_Odds","Opp_lineOdds"
-"1","Fremantle","Hawthorn","Home",1.44,-14.5,2.8,14.5
-"2","Geelong","Carlton","Home",1.6,-8.5,2.35,8.5
-"3","Sydney","Brisbane","Home",3.95,25.5,1.26,-25.5
-"4","Adelaide","Western Bulldogs","Home",1.4,-16.5,3,16.5
-"5","Hawthorn","Fremantle","Away",2.8,14.5,1.44,-14.5
-"6","Carlton","Geelong","Away",2.35,8.5,1.6,-8.5
-"7","Brisbane","Sydney","Away",1.26,-25.5,3.95,25.5
-"8","Western Bulldogs","Adelaide","Away",3,16.5,1.4,-16.5
+"1","Fremantle","Geelong","Home",1.55,-10.5,2.45,10.5
+"2","Brisbane","Adelaide","Home",1.31,-21.5,3.45,21.5
+"3","Geelong","Fremantle","Away",2.45,10.5,1.55,-10.5
+"4","Adelaide","Brisbane","Away",3.45,21.5,1.31,-21.5
